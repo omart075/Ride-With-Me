@@ -26,14 +26,23 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	var destination = new google.maps.places.Autocomplete(destination_auto_complete, options).getPlace();
 
 	// get current positon
-        navigator.geolocation.getCurrentPosition(function(pos) {
-            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            var myLocation = new google.maps.Marker({
-                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-                map: map,
-                title: "My Location"
-            });
-        });
+        $scope.getCurrentLocation = function() {
+	    return new Promise ((resolve,reject) => {
+		navigator.geolocation.getCurrentPosition(function(pos) {
+		    map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+		    var myLocation = new google.maps.Marker({
+			position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+			map: map,
+			title: "My Location"
+		    });
+		    var location = {
+			lat: pos.coords.latitude,
+			lng: pos.coords.longitude
+		    };
+		    resolve(location);
+		});
+	    });
+	};
 
         $scope.map = map;
 	
@@ -41,7 +50,6 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	$scope.search = function() {
 
 	    var geocoder = new google.maps.Geocoder();
-
 	     /*
 	      * Get two pins and then calculates the 
               *  midpoint between both pins for center display
@@ -51,13 +59,13 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	    document.getElementById('searchButton').addEventListener('click', function() {
 		geocodeAddress(geocoder, map).then((addressRes) => {
 		    addressPosition = addressRes;
+		    console.log(addressPosition);
 		    return geocodeDestination(geocoder, map);
 		}).then((destinationRes) => {
 		    destinationPosition = destinationRes;
-		    return getMidPoint(addressPosition, destinationPosition);
-		}).then((center) => {
 		    var markers = [addressPosition, destinationPosition];
 		    var bounds = new google.maps.LatLngBounds();
+
 		    for(index in markers){
 			var position = markers[index];
 			bounds.extend(position);
@@ -69,6 +77,9 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	    // GEOCODE ADDRESS
 	    function geocodeAddress(geocoder, resultsMap) {
 		var address = document.getElementById('user.address').value;
+		if (address == "current location" || address == "Current location"){
+		    return $scope.getCurrentLocation();
+		}
 		return new Promise ((resolve,reject) => {
 		    geocoder.geocode({'address': address}, function(results, status) {
 			if (status === 'OK') {
@@ -104,16 +115,6 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 		    });
 		});
 	    };
-	};
-
-	function getMidPoint(address, destination) {
-	    return new Promise ((resolve,reject) => {
-		var center = {
-		    lat: Number((address.lat() + destination.lat()) / 2),
-		    lng: Number((address.lng() + destination.lng()) / 2)
-		};
-		resolve(center);
-	    });
 	};
     });
 });
