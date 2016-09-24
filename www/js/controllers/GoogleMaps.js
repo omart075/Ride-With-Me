@@ -7,7 +7,6 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
             center: myLatlng,
             zoom: 17,
             mapTypeId: google.maps.MapTypeId.ROADMAP
-
         };
 
 	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -20,12 +19,10 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	// User Address Autocomplete
 	var address_auto_complete = document.getElementById('user.address');
 	var autocomplete = new google.maps.places.Autocomplete(address_auto_complete, options).getPlace();
-	autocomplete.bindTo('bounds', map);
 
 	// Destination Autocomplete
 	var destination_auto_complete = document.getElementById('user.destination');
 	var destination = new google.maps.places.Autocomplete(destination_auto_complete, options).getPlace();
-	destination.bindTo('bounds', map);
 
         navigator.geolocation.getCurrentPosition(function(pos) {
             map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
