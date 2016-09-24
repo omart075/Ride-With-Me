@@ -39,7 +39,6 @@
 	<h1 class="title">Ride With Me</h1>
       </ion-header-bar>
       <ion-content ng-controller= "MapController">
-
 	<label class="item item-input">
           <input id="user.address" type="text" placeholder="Enter your home address, Apt# and ZIP"  googleplace="" class="ng-pristine ng-valid" autocomplete="off"><!-- googleplace -->
         </label>
@@ -48,7 +47,7 @@
           <input id="user.destination" type="text" placeholder="Enter your destination" googleplace="" class="ng-pristine ng-valid" autocomplete="off"><!-- googleplace -->
         </label>
 
-          <button class="button button-block button-calm icon-right ion-chevron-right disable-user-behavior" ng-click="signUp(user)">Search</button>
+          <button id="searchButton" class="button button-block button-calm icon-right ion-chevron-right disable-user-behavior" ng-click="search()">Search</button>
         <div id="map" data-tap-disabled ="true"> </div>
       </ion-content>
     </ion-pane>

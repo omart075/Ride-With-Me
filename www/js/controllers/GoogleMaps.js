@@ -1,5 +1,6 @@
 angular.module('app').controller('MapController', function($scope, $ionicLoading) {
 
+    // Display map
     google.maps.event.addDomListener(window, 'load', function() {
         var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
 
@@ -24,6 +25,7 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	var destination_auto_complete = document.getElementById('user.destination');
 	var destination = new google.maps.places.Autocomplete(destination_auto_complete, options).getPlace();
 
+	// get current positon
         navigator.geolocation.getCurrentPosition(function(pos) {
             map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
             var myLocation = new google.maps.Marker({
@@ -32,8 +34,86 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
                 title: "My Location"
             });
         });
+
         $scope.map = map;
+	
+	// Search function based on address/destination
+	$scope.search = function() {
+
+	    var geocoder = new google.maps.Geocoder();
+
+	     /*
+	      * Get two pins and then calculates the 
+              *  midpoint between both pins for center display
+              */
+	    var addressPosition;
+	    var destinationPosition;
+	    document.getElementById('searchButton').addEventListener('click', function() {
+		geocodeAddress(geocoder, map).then((addressRes) => {
+		    addressPosition = addressRes;
+		    return geocodeDestination(geocoder, map);
+		}).then((destinationRes) => {
+		    destinationPosition = destinationRes;
+		    return getMidPoint(addressPosition, destinationPosition);
+		}).then((center) => {
+		    var markers = [addressPosition, destinationPosition];
+		    var bounds = new google.maps.LatLngBounds();
+		    for(index in markers){
+			var position = markers[index];
+			bounds.extend(position);
+		    }
+		    map.fitBounds(bounds);
+		});
+	    });
+	    
+	    // GEOCODE ADDRESS
+	    function geocodeAddress(geocoder, resultsMap) {
+		var address = document.getElementById('user.address').value;
+		return new Promise ((resolve,reject) => {
+		    geocoder.geocode({'address': address}, function(results, status) {
+			if (status === 'OK') {
+			    var addressMarker = new google.maps.Marker({
+				map: resultsMap,
+				position: results[0].geometry.location
+			    });
+			    resolve(results[0].geometry.location);
+			}
+			else {
+			    console.log('Geocode was not successful for address because: ' + status);
+			    reject(status);
+			}
+		    });
+		});
+	    };
+
+	    // GEOCODE DESTINATION
+	    function geocodeDestination(geocoder, resultsMap) {
+		var destination = document.getElementById('user.destination').value;
+		return new Promise((resolve, reject) => {
+		    geocoder.geocode({'address': destination}, function(results, status) {
+			if (status === 'OK') {
+			    var destinationMarker = new google.maps.Marker({
+				map: resultsMap,
+				position: results[0].geometry.location
+			    });
+			    resolve(results[0].geometry.location);
+			}		
+			else {
+			    console.log('Geocode was not successful for destination because: ' + status);
+			}
+		    });
+		});
+	    };
+	};
+
+	function getMidPoint(address, destination) {
+	    return new Promise ((resolve,reject) => {
+		var center = {
+		    lat: Number((address.lat() + destination.lat()) / 2),
+		    lng: Number((address.lng() + destination.lng()) / 2)
+		};
+		resolve(center);
+	    });
+	};
     });
 });
-
-
