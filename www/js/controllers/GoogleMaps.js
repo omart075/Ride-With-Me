@@ -79,7 +79,6 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 		});
 	    });
 	};
-	$scope.getCurrentLocation();
         $scope.map = map;
 	
 	// Search function based on address/destination
@@ -92,22 +91,21 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
               */
 	    var addressPosition;
 	    var destinationPosition;
-	    document.getElementById('searchButton').addEventListener('click', function() {
-		geocodeAddress(geocoder, map).then((addressRes) => {
-		    addressPosition = addressRes;
-		    return geocodeDestination(geocoder, map);
-		}).then((destinationRes) => {
-		    destinationPosition = destinationRes;
-		    var markers = [addressPosition, destinationPosition];
-		    var bounds = new google.maps.LatLngBounds();
-		    for(index in markers){
-			var position = markers[index];
-			bounds.extend(position);
-		    }
-		    map.fitBounds(bounds);
-		});
+	    geocodeAddress(geocoder, map).then((addressRes) => {
+		addressPosition = addressRes;
+		return geocodeDestination(geocoder, map);
+	    }).then((destinationRes) => {
+		destinationPosition = destinationRes;
+		var markers = [addressPosition, destinationPosition];
+		var bounds = new google.maps.LatLngBounds();
+		for(index in markers){
+		    var position = markers[index];
+		    bounds.extend(position);
+		}
+		map.fitBounds(bounds);
 	    });
-	    
+
+	};
 	    // GEOCODE ADDRESS
 	    function geocodeAddress(geocoder, resultsMap) {
 		var address = document.getElementById('user.address').value;
@@ -151,6 +149,5 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 		    });
 		});
 	    };
-	};
     });
 });
