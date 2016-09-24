@@ -5,7 +5,7 @@ var auth = 'Bearer gAAAAABX0EtKpHZqxOcSibZGOs3JbZVilP9EUqYEMWR2tc1R_hDRuDRYPDl79
 
 angular.module('app').controller('LyftCtrl', ['$scope', '$http', function ($scope, $http) {
     
-    $scope.test = function(startLat, startLng, finLat, finLng) {
+    $scope.lyft = function(startLat, startLng, finLat, finLng) {
 	$http({
 	    method: "GET",
 	    url: 'https://api.lyft.com/v1/cost?start_lat=' + startLat + '&start_lng=' + startLng + '&end_lat=' + finLat + '&end_lng=' + finLng,
