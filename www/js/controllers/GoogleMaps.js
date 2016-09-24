@@ -10,7 +10,22 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 
         };
 
-        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+	// Options for Autocomplete
+	var options = {
+	    types: ['establishment']
+	};
+
+	// User Address Autocomplete
+	var address_auto_complete = document.getElementById('user.address');
+	var autocomplete = new google.maps.places.Autocomplete(address_auto_complete, options).getPlace();
+	autocomplete.bindTo('bounds', map);
+
+	// Destination Autocomplete
+	var destination_auto_complete = document.getElementById('user.destination');
+	var destination = new google.maps.places.Autocomplete(destination_auto_complete, options).getPlace();
+	destination.bindTo('bounds', map);
 
         navigator.geolocation.getCurrentPosition(function(pos) {
             map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
@@ -20,8 +35,8 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
                 title: "My Location"
             });
         });
-
         $scope.map = map;
     });
-
 });
+
+
