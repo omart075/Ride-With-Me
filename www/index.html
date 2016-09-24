@@ -29,7 +29,7 @@
     <script src="js/controllers/GoogleMaps.js"></script>
     <script src="js/controllers/LyftApi.js"></script>
     <script src="js/controllers/UberApi.js"></script>
-    
+
   </head>
   <body ng-app="app">
     <ion-pane>
@@ -39,6 +39,9 @@
       <ion-content ng-controller= "MapController">
         <label class="item item-input">
           <input type="text" placeholder="Enter your home address, Apt# and ZIP" ng-model="user.address" googleplace="" class="ng-pristine ng-valid" autocomplete="off"><!-- googleplace -->
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Enter your destination" ng-model="user.destination" googleplace="" class="ng-pristine ng-valid" autocomplete="off"><!-- googleplace -->
         </label>
         <div>
           <button class="button button-block button-dark icon-right ion-chevron-right disable-user-behavior" ng-click="signUp(user)">Search</button>

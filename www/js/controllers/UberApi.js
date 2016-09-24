@@ -11,7 +11,7 @@ angular.module('app').controller('UberCtrl', ['$scope', '$http', function ($scop
 	    method: "GET",
 	    url: 'https://api.uber.com/v1/estimates/price?start_latitude=' + startLat + '&start_longitude=' + startLng + '&end_latitude=' + finLat + '&end_longitude=' + finLng,
 	    headers: {
-		'Authorization': auth
+		      'Authorization': auth
 	    }
 	}).success(function (res, status, headers) {
 	    console.log(res);
