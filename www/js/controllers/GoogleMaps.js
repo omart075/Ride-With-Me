@@ -25,6 +25,42 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	var destination_auto_complete = document.getElementById('user.destination');
 	var destination = new google.maps.places.Autocomplete(destination_auto_complete, options).getPlace();
 
+	// Markers Array
+	var markers = [];
+
+	// Adds a marker to the map and push to the array.
+	function addMarker(location) {
+	    var marker = new google.maps.Marker({
+		position: location,
+		map: map
+	    });
+	    markers.push(marker);
+	}
+
+	// Sets the map on all markers in the array.
+	function setMapOnAll(map) {
+	    for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(map);
+	    }
+	}
+
+	// Removes the markers from the map, but keeps them in the array.
+	function clearMarkers() {
+	    setMapOnAll(null);
+	}
+
+	// Shows any markers currently in the array.
+	function showMarkers() {
+	    setMapOnAll(map);
+	}
+
+	// Deletes all markers in the array by removing references to them.
+	function deleteMarkers() {
+	    clearMarkers();
+	    markers = [];
+	}
+
+	
 	// get current positon
         $scope.getCurrentLocation = function() {
 	    return new Promise ((resolve,reject) => {
@@ -43,7 +79,7 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 		});
 	    });
 	};
-
+	$scope.getCurrentLocation();
         $scope.map = map;
 	
 	// Search function based on address/destination
@@ -59,13 +95,11 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	    document.getElementById('searchButton').addEventListener('click', function() {
 		geocodeAddress(geocoder, map).then((addressRes) => {
 		    addressPosition = addressRes;
-		    console.log(addressPosition);
 		    return geocodeDestination(geocoder, map);
 		}).then((destinationRes) => {
 		    destinationPosition = destinationRes;
 		    var markers = [addressPosition, destinationPosition];
 		    var bounds = new google.maps.LatLngBounds();
-
 		    for(index in markers){
 			var position = markers[index];
 			bounds.extend(position);
@@ -83,10 +117,11 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 		return new Promise ((resolve,reject) => {
 		    geocoder.geocode({'address': address}, function(results, status) {
 			if (status === 'OK') {
-			    var addressMarker = new google.maps.Marker({
-				map: resultsMap,
-				position: results[0].geometry.location
-			    });
+			    if(markers.length > 2) {
+				clearMarkers();
+				deleteMarkers();
+			    }
+			    addMarker(results[0].geometry.location);
 			    resolve(results[0].geometry.location);
 			}
 			else {
@@ -103,10 +138,11 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 		return new Promise((resolve, reject) => {
 		    geocoder.geocode({'address': destination}, function(results, status) {
 			if (status === 'OK') {
-			    var destinationMarker = new google.maps.Marker({
-				map: resultsMap,
-				position: results[0].geometry.location
-			    });
+			    if(markers.length > 2) {
+				clearMarkers();
+				deleteMarkers();
+			    }
+			    addMarker(results[0].geometry.location);
 			    resolve(results[0].geometry.location);
 			}		
 			else {
