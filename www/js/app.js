@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('app', ['ionic'])
+var app = angular.module('starter', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -24,26 +24,30 @@ var app = angular.module('app', ['ionic'])
 })
 
 
-app.directive('googleplace', function() {
-    return {
-	require: 'ngModel',
-	link: function(scope, element, attrs, model) {
-	    var options = {
-		types: [],
-		componentRestrictions: {}
-	    };
-	    scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
+app.controller('MapController', function($scope, $ionicLoading) {
 
-	    google.maps.event.addListener(scope.gPlace, 'place_changed', function() {
-		scope.$apply(function() {
-		    model.$setViewValue(element.val());
-		});
-	    });
-	}
-    };
+    google.maps.event.addDomListener(window, 'load', function() {
+        var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
+
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 17,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+
+        };
+
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            var myLocation = new google.maps.Marker({
+                position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+                map: map,
+                title: "My Location"
+            });
+        });
+
+        $scope.map = map;
+    });
+
 });
-//myApp.factory('myService', function() {});
-
-function MyCtrl($scope) {
-    $scope.gPlace;
-}
