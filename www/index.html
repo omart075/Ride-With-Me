@@ -36,6 +36,8 @@
       <a ng-click="search()" class="button button-calm">Search</a>
       <a ng-click="getPrice()" class="button button-balanced">Get Prices</a>
     </div>
+
+    <ion-list ng-repeat="value in this.data">{{value.duration}}</ion-list> 
     
     <style>
       button-bar.custom-width-bar .button:first-child {

@@ -89,7 +89,10 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 		url: "https://crossorigin.me/http://45.55.195.49:4000/api/uber?startLat=" + startLat + "&startLng=" +
 		    startLng + "&finLat=" + finLat + "&finLng=" + finLng
 	    }).success((data) => {
-		console.log(data);
+		$scope.data = new Array();
+		for(i in data.prices){
+		    $scope.data.push(data.prices[i]);
+		}
 	    });
 
 	    $http({
@@ -97,11 +100,18 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 		url: "https://crossorigin.me/http://45.55.195.49:4000/api/lyft?startLat=" + startLat + "&startLng=" +
 		    startLng + "&finLat=" + finLat + "&finLng=" + finLng
 	    }).success((data2) => {
-		console.log(data2);
+		var lyftDat = new Array();
+		for(i in data2){
+		    lyftDat.push(data2[i]);
+		}
+		for(j in lyftDat){
+		    $scope.data.push(lyftDat[j]);
+		}
 	    });
 
 	};
 
+	
 	
 	// get current positon
         $scope.getCurrentLocation = function() {
