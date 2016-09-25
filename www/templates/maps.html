@@ -1,19 +1,13 @@
-<ion-view view-title="maps">
+<ion-view view-title="Ride With Me">
   <ion-content ng-controller="MapController">
-
     <label class="item item-input">
-      <input type="text" ng-model="address" id="user.address" placeholder="From:" googleplace="" autocomplete="off">
+      <input type="text" ng-model="address" id="user.address" placeholder="Enter Origin Location" googleplace="" autocomplete="off">
     </label>
-
     <label class="item item-input">
-      <input type="text" ng-model="user.destination" id="user.destination" placeholder="To:" googleplace="" autocomplete="off">
-    </label>
-
-    <button ng-click="search()" id="searchButton" class="button button-calm">Search</button>
-    <ion-item menu-close href="#/app/list">
-      Get Prices
-    </ion-item>
-
+      <input type="text" ng-model="user.destination" id="user.destination" placeholder="Enter Destination" googleplace="" autocomplete="off"</input>
+   </label>
+    
+    <button ng-click="search()" id="searchButton" class="button button-full button-calm">Search</button> 
     <div id="map" data-tap-disabled="true"></div>
   </ion-content>
   </ion-view>

@@ -24,6 +24,12 @@ var app = angular.module('app', ['ionic'])
 
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
+
+	.state('app', {
+	    url: '/app',
+	    abstract: true,
+	    templateUrl: 'templates/menu.html'
+	})
 	.state('app.maps', {
 	    url: '/maps',
 	    views: {
