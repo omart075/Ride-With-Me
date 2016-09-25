@@ -1,4 +1,4 @@
-angular.module('app').controller('MapController', function($scope, $ionicLoading) {
+angular.module('app').controller('MapController', function($scope, $http, $ionicLoading) {
 
     // Display map
     google.maps.event.addDomListener(window, 'load', function() {
@@ -9,7 +9,7 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
             zoom: 17,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-
+	
 	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	var geoloccontrol = new klokantech.GeolocationControl(map, 18);
 	
@@ -72,10 +72,34 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	    }
 	};
 
-	// hide the map (by id)	
-	$scope.hideMap = function() {
+	function hideMap() {
 	    var link = document.getElementById('map');
 	    link.style.visibility = 'hidden';
+	};
+	
+	$scope.getPrice = function() {
+	    hideMap();
+	    var startLat = _markers[0].position.lat();
+	    var startLng = _markers[0].position.lng();
+	    var finLat = _markers[1].position.lat();
+	    var finLng = _markers[1].position.lng();
+
+	    $http({
+		method: "GET",
+		url: "https://crossorigin.me/http://45.55.195.49:4000/api/uber?startLat=" + startLat + "&startLng=" +
+		    startLng + "&finLat=" + finLat + "&finLng=" + finLng
+	    }).success((data) => {
+		console.log(data);
+	    });
+
+	    $http({
+		method: "GET",
+		url: "https://crossorigin.me/http://45.55.195.49:4000/api/lyft?startLat=" + startLat + "&startLng=" +
+		    startLng + "&finLat=" + finLat + "&finLng=" + finLng
+	    }).success((data2) => {
+		console.log(data2);
+	    });
+
 	};
 
 	

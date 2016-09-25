@@ -16,6 +16,7 @@
     <script src="js/controllers/GoogleMaps.js"></script>
     <script src="js/controllers/LyftApi.js"></script>
     <script src="js/controllers/UberApi.js"></script>
+    <access origin="*"/>
   </head>
   <body ng-app="app">
    <ion-pane>
@@ -33,7 +34,7 @@
 
     <div class="button-bar button-calm custom-width-bar">
       <a ng-click="search()" class="button button-calm">Search</a>
-      <a ng-click="hideMap()" class="button button-balanced">Get Prices</a>
+      <a ng-click="getPrice()" class="button button-balanced">Get Prices</a>
     </div>
     
     <style>
