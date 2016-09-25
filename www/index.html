@@ -18,6 +18,25 @@
     <script src="js/controllers/UberApi.js"></script>
   </head>
   <body ng-app="app">
-    <ion-nav-view></ion-nav-view>
+   <ion-pane>
+   <ion-header-bar align-title="center" class="bar-calm">
+ 
+  <h1 class="title">Ride With Me</h1>
+  
+</ion-header-bar>
+   <ion-content ng-controller="MapController">
+    <label class="item item-input">
+      <input type="text" ng-model="address" id="user.address" placeholder="Enter Origin Location" googleplace="" autocomplete="off">
+    </label>
+    <label class="item item-input">
+      <input type="text" ng-model="user.destination" id="user.destination" placeholder="Enter Destination" googleplace="" autocomplete="off"</input>
+   </label>
+    
+    <button ng-click="search()" id="searchButton" class="button button-full button-calm">Search</button> 
+    
+    <div id="map" data-tap-disabled="false"></div>
+  </ion-content>
+
+   </ion-pane>
   </body>
 </html>

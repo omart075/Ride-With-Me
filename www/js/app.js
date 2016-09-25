@@ -20,33 +20,4 @@ var app = angular.module('app', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-})
-
-.config(function($stateProvider, $urlRouterProvider) {
-    $stateProvider
-
-	.state('app', {
-	    url: '/app',
-	    abstract: true,
-	    templateUrl: 'templates/menu.html'
-	})
-	.state('app.maps', {
-	    url: '/maps',
-	    views: {
-		'menuContent': {
-		    templateUrl: 'templates/maps.html',
-		    controller: 'MapController'
-		}
-	    }
-	}).state('app.list', {
-	    url: '/list',
-	    views: {
-		'menuContent': {
-		    templateUrl: 'templates/list.html'
-		}
-	    }
-	});
-    $urlRouterProvider.otherwise('/app/maps');
 });
-	    
-
