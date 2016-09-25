@@ -1,1 +1,19 @@
-    
+<ion-view view-title="maps">
+  <ion-content ng-controller="MapController">
+
+    <label class="item item-input">
+      <input type="text" ng-model="address" id="user.address" placeholder="From:" googleplace="" autocomplete="off">
+    </label>
+
+    <label class="item item-input">
+      <input type="text" ng-model="user.destination" id="user.destination" placeholder="To:" googleplace="" autocomplete="off">
+    </label>
+
+    <button ng-click="search()" id="searchButton" class="button button-calm">Search</button>
+    <ion-item menu-close href="#/app/list">
+      Get Prices
+    </ion-item>
+
+    <div id="map" data-tap-disabled="true"></div>
+  </ion-content>
+  </ion-view>

@@ -4,7 +4,6 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('app', ['ionic'])
-
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -21,5 +20,27 @@ var app = angular.module('app', ['ionic'])
       StatusBar.styleDefault();
     }
   });
+})
+
+.config(function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+	.state('app.maps', {
+	    url: '/maps',
+	    views: {
+		'menuContent': {
+		    templateUrl: 'templates/maps.html',
+		    controller: 'MapController'
+		}
+	    }
+	}).state('app.list', {
+	    url: '/list',
+	    views: {
+		'menuContent': {
+		    templateUrl: 'templates/list.html'
+		}
+	    }
+	});
+    $urlRouterProvider.otherwise('/app/maps');
 });
+	    
 
