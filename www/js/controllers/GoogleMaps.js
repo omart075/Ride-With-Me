@@ -126,7 +126,8 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 	
 	// Search function based on address/destination
 	$scope.search = function() {
-
+	    $scope.data = "";
+	    $scope.data2 = "";
 	    var link = document.getElementById('map');
 	    link.style.visibility = 'visible';
 
