@@ -25,22 +25,26 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	var destination_auto_complete = document.getElementById('user.destination');
 	var destination = new google.maps.places.Autocomplete(destination_auto_complete, options).getPlace();
 
-	// Markers Array
-	var markers = [];
+	// Global Markers Array
+	var _markers = [];
 
 	// Adds a marker to the map and push to the array.
 	function addMarker(location) {
+	    if(_markers.length == 2) {
+		clearMarkers();
+		deleteMarkers();
+	    }
 	    var marker = new google.maps.Marker({
 		position: location,
 		map: map
 	    });
-	    markers.push(marker);
+	    _markers.push(marker);
 	}
 
 	// Sets the map on all markers in the array.
 	function setMapOnAll(map) {
-	    for (var i = 0; i < markers.length; i++) {
-		markers[i].setMap(map);
+	    for (var i = 0; i < _markers.length; i++) {
+		_markers[i].setMap(map);
 	    }
 	}
 
@@ -57,7 +61,7 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	// Deletes all markers in the array by removing references to them.
 	function deleteMarkers() {
 	    clearMarkers();
-	    markers = [];
+	    _markers = [];
 	}
 
 	
@@ -66,15 +70,11 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	    return new Promise ((resolve,reject) => {
 		navigator.geolocation.getCurrentPosition(function(pos) {
 		    map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-		    var myLocation = new google.maps.Marker({
-			position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-			map: map,
-			title: "My Location"
-		    });
 		    var location = {
 			lat: pos.coords.latitude,
 			lng: pos.coords.longitude
 		    };
+		    addMarker(location);
 		    resolve(location);
 		});
 	    });
@@ -115,10 +115,6 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 		return new Promise ((resolve,reject) => {
 		    geocoder.geocode({'address': address}, function(results, status) {
 			if (status === 'OK') {
-			    if(markers.length > 2) {
-				clearMarkers();
-				deleteMarkers();
-			    }
 			    addMarker(results[0].geometry.location);
 			    resolve(results[0].geometry.location);
 			}
@@ -136,10 +132,6 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 		return new Promise((resolve, reject) => {
 		    geocoder.geocode({'address': destination}, function(results, status) {
 			if (status === 'OK') {
-			    if(markers.length > 2) {
-				clearMarkers();
-				deleteMarkers();
-			    }
 			    addMarker(results[0].geometry.location);
 			    resolve(results[0].geometry.location);
 			}		
