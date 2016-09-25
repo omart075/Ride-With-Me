@@ -100,15 +100,11 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 		url: "https://crossorigin.me/http://45.55.195.49:4000/api/lyft?startLat=" + startLat + "&startLng=" +
 		    startLng + "&finLat=" + finLat + "&finLng=" + finLng
 	    }).success((data2) => {
-		var lyftDat = new Array();
-		for(i in data2){
-		    lyftDat.push(data2[i]);
-		}
-		for(j in lyftDat){
-		    $scope.data.push(lyftDat[j]);
+		$scope.data2 = new Array();
+		for(i in data2.cost_estimates){
+		    $scope.data2.push(data2.cost_estimates[i]);
 		}
 	    });
-
 	};
 
 	

@@ -37,7 +37,24 @@
       <a ng-click="getPrice()" class="button button-balanced">Get Prices</a>
     </div>
 
-    <ion-list ng-repeat="value in this.data">{{value.duration}}</ion-list> 
+    <ion-list ng-repeat= "items in this.data">
+    <ion-item class="item-thumbnail-left item-text-wrap">
+    <img src="img/uber.jpg">
+      <h2>Type: {{items.localized_display_name}}</h2>
+      <h2>Cost: {{items.estimate}}</h2>
+       <h2>Duration (min): {{(items.duration/60)}}</h2>
+    </ion-item>
+    </ion-list> 
+
+
+    <ion-list ng-repeat= "lyfts in this.data2">
+    <ion-item class="item-thumbnail-left item-text-wrap">
+    <img src="img/lyft.jpg">
+       <h2>Type: {{lyfts.ride_type}}</h2>
+       <h2>Cost: ${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</h2>
+       <h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>
+    </ion-item>
+    </ion-list>
     
     <style>
       button-bar.custom-width-bar .button:first-child {
