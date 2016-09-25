@@ -12,6 +12,7 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQKVCikU8FP1XZ-m3Tytu6KOk9LyB-B6s&libraries=places"></script>
+    <script src="https://cdn.klokantech.com/maptilerlayer/v1/index.js"></script>
     
     <script src="js/controllers/GoogleMaps.js"></script>
     <script src="js/controllers/LyftApi.js"></script>
@@ -32,8 +33,7 @@
         </label>
 
 	<button ng-click="search()" id="searchButton" class="button button-block button-calm">Search</button>
-	
-          <div id="map" data-tap-disabled ="true"> </div>
+	<div id="map" data-tap-disabled ="true"></div>
       </ion-content>
     </ion-pane>
   </body>

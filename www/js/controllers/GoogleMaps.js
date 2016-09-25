@@ -11,7 +11,8 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
         };
 
 	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
+	var geoloccontrol = new klokantech.GeolocationControl(map, 18);
+	
 	// Options for Autocomplete
 	var options = {
 	    types: ['establishment']
@@ -36,34 +37,42 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	    }
 	    var marker = new google.maps.Marker({
 		position: location,
+		draggable: true,
 		map: map
 	    });
 	    _markers.push(marker);
-	}
+	};
 
 	// Sets the map on all markers in the array.
 	function setMapOnAll(map) {
 	    for (var i = 0; i < _markers.length; i++) {
 		_markers[i].setMap(map);
 	    }
-	}
+	};
 
 	// Removes the markers from the map, but keeps them in the array.
 	function clearMarkers() {
 	    setMapOnAll(null);
-	}
+	};
 
 	// Shows any markers currently in the array.
 	function showMarkers() {
 	    setMapOnAll(map);
-	}
+	};
 
 	// Deletes all markers in the array by removing references to them.
 	function deleteMarkers() {
 	    clearMarkers();
 	    _markers = [];
-	}
+	};
 
+	function getMarkerLocation() {
+	    for(i in _markers){
+		console.log(_markers[i].position);
+	    }
+	};
+
+	getMarkerLocation();
 	
 	// get current positon
         $scope.getCurrentLocation = function() {
