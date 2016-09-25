@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>A
 <html>
   <head>
     <meta charset="utf-8">
@@ -19,24 +19,31 @@
   </head>
   <body ng-app="app">
    <ion-pane>
-   <ion-header-bar align-title="center" class="bar-calm">
- 
+   <ion-header-bar align-title="center" class="bar-energized">
   <h1 class="title">Ride With Me</h1>
-  
 </ion-header-bar>
    <ion-content ng-controller="MapController">
-    <label class="item item-input">
+     <label class="item item-input">
       <input type="text" ng-model="address" id="user.address" placeholder="Enter Origin Location" googleplace="" autocomplete="off">
     </label>
+
     <label class="item item-input">
       <input type="text" ng-model="user.destination" id="user.destination" placeholder="Enter Destination" googleplace="" autocomplete="off"</input>
    </label>
-    
-    <button ng-click="search()" id="searchButton" class="button button-full button-calm">Search</button> 
-    
-    <div id="map" data-tap-disabled="false"></div>
-  </ion-content>
 
+    <div class="button-bar button-calm custom-width-bar">
+      <a ng-click="search()" class="button button-calm">Search</a>
+      <a ng-click="hideMap()" class="button button-balanced">Get Prices</a>
+    </div>
+    
+    <style>
+      button-bar.custom-width-bar .button:first-child {
+      width: 75%;
+      min-width: 75%;
+    }
+    </style>
+    <div id="map"></div>
+   </ion-content>
    </ion-pane>
   </body>
 </html>

@@ -72,7 +72,12 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 	    }
 	};
 
-	getMarkerLocation();
+	// hide the map (by id)	
+	$scope.hideMap = function() {
+	    var link = document.getElementById('map');
+	    link.style.visibility = 'hidden';
+	};
+
 	
 	// get current positon
         $scope.getCurrentLocation = function() {
@@ -88,10 +93,12 @@ angular.module('app').controller('MapController', function($scope, $ionicLoading
 		});
 	    });
 	};
-        $scope.map = map;
 	
 	// Search function based on address/destination
 	$scope.search = function() {
+
+	    var link = document.getElementById('map');
+	    link.style.visibility = 'visible';
 
 	    var geocoder = new google.maps.Geocoder();
 	     /*
