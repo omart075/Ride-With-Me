@@ -76,7 +76,9 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 	    var link = document.getElementById('map');
 	    link.style.visibility = 'hidden';
 	};
-	
+
+	/****************************************************************/
+	// this code will move to a service
 	$scope.getPrice = function() {
 	    hideMap();
 	    var startLat = _markers[0].position.lat();
@@ -86,7 +88,7 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 
 	    $http({
 		method: "GET",
-		url: "https://crossorigin.me/http://45.55.195.49:4000/api/uber?startLat=" + startLat + "&startLng=" +
+		url: "http://localhost:4000/api/uber?startLat=" + startLat + "&startLng=" +
 		    startLng + "&finLat=" + finLat + "&finLng=" + finLng
 	    }).success((data) => {
 		$scope.data = new Array();
@@ -97,7 +99,7 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 
 	    $http({
 		method: "GET",
-		url: "https://crossorigin.me/http://45.55.195.49:4000/api/lyft?startLat=" + startLat + "&startLng=" +
+		url: "http://localhost:4000/api/lyft?startLat=" + startLat + "&startLng=" +
 		    startLng + "&finLat=" + finLat + "&finLng=" + finLng
 	    }).success((data2) => {
 		$scope.data2 = new Array();
@@ -107,7 +109,6 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 	    });
 	};
 
-	
 	
 	// get current positon
         $scope.getCurrentLocation = function() {
@@ -128,6 +129,7 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 	$scope.search = function() {
 	    $scope.data = "";
 	    $scope.data2 = "";
+
 	    var link = document.getElementById('map');
 	    link.style.visibility = 'visible';
 
