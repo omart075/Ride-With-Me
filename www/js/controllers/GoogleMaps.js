@@ -9,13 +9,13 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
             zoom: 17,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-	
+
 	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 	var geoloccontrol = new klokantech.GeolocationControl(map, 18);
-	
-	// Options for Autocomplete
+
+	// Options for Autocomplete. No options are selected
 	var options = {
-	    types: ['establishment']
+
 	};
 
 	// User Address Autocomplete
@@ -109,7 +109,7 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 	    });
 	};
 
-	
+
 	// get current positon
         $scope.getCurrentLocation = function() {
 	    return new Promise ((resolve,reject) => {
@@ -124,7 +124,7 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 		});
 	    });
 	};
-	
+
 	// Search function based on address/destination
 	$scope.search = function() {
 	    $scope.data = "";
@@ -135,7 +135,7 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 
 	    var geocoder = new google.maps.Geocoder();
 	     /*
-	      * Get two pins and then calculates the 
+	      * Get two pins and then calculates the
               *  midpoint between both pins for center display
               */
 	    var addressPosition;
@@ -183,7 +183,7 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 			if (status === 'OK') {
 			    addMarker(results[0].geometry.location);
 			    resolve(results[0].geometry.location);
-			}		
+			}
 			else {
 			    console.log('Geocode was not successful for destination because: ' + status);
 			}
