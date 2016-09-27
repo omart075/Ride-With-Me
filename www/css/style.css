@@ -22,19 +22,19 @@
 	width: 15px;
 	height: 15px;
 	position: absolute;
-	background-color: #FA9595;
+	background-color:;
 	z-index:1;
 	right: 35px;
 	top: 0;
 	bottom: 0;
 	margin: auto;
-	padding: 2px;
+	padding: 0px;
 	border-radius: 50%;
 	text-align: center;
-	color: white;
+	color: black;
 	font-weight: normal;
 	font-size: 12px;
-	box-shadow: 0 0 2px #E50F0F;
+	box-shadow: 0 0 0px #E50F0F;
 	cursor: pointer;
 }
 .search-box:not(:valid) ~ .close-icon {
