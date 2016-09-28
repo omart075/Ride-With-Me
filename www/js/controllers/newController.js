@@ -4,8 +4,8 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     google.maps.event.addDomListener(window, 'load', function() {
 
 	// Intialize our Map Service
-	var Map = new mapService.Map('map');
-
+	var Map = new mapService.Map();
+	
 	/*
 	  Get Autocompletion in View
 	  @params -> HTML input tags
@@ -13,19 +13,17 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	Map.linkFromAddress('user.address');
 	Map.linkToAddress('user.destination');
 
-	/*
-	  Enable GEO-Services 
-	  @params -> provided by GoogleAPI
-	 */
-	Map.setGeocoder(new google.maps.Geocoder());
-	Map.setNavigator(navigator);
-	
-	// Create Map
-	Map.create();
+	// Create Map Initialize at Current Position
+	Map.getCurrentLocation().then((location) => {
+	    let options = {
+		center: location,
+		zoom: 17,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	    };
+	    Map.create('map', options, new google.maps.Geocoder, navigator);
+	});
 
-	/*
-	  Search() returns Pins on User's inserted Locations
-	 */
+
 	$scope.search = function() {
 	    // Clears old data if neccessary
 	    $scope.uberData = "";
@@ -42,7 +40,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 		    for(var i in values){
 			/* TODO
 			   Handle Data and Create Pins
-			 */
+			*/
 		    }
 		}).catch((err) => {
 
@@ -53,7 +51,8 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 		    */
 		});
 	};
-	
+
+
 	// $scope.getPrice = function() {
 
 	//     // Hide the Map 
@@ -76,6 +75,56 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	// 	    console.log(res);
 	// 	})
 	// };
+
+	// function CenterControl(controlDiv, map) {
+
+	//     // Set CSS for the control border.
+	//     var controlUI = document.createElement('div');
+	//     controlUI.style.backgroundColor = '#fff';
+	//     controlUI.style.border = '2px solid #fff';
+	//     controlUI.style.borderRadius = '3px';
+	//     controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+	//     controlUI.style.cursor = 'pointer';
+	//     controlUI.style.marginBottom = '22px';
+	//     controlUI.style.textAlign = 'center';
+	//     controlUI.title = 'Click to recenter the map';
+	//     controlDiv.appendChild(controlUI);
+
+	//     // Set CSS for the control interior.
+	//     var controlText = document.createElement('div');
+	//     controlText.style.color = 'rgb(25,25,25)';
+	//     controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+	//     controlText.style.fontSize = '16px';
+	//     controlText.style.lineHeight = '38px';
+	//     controlText.style.paddingLeft = '5px';
+	//     controlText.style.paddingRight = '5px';
+	//     controlText.innerHTML = 'Center Map';
+	//     controlUI.appendChild(controlText);
+
+	//     // Setup the click event listeners: simply set the map to Chicago.
+	//     controlUI.addEventListener('click', function() {
+	// 	map.setCenter(chicago);
+	//     });
+
+	// }
+
+	
+	// // Create the DIV to hold the control and call the CenterControl()
+	// // constructor passing in this DIV.
+	// var centerControlDiv = document.createElement('div');
+	// var centerControl = new CenterControl(centerControlDiv, map);
+
+	// centerControlDiv.index = 1;
+	// map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+	
+	// controlUI.addEventListener('click', function() {
+	//     map.setCenter(chicago);
+	// });
+	
+	/*
+	  Search() returns Pins on User's inserted Locations
+	 */
+	
 
     });
 });

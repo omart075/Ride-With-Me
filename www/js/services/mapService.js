@@ -1,42 +1,48 @@
 angular.module('app').factory('mapService', function(){
     
-     var Map = function(id) {
-
+    var Map = function() {
+	
 	/*********************************** Map Properties ***********************************/
-	// map Element by id
-	this.id = id;
+	// HTML Element id
+	this.id;
+	
+	// Map object
+	this.map;
 	
 	// default mapOptions
-	 this.mapOptions = {
-	     center: new google.maps.LatLng(37.3000, -120.4833),
-	     zoom: 17,
-	     mapTypeId: google.maps.MapTypeId.ROADMAP
-	 };  
- 
+	this.mapOptions;  
+	
 	// autocomplete Options (leave blank)
-	this.autocompleteOptions = {};
-
+	this.autocompleteOptions;
+	
 	// grabs the input tags by id
-	this.fromAddress = "";
-	this.toAddress = "";
+	this.fromAddress;
+	this.toAddress;
 
 	// has to be set before getting any location!
-	this.geocoder = "";
+	this.geocoder;
 	
-	this.navigator = "";
+	this.navigator;
+
+	this.markerCount;
     }
 
     Map.prototype = {
 
 	constructor:Map,
 
-	/*********************************** Setters ***********************************/
+	/*********************************** Setters & Getters ***********************************/
 	/*
 	  This is the same as id in html
 	  - Never likely going to be changed -
 	 */
 	setId:  function(id) {
 	    this.id = id;
+	},
+
+	
+	getId: function() {
+	    return this.id;
 	},
 	
 	/*
@@ -46,6 +52,10 @@ angular.module('app').factory('mapService', function(){
 	    this.MapOptions = options;
 	},
 
+	getMapOptions: function() {
+	    return this.mapOptions;
+	},
+
 	/*
 	  Setter for Auto Complete Options
 	   - Should be an empty Object - 
@@ -53,6 +63,10 @@ angular.module('app').factory('mapService', function(){
 	setAutoCompleteOptions: function(options) {
 	    this.autocompleteOptions = options;
 
+	},
+
+	getAutoCompleteOptions: function() {
+	    return this.autocompleteOptions;
 	},
 
 	/*
@@ -87,12 +101,25 @@ angular.module('app').factory('mapService', function(){
 	    this.navigator = navigator;
 	},
 	
+	setMarkerCount: function(count) {
+	    this.markerCount = count;
+	},
+	
+	getMarkerCount: function() {
+	    return this.markerCount;
+	},
 
 	/*********************************** Basic Functionality ***********************************/
 	
 	/* Creates Map */
-	create: function() {
-	    return new google.maps.Map(document.getElementById(this.id), this.mapOptions);
+	create: function(id,options, geocoder, navigator) {
+	    this.id = id;
+	    this.options = options;
+	    this.markerCount = 0;
+	    this.geocoder = geocoder;
+	    this.navigator = navigator;
+	    this.map =  new google.maps.Map(document.getElementById(id), options);
+	    return this.map;
 	},
 
 
@@ -113,7 +140,7 @@ angular.module('app').factory('mapService', function(){
 	/*
 	  Returns the Current Location Asynchronously
 	 */
-	asyncGetCurrentLocation: function() {
+	getCurrentLocation: function() {
 	    return new Promise ((resolve,reject) => {
 		navigator.geolocation.getCurrentPosition(function(pos) {
 		    var location = {
@@ -123,17 +150,6 @@ angular.module('app').factory('mapService', function(){
 		    resolve(location);
 		});
 	    });
-	},
-
-	syncGetCurrentLocation: function() {
-	    var location;
-	    navigator.geolocation.getCurrentPosition(function(pos) {
-		location = {
-		    lat: pos.coords.latitude,
-		    lng: pos.coords.longitude
-		};
-	    });
-	    return new google.maps.LatLng(location.lat, location.lng);
 	},
 	
 	/*
@@ -163,9 +179,14 @@ angular.module('app').factory('mapService', function(){
 	    });
 	},
 
-    };
+	/* 
+	   Sets the Center of the map
+	 */
+	setCenter: function(location) {
+	    this.map.setCenter(location);
+	},
 
-    
+    };
 
     return {
 	Map: Map
