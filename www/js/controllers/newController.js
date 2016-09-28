@@ -35,14 +35,23 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    Map.showMap();
 
 	    // Grabs the location from HTML input tags
-	    Map.getFromLocation()
-		.then((fromLocation) => {
-		    console.log(fromLocation);
-		    return Map.getToLocation();
-		}).then((toLocation) => {
-		    console.log(toLocation);
+	    var fromLocation = Map.getFromLocation();
+	    var toLocation = Map.getToLocation();
+	    Promise.all([fromLocation, toLocation])
+		.then((values) => {
+		    for(var i in values){
+			/* TODO
+			   Handle Data and Create Pins
+			 */
+		    }
+		}).catch((err) => {
+
+		    /* TODO
+		       Error Handeling goes here 
+		       maybe we can show a pop-up dialog saying that 
+		       something went wrong with the search ?
+		    */
 		});
-	    // We would now create the pins.. haven't done that yet.
 	};
 	
 	// $scope.getPrice = function() {

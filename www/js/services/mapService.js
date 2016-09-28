@@ -162,8 +162,10 @@ angular.module('app').factory('mapService', function(){
 		});
 	    });
 	},
-	
+
     };
+
+    
 
     return {
 	Map: Map
