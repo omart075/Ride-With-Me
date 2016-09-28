@@ -1,18 +1,18 @@
 angular.module('app').factory('mapService', function(){
     
-    function Map(id) {
+     var Map = function(id) {
 
 	/*********************************** Map Properties ***********************************/
 	// map Element by id
 	this.id = id;
 	
 	// default mapOptions
-	this.mapOptions = {
-	    center: this.getCurrentLocation(),
-            zoom: 17,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-	};;
-	
+	 this.mapOptions = {
+	     center: new google.maps.LatLng(37.3000, -120.4833),
+	     zoom: 17,
+	     mapTypeId: google.maps.MapTypeId.ROADMAP
+	 };  
+ 
 	// autocomplete Options (leave blank)
 	this.autocompleteOptions = {};
 
@@ -40,7 +40,7 @@ angular.module('app').factory('mapService', function(){
 	},
 	
 	/*
-	  Needs to be set before calling create();
+	  Can be changed from default values
 	*/
 	setMapOptions: function(options) {
 	    this.MapOptions = options;
@@ -70,7 +70,7 @@ angular.module('app').factory('mapService', function(){
 	 */
 	linkToAddress: function(address) {
 	    this.toAddress = document.getElementById(address);
-	    return = new google.maps.places.Autocomplete(this.toAddress, this.autocompleteOptions).getPlace();
+	    return new google.maps.places.Autocomplete(this.toAddress, this.autocompleteOptions).getPlace();
 	},
 
 	/*
@@ -94,6 +94,13 @@ angular.module('app').factory('mapService', function(){
 	create: function() {
 	    return new google.maps.Map(document.getElementById(this.id), this.mapOptions);
 	},
+
+
+	/* Show Map */
+	showMap: function() {
+	    var tag = document.getElementById(this.id);
+	    tag.style.visibility = 'visible';
+	},
 	
 	/* Hides Map */
 	hideMap: function() {
@@ -104,9 +111,9 @@ angular.module('app').factory('mapService', function(){
 	/*********************************** Locations ***********************************/
 	
 	/*
-	  Returns the Current Location
+	  Returns the Current Location Asynchronously
 	 */
-	getCurrentLocation: function() {
+	asyncGetCurrentLocation: function() {
 	    return new Promise ((resolve,reject) => {
 		navigator.geolocation.getCurrentPosition(function(pos) {
 		    var location = {
@@ -117,12 +124,24 @@ angular.module('app').factory('mapService', function(){
 		});
 	    });
 	},
+
+	syncGetCurrentLocation: function() {
+	    var location;
+	    navigator.geolocation.getCurrentPosition(function(pos) {
+		location = {
+		    lat: pos.coords.latitude,
+		    lng: pos.coords.longitude
+		};
+	    });
+	    return new google.maps.LatLng(location.lat, location.lng);
+	},
+	
 	/*
 	  Returns the Location of the From HTML input tag
 	 */
 	getFromLocation: function() {
 	    return new Promise((resolve,reject) => {
-		this.geocoder.geocode({'address':this.fromAddress },function(results, status) {
+		this.geocoder.geocode({'address':this.fromAddress.value},function(results, status) {
 		    if (status === 'OK')
 			resolve(results[0].geometry.location);
 		    else reject(status);
@@ -136,7 +155,7 @@ angular.module('app').factory('mapService', function(){
 	 */
 	getToLocation: function() {
 	    return new Promise((resolve,reject) => {
-		this.geocoder.geocode({'address':this.toAddress }, function(results, status) {
+		this.geocoder.geocode({'address':this.toAddress.value}, function(results, status) {
 		    if(status === 'OK')
 			resolve(results[0].geometry.location);
 		    else reject(status);
@@ -144,6 +163,9 @@ angular.module('app').factory('mapService', function(){
 	    });
 	},
 	
-	}
+    };
+
+    return {
+	Map: Map
     };
 });

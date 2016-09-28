@@ -16,7 +16,8 @@
     <script src="js/services/uberService.js"></script>
     <script src="js/services/lyftService.js"></script>
     <script src="js/services/mapService.js"></script>
-    <script src="js/controllers/GoogleMaps.js"></script>
+    <script src="js/controllers/newController.js"></script>
+    <!-- <script src="js/controllers/GoogleMaps.js"></script> -->
     <allow-intent href="*" />
     <access origin="*"/>
   </head>
@@ -25,7 +26,7 @@
    <ion-header-bar align-title="center" class="bar-energized">
   <h1 class="title">Ride With Me</h1>
 </ion-header-bar>
-   <ion-content ng-controller="MapController">
+   <ion-content ng-controller="newController">
      <div class="search-wrapper">
        <form>
          <label class="item item-input">
@@ -48,7 +49,7 @@
       <a ng-click="getPrice()" class="button button-balanced">Get Prices</a>
     </div>
 
-    <ion-list ng-repeat= "items in this.data">
+    <ion-list ng-repeat= "items in this.uberData">
     <ion-item class="item-thumbnail-left item-text-wrap">
     <img src="img/uber.jpg">
       <h2>Type: {{items.localized_display_name}}</h2>
@@ -58,7 +59,7 @@
     </ion-list>
 
 
-    <ion-list ng-repeat= "lyfts in this.data2">
+    <ion-list ng-repeat= "lyfts in this.lyftData">
     <ion-item class="item-thumbnail-left item-text-wrap">
     <img src="img/lyft.jpg">
        <h2>Type: {{lyfts.ride_type}}</h2>

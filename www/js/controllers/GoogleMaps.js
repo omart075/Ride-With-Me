@@ -134,10 +134,10 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 	    link.style.visibility = 'visible';
 
 	    var geocoder = new google.maps.Geocoder();
-	     /*
-	      * Get two pins and then calculates the
-              *  midpoint between both pins for center display
-              */
+	    /*
+	     * Get two pins and then calculates the
+             *  midpoint between both pins for center display
+             */
 	    var addressPosition;
 	    var destinationPosition;
 	    geocodeAddress(geocoder, map).then((addressRes) => {
@@ -155,40 +155,40 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 	    });
 
 	};
-	    // GEOCODE ADDRESS
-	    function geocodeAddress(geocoder, resultsMap) {
-		var address = document.getElementById('user.address').value;
-		if (address == "current location" || address == "Current location"){
-		    return $scope.getCurrentLocation();
-		}
-		return new Promise ((resolve,reject) => {
-		    geocoder.geocode({'address': address}, function(results, status) {
-			if (status === 'OK') {
-			    addMarker(results[0].geometry.location);
-			    resolve(results[0].geometry.location);
-			}
-			else {
-			    console.log('Geocode was not successful for address because: ' + status);
-			    reject(status);
-			}
-		    });
+	// GEOCODE ADDRESS
+	function geocodeAddress(geocoder, resultsMap) {
+	    var address = document.getElementById('user.address').value;
+	    if (address == "current location" || address == "Current location"){
+		return $scope.getCurrentLocation();
+	    }
+	    return new Promise ((resolve,reject) => {
+		geocoder.geocode({'address': address}, function(results, status) {
+		    if (status === 'OK') {
+			addMarker(results[0].geometry.location);
+			resolve(results[0].geometry.location);
+		    }
+		    else {
+			console.log('Geocode was not successful for address because: ' + status);
+			reject(status);
+		    }
 		});
-	    };
+	    });
+	};
 
-	    // GEOCODE DESTINATION
-	    function geocodeDestination(geocoder, resultsMap) {
-		var destination = document.getElementById('user.destination').value;
-		return new Promise((resolve, reject) => {
-		    geocoder.geocode({'address': destination}, function(results, status) {
-			if (status === 'OK') {
-			    addMarker(results[0].geometry.location);
-			    resolve(results[0].geometry.location);
-			}
-			else {
-			    console.log('Geocode was not successful for destination because: ' + status);
-			}
-		    });
+	// GEOCODE DESTINATION
+	function geocodeDestination(geocoder, resultsMap) {
+	    var destination = document.getElementById('user.destination').value;
+	    return new Promise((resolve, reject) => {
+		geocoder.geocode({'address': destination}, function(results, status) {
+		    if (status === 'OK') {
+			addMarker(results[0].geometry.location);
+			resolve(results[0].geometry.location);
+		    }
+		    else {
+			console.log('Geocode was not successful for destination because: ' + status);
+		    }
 		});
-	    };
+	    });
+	};
     });
 });
