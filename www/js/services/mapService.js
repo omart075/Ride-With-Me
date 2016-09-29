@@ -44,7 +44,10 @@ angular.module('app').factory('mapService', function(){
 	getId: function() {
 	    return this.id;
 	},
-	
+
+	getMap: function() {
+	    return this.map;
+	},
 	/*
 	  Can be changed from default values
 	*/
@@ -112,7 +115,7 @@ angular.module('app').factory('mapService', function(){
 	/*********************************** Basic Functionality ***********************************/
 	
 	/* Creates Map */
-	create: function(id,options, geocoder, navigator) {
+	create: function(id, options, geocoder, navigator) {
 	    this.id = id;
 	    this.options = options;
 	    this.markerCount = 0;

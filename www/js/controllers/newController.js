@@ -1,17 +1,18 @@
-angular.module('app').controller('newController', function($scope, $http, $ionicLoading, uberService, lyftService, mapService) {
+angular.module('app').controller('newController', function($scope, $http, $ionicLoading, uberService, lyftService, markerService, mapService) {
 
     // View will react to changes on the map
     google.maps.event.addDomListener(window, 'load', function() {
 
 	// Intialize our Map Service
 	var Map = new mapService.Map();
-	
+	var Markers = new markerService.Markers();
 	/*
 	  Get Autocompletion in View
 	  @params -> HTML input tags
 	*/
 	Map.linkFromAddress('user.address');
 	Map.linkToAddress('user.destination');
+
 
 	// Create Map Initialize at Current Position
 	Map.getCurrentLocation().then((location) => {
@@ -35,15 +36,17 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    // Grabs the location from HTML input tags
 	    var fromLocation = Map.getFromLocation();
 	    var toLocation = Map.getToLocation();
+
 	    Promise.all([fromLocation, toLocation])
 		.then((values) => {
 		    for(var i in values){
-			/* TODO
-			   Handle Data and Create Pins
-			*/
+			let location = {
+			    lat:values[i].lat(),
+			    lng:values[i].lng()
+			};
+			Markers.addMarker(Map.getMap(),location);
 		    }
 		}).catch((err) => {
-
 		    /* TODO
 		       Error Handeling goes here 
 		       maybe we can show a pop-up dialog saying that 
@@ -124,60 +127,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	/*
 	  Search() returns Pins on User's inserted Locations
 	 */
-	
-
     });
 });
 
-/* 	// Global Markers Array
-	var _markers = [];
-
-	// Adds a marker to the map and push to the array.
-	function addMarker(location) {
-	    if(_markers.length == 2) {
-		clearMarkers();
-		deleteMarkers();
-	    }
-	    var marker = new google.maps.Marker({
-		position: location,
-		draggable: true,
-		map: map
-	    });
-	    _markers.push(marker);
-	};
-
-	// Sets the map on all markers in the array.
-	function setMapOnAll(map) {
-	    for (var i = 0; i < _markers.length; i++) {
-		_markers[i].setMap(map);
-	    }
-	};
-
-	// Removes the markers from the map, but keeps them in the array.
-	function clearMarkers() {
-	    setMapOnAll(null);
-	};
-
-	// Shows any markers currently in the array.
-	function showMarkers() {
-	    setMapOnAll(map);
-	};
-
-	// Deletes all markers in the array by removing references to them.
-	function deleteMarkers() {
-	    clearMarkers();
-	    _markers = [];
-	};
-
-	function getMarkerLocation() {
-	    for(i in _markers){
-		console.log(_markers[i].position);
-	    }
-	};
-
-	function hideMap() {
-	    var link = document.getElementById('map');
-	    link.style.visibility = 'hidden';
-	};
-
-*/
