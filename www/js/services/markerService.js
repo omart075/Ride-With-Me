@@ -26,36 +26,36 @@ angular.module('app').factory('markerService', function() {
 
 	// Sets the map on all markers in the array.
 	setMapOnAll: function(map) {
-    console.log("SetMapOnAll")
+	    console.log("SetMapOnAll")
 	    for (var i = 0; i < this._markers.length; i++) {
-		   this._markers[i].setMap(map);
+		this._markers[i].setMap(map);
 	    }
-
+	    
 	},
-
+	
 	// Removes the markers from the map, but keeps them in the array.
 	clearMarkers: function() {
-    this.count = 0;
-	  this.setMapOnAll(null);
+	    this.count = 0;
+	    this.setMapOnAll(null);
 	},
-
+	
 	// Shows any markers currently in the array.
 	showMarkers: function() {
 	    setMapOnAll(map);
 	},
 	// Deletes all markers in the array by removing references to them.
 	deleteMarkers: function() {
-    //console.log("deleteMarkers");
+	    //console.log("deleteMarkers");
 	    this.clearMarkers();
 	    _markers = [];
 	},
-
-  getMarkers: function()
-  {
-    console.log("getMarkers");
-    this.getMarkerLocation();
-    return this._markers;
-  },
+	
+	getMarkers: function()
+	{
+	    console.log("getMarkers");
+	    this.getMarkerLocation();
+	    return this._markers;
+	},
 
 	getMarkerLocation: function() {
 	    for(i=0; i<this._markers.length;i++){
@@ -63,8 +63,8 @@ angular.module('app').factory('markerService', function() {
 	    }
 	}
     };
-
-
+    
+    
     return {
 	Markers:Markers
     };

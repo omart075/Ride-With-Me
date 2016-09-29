@@ -181,31 +181,30 @@ angular.module('app').factory('mapService', function(){
 		});
 	    });
 	},
-
-  // Fits the bounds
-  fitBounds: function(markers)
-  {
-    var bounds = new google.maps.LatLngBounds();
-    for(index in markers){
-        var position = markers[index].getPosition();
-        //console.log(position);
-        bounds.extend(position);
-    }
-    this.map.setCenter(bounds.getCenter());
-    this.map.fitBounds(bounds);
-
-    this.map.setZoom(this.map.getZoom()-1);
-  },
-
+	
+	// Fits the bounds
+	fitBounds: function(markers)
+	{
+	    var bounds = new google.maps.LatLngBounds();
+	    for(index in markers){
+		var position = markers[index].getPosition();
+		bounds.extend(position);
+	    }
+	    this.map.setCenter(bounds.getCenter());
+	    this.map.fitBounds(bounds);
+	    this.map.setZoom(this.map.getZoom()-1);
+	    return this.map;
+	},
+	
 	/*
-	   Sets the Center of the map
-	 */
+	  Sets the Center of the map
+	*/
 	setCenter: function(location) {
 	    this.map.setCenter(location);
 	},
-
+	
     };
-
+    
     return {
 	Map: Map
     };
