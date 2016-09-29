@@ -43,8 +43,8 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
         lat:values[i].lat(),
         lng:values[i].lng()
     };
-    Markers.addMarker(Map.getMap(),location);
 
+    Markers.addMarker(Map.getMap(),location);
       }
   }).catch((err) => {
       /* TODO
@@ -53,7 +53,8 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
          something went wrong with the search ?
       */
   });
-
+  // Fit the Map to the markers bounds.
+  Map.fitBounds(Markers.getMarkers());
 };
 
 	// $scope.getPrice = function() {

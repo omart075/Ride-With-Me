@@ -50,9 +50,16 @@ angular.module('app').factory('markerService', function() {
 	    _markers = [];
 	},
 
+  getMarkers: function()
+  {
+    console.log("getMarkers");
+    this.getMarkerLocation();
+    return this._markers;
+  },
+
 	getMarkerLocation: function() {
-	    for(i in _markers){
-		console.log(_markers[i].position);
+	    for(i=0; i<this._markers.length;i++){
+		      console.log(this._markers[i].getPosition())
 	    }
 	}
     };

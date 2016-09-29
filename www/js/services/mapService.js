@@ -137,7 +137,7 @@ angular.module('app').factory('mapService', function(){
 	    var tag = document.getElementById(this.id);
 	    tag.style.visibility = 'hidden';
 	},
-  
+
 	/*********************************** Locations ***********************************/
 
 	/*
@@ -181,6 +181,21 @@ angular.module('app').factory('mapService', function(){
 		});
 	    });
 	},
+
+  // Fits the bounds
+  fitBounds: function(markers)
+  {
+    var bounds = new google.maps.LatLngBounds();
+    for(index in markers){
+        var position = markers[index].getPosition();
+        //console.log(position);
+        bounds.extend(position);
+    }
+    this.map.setCenter(bounds.getCenter());
+    this.map.fitBounds(bounds);
+
+    this.map.setZoom(this.map.getZoom()-1);
+  },
 
 	/*
 	   Sets the Center of the map
