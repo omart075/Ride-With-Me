@@ -29,7 +29,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    // Clears old data if neccessary
 	    $scope.uberData = "";
 	    $scope.lyftData = "";
-
 	    // Show the Map
 	    Map.showMap();
 
@@ -37,41 +36,42 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    var fromLocation = Map.getFromLocation();
 	    var toLocation = Map.getToLocation();
 
-	    Promise.all([fromLocation, toLocation])
-		.then((values) => {
-		    for(var i in values){
-			let location = {
-			    lat:values[i].lat(),
-			    lng:values[i].lng()
-			};
-			Markers.addMarker(Map.getMap(),location);
-		    }
-		}).catch((err) => {
-		    /* TODO
-		       Error Handeling goes here 
-		       maybe we can show a pop-up dialog saying that 
-		       something went wrong with the search ?
-		    */
-		});
-	};
+      Promise.all([fromLocation, toLocation])
+  .then((values) => {
+      for(var i in values){
+    let location = {
+        lat:values[i].lat(),
+        lng:values[i].lng()
+    };
+    Markers.addMarker(Map.getMap(),location);
 
+      }
+  }).catch((err) => {
+      /* TODO
+         Error Handeling goes here
+         maybe we can show a pop-up dialog saying that
+         something went wrong with the search ?
+      */
+  });
+
+};
 
 	// $scope.getPrice = function() {
 
-	//     // Hide the Map 
+	//     // Hide the Map
 	//     Map.hideMap();
-	  
+
 	//     var startLat = _markers[0].position.lat();
 	//     var startLng = _markers[0].position.lng();
 	//     var finLat = _markers[1].position.lat();
 	//     var finLng = _markers[1].position.lng();
-	
+
 	//     // call uberService
 	//     uberService.getPrices(startLat,startLng,finLat,finLng)
 	// 	.then((res) => {
 	// 	    console.log("uber: " + res);
 	// 	});
-	
+
 	//     // call lyftService
 	//     lyftService.getPrices(startLat,startLng,finLat,finLng)
 	// 	.then((res) => {
@@ -111,7 +111,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 	// }
 
-	
+
 	// // Create the DIV to hold the control and call the CenterControl()
 	// // constructor passing in this DIV.
 	// var centerControlDiv = document.createElement('div');
@@ -119,14 +119,13 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 	// centerControlDiv.index = 1;
 	// map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-	
+
 	// controlUI.addEventListener('click', function() {
 	//     map.setCenter(chicago);
 	// });
-	
+
 	/*
 	  Search() returns Pins on User's inserted Locations
 	 */
     });
 });
-

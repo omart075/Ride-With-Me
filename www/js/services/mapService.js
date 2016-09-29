@@ -1,27 +1,27 @@
 angular.module('app').factory('mapService', function(){
-    
+
     var Map = function() {
-	
+
 	/*********************************** Map Properties ***********************************/
 	// HTML Element id
 	this.id;
-	
+
 	// Map object
 	this.map;
-	
+
 	// default mapOptions
-	this.mapOptions;  
-	
+	this.mapOptions;
+
 	// autocomplete Options (leave blank)
 	this.autocompleteOptions;
-	
+
 	// grabs the input tags by id
 	this.fromAddress;
 	this.toAddress;
 
 	// has to be set before getting any location!
 	this.geocoder;
-	
+
 	this.navigator;
 
 	this.markerCount;
@@ -40,7 +40,7 @@ angular.module('app').factory('mapService', function(){
 	    this.id = id;
 	},
 
-	
+
 	getId: function() {
 	    return this.id;
 	},
@@ -61,7 +61,7 @@ angular.module('app').factory('mapService', function(){
 
 	/*
 	  Setter for Auto Complete Options
-	   - Should be an empty Object - 
+	   - Should be an empty Object -
 	 */
 	setAutoCompleteOptions: function(options) {
 	    this.autocompleteOptions = options;
@@ -97,23 +97,23 @@ angular.module('app').factory('mapService', function(){
 	    this.geocoder = geocode;
 	},
 
-	/* 
+	/*
 	   Needs to be set to find any location
 	*/
 	setNavigator: function(navigator) {
 	    this.navigator = navigator;
 	},
-	
+
 	setMarkerCount: function(count) {
 	    this.markerCount = count;
 	},
-	
+
 	getMarkerCount: function() {
 	    return this.markerCount;
 	},
 
 	/*********************************** Basic Functionality ***********************************/
-	
+
 	/* Creates Map */
 	create: function(id, options, geocoder, navigator) {
 	    this.id = id;
@@ -131,15 +131,15 @@ angular.module('app').factory('mapService', function(){
 	    var tag = document.getElementById(this.id);
 	    tag.style.visibility = 'visible';
 	},
-	
+
 	/* Hides Map */
 	hideMap: function() {
 	    var tag = document.getElementById(this.id);
 	    tag.style.visibility = 'hidden';
 	},
-
+  
 	/*********************************** Locations ***********************************/
-	
+
 	/*
 	  Returns the Current Location Asynchronously
 	 */
@@ -154,7 +154,7 @@ angular.module('app').factory('mapService', function(){
 		});
 	    });
 	},
-	
+
 	/*
 	  Returns the Location of the From HTML input tag
 	 */
@@ -182,7 +182,7 @@ angular.module('app').factory('mapService', function(){
 	    });
 	},
 
-	/* 
+	/*
 	   Sets the Center of the map
 	 */
 	setCenter: function(location) {

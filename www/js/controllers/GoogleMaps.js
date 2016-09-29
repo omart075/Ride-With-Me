@@ -151,7 +151,7 @@ angular.module('app').controller('MapController', function($scope, $http, $ionic
 		    var position = markers[index];
 		    bounds.extend(position);
 		}
-		map.fitBounds(bounds);
+		this.map.fitBounds(bounds);
 	    });
 
 	};
