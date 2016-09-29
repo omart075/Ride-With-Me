@@ -26,10 +26,10 @@
     button-bar.custom-width-bar .button:first-child {
     width: 75%;
     min-width: 75%;
-    
+
     #wrapper { position: relative; }
     #over_map { position: absolute; top: 10px; left: 10px; z-index: 99; }
-    
+
     }
   </style>
   <body ng-app="app">
@@ -37,7 +37,7 @@
       <ion-header-bar align-title="center" class="bar-energized">
 	<h1 class="title">Ride With Me</h1>
       </ion-header-bar>
-      <ion-content ng-controller="newController">
+      <ion-content scroll="false" ng-controller="newController">
 
 	<div class="search-wrapper">
 	  <form>
@@ -46,8 +46,8 @@
 	      <button class="close-icon" type="reset"></button>
 		</label>
 	      </form>
-	</div>    
-	    
+	</div>
+
 	<div class="search-wrapper">
 	  <form>
 	    <label class="item item-input">
@@ -56,12 +56,12 @@
 	    </label>
 	  </form>
 	</div>
-	    
+
 	<div class="button-bar button-calm custom-width-bar">
 	  <a ng-click="search()" class="button button-calm">Search</a>
 	  <a ng-click="getPrice()" class="button button-balanced">Get Prices</a>
 	</div>
-	<div id="map"></div>	  
+	<div id="map"></div>
 	<ion-list ng-repeat= "items in this.uberData">
 	  <ion-item class="item-thumbnail-left item-text-wrap">
 	    <img src="img/uber.jpg">
@@ -70,8 +70,8 @@
 	    <h2>Duration (min): {{(items.duration/60)}}</h2>
 	  </ion-item>
 	</ion-list>
-	  
-	
+
+
 	  <ion-list ng-repeat= "lyfts in this.lyftData">
 	    <ion-item class="item-thumbnail-left item-text-wrap">
 	      <img src="img/lyft.jpg">
