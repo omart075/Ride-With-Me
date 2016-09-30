@@ -21,10 +21,7 @@ angular.module('app').factory('mapService', function(){
 
 	// has to be set before getting any location!
 	this.geocoder;
-
 	this.navigator;
-
-	this.markerCount;
     }
 
     Map.prototype = {

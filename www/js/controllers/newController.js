@@ -1,18 +1,19 @@
-angular.module('app').controller('newController', function($scope, $http, $ionicLoading, uberService, lyftService, markerService, mapService) {
+angular.module('app').controller('newController', function($scope, $http, $ionicLoading, uberService, lyftService, markerService, controlService, mapService) {
 
+
+    // Intialize our Map Service
+    var Map = new mapService.Map();
+    var Markers = new markerService.Markers();
+    var Control = new controlService.Control();
+    
     // View will react to changes on the map
     google.maps.event.addDomListener(window, 'load', function() {
-
-	// Intialize our Map Service
-	var Map = new mapService.Map();
-	var Markers = new markerService.Markers();
 	/*
 	  Get Autocompletion in View
 	  @params -> HTML input tags
 	*/
 	Map.linkFromAddress('user.address');
 	Map.linkToAddress('user.destination');
-
 
 	// Create Map Initialize at Current Position
 	Map.getCurrentLocation().then((location) => {
@@ -22,9 +23,17 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
 	    Map.create('map', options, new google.maps.Geocoder, navigator);
+
+	    /**************************** Buttons Go here ****************************/
+	    // Create the DIV to hold the control and call the CenterControl()
+	    // constructor passing in this DIV.
+	    var chicagoDiv = document.createElement('div');
+	    var chicagoButton = Control.createExample(chicagoDiv, Map.getMap());
+	    Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(chicagoDiv);
 	});
 
 
+	
 	$scope.search = function() {
 	    // Clears old data if neccessary
 	    $scope.uberData = "";
@@ -56,6 +65,8 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 		});
 	    // Fit the Map to the markers bounds.
 	};
+
+	
 	
 	// $scope.getPrice = function() {
 	
@@ -80,53 +91,5 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	// 	})
 	// };
 
-	// function CenterControl(controlDiv, map) {
-
-	//     // Set CSS for the control border.
-	//     var controlUI = document.createElement('div');
-	//     controlUI.style.backgroundColor = '#fff';
-	//     controlUI.style.border = '2px solid #fff';
-	//     controlUI.style.borderRadius = '3px';
-	//     controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-	//     controlUI.style.cursor = 'pointer';
-	//     controlUI.style.marginBottom = '22px';
-	//     controlUI.style.textAlign = 'center';
-	//     controlUI.title = 'Click to recenter the map';
-	//     controlDiv.appendChild(controlUI);
-
-	//     // Set CSS for the control interior.
-	//     var controlText = document.createElement('div');
-	//     controlText.style.color = 'rgb(25,25,25)';
-	//     controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-	//     controlText.style.fontSize = '16px';
-	//     controlText.style.lineHeight = '38px';
-	//     controlText.style.paddingLeft = '5px';
-	//     controlText.style.paddingRight = '5px';
-	//     controlText.innerHTML = 'Center Map';
-	//     controlUI.appendChild(controlText);
-
-	//     // Setup the click event listeners: simply set the map to Chicago.
-	//     controlUI.addEventListener('click', function() {
-	// 	map.setCenter(chicago);
-	//     });
-
-	// }
-
-
-	// // Create the DIV to hold the control and call the CenterControl()
-	// // constructor passing in this DIV.
-	// var centerControlDiv = document.createElement('div');
-	// var centerControl = new CenterControl(centerControlDiv, map);
-
-	// centerControlDiv.index = 1;
-	// map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-
-	// controlUI.addEventListener('click', function() {
-	//     map.setCenter(chicago);
-	// });
-
-	/*
-	  Search() returns Pins on User's inserted Locations
-	 */
     });
 });

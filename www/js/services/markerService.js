@@ -10,17 +10,17 @@ angular.module('app').factory('markerService', function() {
 	// Adds a marker to the map and push to the array.
 	addMarker: function(map,location) {
 	    if(this.count == 2)
-      {
+	    {
     		//this.clearMarkers();
     		this.deleteMarkers();
-  	  }
+  	    }
 	    var marker = new google.maps.Marker({
   		position: location,
   		draggable: true,
   		map: map
   	    });
 	    this._markers.push(marker);
-      this.count++;
+	    this.count++;
 	    return marker;
 	},
 
@@ -59,7 +59,7 @@ angular.module('app').factory('markerService', function() {
 
 	getMarkerLocation: function() {
 	    for(i=0; i<this._markers.length;i++){
-		      console.log(this._markers[i].getPosition())
+		console.log(this._markers[i].getPosition())
 	    }
 	}
     };
