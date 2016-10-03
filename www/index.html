@@ -35,34 +35,36 @@
   </style>
   <body ng-app="app">
     <ion-pane>
-      <ion-header-bar align-title="center" class="bar-energized">
+      <ion-header-bar align-title="center" class="bar-dark">
 	<h1 class="title">Ride With Me</h1>
       </ion-header-bar>
       <ion-content scroll="false" ng-controller="newController">
-
+<div id="searchBars">
 	<div class="search-wrapper">
 	  <form>
-	    <label class="item item-input">
-	      <input type="text" name="focus" required class="search-box" ng-model="address" id="user.address" placeholder="Enter Origin Location" googleplace="" autocomplete="off">
+	    <label class="item search-bar item-input">
+	      <input type="text" name="focus" required class="search-box" ng-model="address" id="user.address" placeholder="Enter Pick Up Location" googleplace="" autocomplete="off">
 	      <button class="close-icon" type="reset"></button>
 		</label>
 	      </form>
 	</div>
-
 	<div class="search-wrapper">
 	  <form>
-	    <label class="item item-input">
+	    <label class="item search-bar item-input">
 	      <input type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Enter Destination" googleplace="" autocomplete="off"</input>
 		     <button class="close-icon" type="reset"></button>
 	    </label>
 	  </form>
 	</div>
+</div>
+<div id="map"></div>
+<div class="footer button-bar button-calm custom-width-bar">
+  <a ng-click="search()" class="button button-calm">Search</a>
+  <a ng-click="getPrice()" class="button button-balanced">Get Prices</a>
+</div>
 
-	<div class="button-bar button-calm custom-width-bar">
-	  <a ng-click="search()" class="button button-calm">Search</a>
-	  <a ng-click="getPrice()" class="button button-balanced">Get Prices</a>
-	</div>
-	<div id="map"></div>
+
+
 	<ion-list ng-repeat= "items in this.uberData">
 	  <ion-item class="item-thumbnail-left item-text-wrap">
 	    <img src="img/uber.jpg">
@@ -82,6 +84,8 @@
 	    </ion-item>
 	  </ion-list>
       </ion-content>
+
+
     </ion-pane>
   </body>
 </html>

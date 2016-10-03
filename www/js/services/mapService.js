@@ -178,7 +178,7 @@ angular.module('app').factory('mapService', function(){
 		});
 	    });
 	},
-	
+
 	// Fits the bounds
 	fitBounds: function(markers)
 	{
@@ -192,16 +192,16 @@ angular.module('app').factory('mapService', function(){
 	    this.map.setZoom(this.map.getZoom()-1);
 	    return this.map;
 	},
-	
+
 	/*
 	  Sets the Center of the map
 	*/
 	setCenter: function(location) {
 	    this.map.setCenter(location);
 	},
-	
+
     };
-    
+
     return {
 	Map: Map
     };
