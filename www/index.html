@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
     <title></title>
     <link rel="manifest" href="manifest.json">
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -57,6 +58,16 @@
 	  </form>
 	</div>
 </div>
+<div class="cards"
+<ion-list ng-repeat= "lyfts in res">
+  <ion-item class="item-thumbnail-left item-text-wrap">
+    <img src="img/lyft.jpg">
+    <h2>Type: {{lyfts.ride_type}}</h2>
+    <h2>Cost: ${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</h2>
+    <h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>
+  </ion-item>
+</ion-list>
+</div>
 <div id="map"></div>
 <div class="footer button-bar button-calm custom-width-bar">
   <a ng-click="search()" class="button button-calm">Search</a>
@@ -64,7 +75,7 @@
 </div>
 
 
-
+<!--
 	<ion-list ng-repeat= "items in this.uberData">
 	  <ion-item class="item-thumbnail-left item-text-wrap">
 	    <img src="img/uber.jpg">
@@ -73,16 +84,9 @@
 	    <h2>Duration (min): {{(items.duration/60)}}</h2>
 	  </ion-item>
 	</ion-list>
+-->
 
 
-	  <ion-list ng-repeat= "lyfts in this.lyftData">
-	    <ion-item class="item-thumbnail-left item-text-wrap">
-	      <img src="img/lyft.jpg">
-	      <h2>Type: {{lyfts.ride_type}}</h2>
-	      <h2>Cost: ${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</h2>
-	      <h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>
-	    </ion-item>
-	  </ion-list>
       </ion-content>
 
 

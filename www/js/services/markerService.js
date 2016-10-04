@@ -30,15 +30,15 @@ angular.module('app').factory('markerService', function() {
 	    for (var i = 0; i < this._markers.length; i++) {
 		this._markers[i].setMap(map);
 	    }
-	    
+
 	},
-	
+
 	// Removes the markers from the map, but keeps them in the array.
 	clearMarkers: function() {
 	    this.count = 0;
 	    this.setMapOnAll(null);
 	},
-	
+
 	// Shows any markers currently in the array.
 	showMarkers: function() {
 	    setMapOnAll(map);
@@ -49,22 +49,19 @@ angular.module('app').factory('markerService', function() {
 	    this.clearMarkers();
 	    _markers = [];
 	},
-	
+
 	getMarkers: function()
 	{
-	    console.log("getMarkers");
-	    this.getMarkerLocation();
 	    return this._markers;
 	},
 
 	getMarkerLocation: function() {
 	    for(i=0; i<this._markers.length;i++){
-		console.log(this._markers[i].getPosition())
 	    }
 	}
     };
-    
-    
+
+
     return {
 	Markers:Markers
     };
