@@ -33,7 +33,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
       var searchBars = document.getElementById("searchBars");
       var prices = document.getElementById("prices");
       Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(searchBars);
-      Map.getMap().controls[google.maps.ControlPosition.BOTTOM_CENTER].push(prices);
+      Map.getMap().controls[google.maps.ControlPosition.LEFT_BOTTOM].push(prices);
 	});
 
 

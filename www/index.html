@@ -37,7 +37,7 @@
   <body ng-app="app">
     <ion-pane>
       <ion-header-bar align-title="center" class="bar-dark">
-	<h1 class="title">Ride With Me</h1>
+	       <h1 class="title">Ride With Me</h1>
       </ion-header-bar>
       <ion-content scroll="false" ng-controller="newController">
 <div id="searchBars">
@@ -46,8 +46,8 @@
 	    <label class="item search-bar item-input">
 	      <input type="text" name="focus" required class="search-box" ng-model="address" id="user.address" placeholder="Enter Pick Up Location" googleplace="" autocomplete="off">
 	      <button class="close-icon" type="reset"></button>
-		</label>
-	      </form>
+		  </label>
+	  </form>
 	</div>
 	<div class="search-wrapper">
 	  <form>
@@ -59,16 +59,16 @@
 	</div>
 </div>
 <div id="prices">
-<div class="cards">
-<ion-list ng-repeat= "lyfts in res">
-  <ion-item class="item-thumbnail-left item-text-wrap">
-    <img src="img/lyft.jpg">
-    <h2>Type: {{lyfts.ride_type}}</h2>
-    <h2>Cost: ${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</h2>
-    <h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>
-  </ion-item>
-</ion-list>
-</div>
+  <div class="cards">
+    <ion-list ng-repeat= "lyfts in res">
+      <ion-item class="item-thumbnail-left item-text-wrap">
+        <img src="img/lyft.jpg">
+        <h2>Type: {{lyfts.ride_type}}</h2>
+        <h2>Cost: ${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</h2>
+        <h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>
+      </ion-item>
+    </ion-list>
+  </div>
 </div>
 <div id="map"></div>
 <div class="footer button-bar button-calm custom-width-bar">
