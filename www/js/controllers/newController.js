@@ -31,7 +31,9 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
       // Get and push the search bars into the google maps controls
       var searchBars = document.getElementById("searchBars");
+      var prices = document.getElementById("prices");
       Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(searchBars);
+      Map.getMap().controls[google.maps.ControlPosition.BOTTOM_CENTER].push(prices);
 	});
 
 
@@ -73,7 +75,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	$scope.getPrice = function() {
 
 	     // Hide the Map
-	     Map.hideMap();
+	     //Map.hideMap();
 
       var _markers = Markers.getMarkers();
 	    var startLat = _markers[0].getPosition().lat();

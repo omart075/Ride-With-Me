@@ -58,7 +58,8 @@
 	  </form>
 	</div>
 </div>
-<div class="cards"
+<div id="prices">
+<div class="cards">
 <ion-list ng-repeat= "lyfts in res">
   <ion-item class="item-thumbnail-left item-text-wrap">
     <img src="img/lyft.jpg">
@@ -67,6 +68,7 @@
     <h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>
   </ion-item>
 </ion-list>
+</div>
 </div>
 <div id="map"></div>
 <div class="footer button-bar button-calm custom-width-bar">
