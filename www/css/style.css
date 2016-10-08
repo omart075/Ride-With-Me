@@ -55,7 +55,7 @@
 	display: none;
 }
 
-/*slide the prices in from the bottom*/
+/*slide the prices in from the left; can adjust direction with translate3d*/
 @-webkit-keyframes slideInSmooth {
   0% {
     -webkit-transform: translate3d(-100%,0,0);
@@ -72,9 +72,15 @@
   -webkit-animation-duration: 950ms;
   animation-duration: 950ms;
 }
-/*add a glass gradient to items in the list*/
+/*adds a glass gradient to items in the list*/
 /*the last coordinates for each rbga controls the level of gradient for left, center and right*/
 .item-thumbnail-left{
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0.1) 100%);
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), inset 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+/* adjust size of list with scroll*/
+.scroll{
+  height: 300px;
+	background-color: transparent !important;
 }

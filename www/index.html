@@ -44,7 +44,7 @@
 	<div class="search-wrapper">
 	  <form>
 	    <label class="item search-bar item-input">
-	      <input type="text" name="focus" required class="search-box" ng-model="address" id="user.address" placeholder="Enter Pick Up Location" googleplace="" autocomplete="off">
+	      <input type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pick Up Location" googleplace="" autocomplete="off"></input>
 	      <button class="close-icon" type="reset"></button>
 		  </label>
 	  </form>
@@ -52,29 +52,40 @@
 	<div class="search-wrapper">
 	  <form>
 	    <label class="item search-bar item-input">
-	      <input type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Enter Destination" googleplace="" autocomplete="off"</input>
-		     <button class="close-icon" type="reset"></button>
+        <!-- to add automatic searching, add ng-change="search()" ng-model-options="{debounce: 2000}" to line below -->
+	      <input type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Enter Destination" googleplace="" autocomplete="off"></input>
+		    <button class="close-icon" type="reset"></button>
 	    </label>
 	  </form>
 	</div>
 </div>
 <div id="prices">
   <div class="cards">
-    <ion-list ng-repeat= "lyfts in res">
-      <ion-item class="item-thumbnail-left item-text-wrap">
-        <img src="img/lyft.jpg">
-        <h2>Type: {{lyfts.ride_type}}</h2>
-        <h2>Cost: ${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</h2>
-        <h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>
-      </ion-item>
-    </ion-list>
+    <ion-scroll>
+      <ion-list ng-repeat= "lyfts in res"; "ubers in res">
+        <ion-item class="item-thumbnail-left item-text-wrap">
+          <img src="img/lyft.jpg">
+          <h2>Type: {{lyfts.ride_type}}</h2>
+          <h2>Cost: ${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</h2>
+          <h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>
+        </ion-item>
+        <ion-item class="item-thumbnail-left item-text-wrap">
+    	    <img src="img/uber.jpg">
+    	    <h2>Type: {{items.localized_display_name}}</h2>
+    	    <h2>Cost: {{items.estimate}}</h2>
+    	    <h2>Duration (min): {{(items.duration/60)}}</h2>
+    	  </ion-item>
+      </ion-list>
+    </ion-scroll>
   </div>
 </div>
 <div id="map"></div>
-<div class="footer button-bar button-calm custom-width-bar">
-  <a ng-click="search()" class="button button-calm">Search</a>
-  <a ng-click="getPrice()" class="button button-balanced">Get Prices</a>
-</div>
+<ion-footer-bar class="bar bar-dark">
+  <div class="button-bar">
+    <a ng-click="search()" class="button button-dark">Search</a>
+    <a ng-click="getPrice()" class="button button-dark">Get Prices</a>
+  </div>
+</ion-footer>
 
 
 <!--
@@ -90,8 +101,6 @@
 
 
       </ion-content>
-
-
     </ion-pane>
   </body>
 </html>
