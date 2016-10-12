@@ -58,7 +58,7 @@
 /*slide the prices in from the left; can adjust direction with translate3d*/
 @-webkit-keyframes slideInSmooth {
   0% {
-    -webkit-transform: translate3d(-100%,0,0);
+    -webkit-transform: translate3d(0,500%,0);
   }
   100% {
     -webkit-transform: translate3d(0,0,0);
@@ -82,5 +82,4 @@
 /* adjust size of list with scroll*/
 .scroll{
   height: 300px;
-	background-color: transparent !important;
 }
