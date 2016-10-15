@@ -1,11 +1,11 @@
 angular.module('app').factory('uberService', function($http) {
-  
+
     // returns the estamite price depending on lat and lon
     var getPrices = function(startLat, startLng, finLat, finLng) {
-	
+
 	return new Promise((resolve,reject) => {
-	    
-	    // Query URL 
+
+	    // Query URL
 	    var url = 'https://api.uber.com/v1/estimates/price?start_latitude='
 		+startLat+'&start_longitude='+startLng+'&end_latitude='
 		+finLat+'&end_longitude='+finLng;
@@ -31,5 +31,5 @@ angular.module('app').factory('uberService', function($http) {
     return {
 	getPrices: getPrices
     };
-    
+
 });

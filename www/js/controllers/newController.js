@@ -4,11 +4,12 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     // Intialize our Map Service
     var Map = new mapService.Map();
     var Markers = new markerService.Markers();
+    var currLocateMarker = new markerService.Markers();
     var Control = new controlService.Control();
 
 
 
-    // View will react to changes on the map
+    // View will react to changes on the maps
     google.maps.event.addDomListener(window, 'load', function() {
 	/*
 	  Get Autocompletion in View
@@ -22,13 +23,14 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    let options = {
 		center: location,        // Centers at current location
 		zoom: 17,                // Defaults to a zoom level of 17
+    disableDefaultUI: true,
     mapTypeControlOptions: { // Changes the Map type control to the bottom
               position: google.maps.ControlPosition.LEFT_BOTTOM
           },
 		mapTypeId: google.maps.MapTypeId.ROADMAP // Defaults the Map type to ROAD MAP
 	    };
-	    Map.create('map', options, new google.maps.Geocoder, navigator);
-
+	    Map.create('map', options, new google.maps.Geocoder, navigator);      
+      currLocateMarker.addCurrMarker(Map.getMap(),location);
       // Get and push the search bars into the google maps controls
       var searchBars = document.getElementById("searchBars");
       var prices = document.getElementById("prices");

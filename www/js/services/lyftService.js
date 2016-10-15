@@ -1,11 +1,11 @@
 angular.module('app').factory('lyftService', function($http) {
-  
+
     // returns the estamite price depending on lat and lon
     var getPrices = function(startLat, startLng, finLat, finLng) {
-	
+
 	return new Promise((resolve,reject) => {
-	    
-	    // Query URL 
+
+	    // Query URL
 	    var url = 'https://api.lyft.com/v1/cost?start_lat='
 		+startLat+'&start_lng='+startLng+'&end_lat='
 		+finLat+'&end_lng='+finLng;
@@ -31,5 +31,5 @@ angular.module('app').factory('lyftService', function($http) {
     return {
 	getPrices: getPrices
     };
-    
+
 });

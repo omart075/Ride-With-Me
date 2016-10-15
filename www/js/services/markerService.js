@@ -7,6 +7,27 @@ angular.module('app').factory('markerService', function() {
 
     Markers.prototype = {
 
+    addCurrMarker: function(map, location) {
+      if(this.count == 2)
+      {
+        //this.clearMarkers();
+        this.deleteMarkers();
+        }
+      var marker = new google.maps.Marker({
+      position: location,
+      icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 10
+          },
+      draggable: true,
+      map: map
+        });
+      this._markers.push(marker);
+      this.count++;
+      return marker;
+
+    },
+
 	// Adds a marker to the map and push to the array.
 	addMarker: function(map,location) {
 	    if(this.count == 2)
