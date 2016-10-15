@@ -13,18 +13,24 @@ angular.module('app').factory('markerService', function() {
         //this.clearMarkers();
         this.deleteMarkers();
         }
-      var marker = new google.maps.Marker({
-      position: location,
-      icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 10
-          },
-      draggable: true,
-      map: map
-        });
+
+      var marker = new Marker({
+        map: map,
+        position: location,
+        icon: {
+          path: SQUARE_ROUNDED,          
+          fillColor: '#000000',
+          fillOpacity: 0,
+          strokeColor: '#FFFFFF',
+          strokeWeight: 0,
+          draggable: true
+        },
+        map_icon_label: '<span class="map-icon map-icon-circle"></span>'
+      });
       this._markers.push(marker);
       this.count++;
       return marker;
+
 
     },
 
