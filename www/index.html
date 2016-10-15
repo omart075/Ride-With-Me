@@ -46,7 +46,7 @@
 	<div class="search-wrapper">
 	  <form>
 	    <label class="item search-bar item-input">
-	      <input type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pick Up Location" googleplace="" autocomplete="off"></input>
+	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pick Up Location" googleplace="" autocomplete="off"></input>
 	      <button class="close-icon" type="reset"></button>
 		  </label>
 	  </form>
@@ -55,22 +55,21 @@
 	  <form>
 	    <label class="item search-bar item-input">
         <!-- to add automatic searching, add ng-change="search()" ng-model-options="{debounce: 2000}" to line below -->
-	      <input type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Enter Destination" googleplace="" autocomplete="off"></input>
+	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Enter Destination" googleplace="" autocomplete="off"></input>
 		    <button class="close-icon" type="reset"></button>
 	    </label>
 	  </form>
 	</div>
 </div>
 <div id="prices">
-  <div class="cards">
-    <ion-scroll>
-      <ion-list ng-repeat= "lyfts in res"; "ubers in res">
-        <ion-item class="item-thumbnail-left item-text-wrap">
-          <img src="img/lyft.jpg">
-          <h2>Type: {{lyfts.ride_type}}</h2>
-          <h2>Cost: ${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</h2>
-          <h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>
-        </ion-item>
+  <div class="list card" ng-repeat= "lyfts in res">
+          <!--<img src="img/lyft.jpg">-->
+          <p class="info">{{lyfts.ride_type}}
+            <p class="prices">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</p>
+          </p>
+          <!--<h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>-->
+    <!--<ion-scroll>
+      <ion-list ng-repeat= "ubers in res">
         <ion-item class="item-thumbnail-left item-text-wrap">
     	    <img src="img/uber.jpg">
     	    <h2>Type: {{items.localized_display_name}}</h2>
@@ -78,7 +77,7 @@
     	    <h2>Duration (min): {{(items.duration/60)}}</h2>
     	  </ion-item>
       </ion-list>
-    </ion-scroll>
+    </ion-scroll>-->
   </div>
 </div>
 <div id="map"></div>

@@ -29,13 +29,13 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
           },
 		mapTypeId: google.maps.MapTypeId.ROADMAP // Defaults the Map type to ROAD MAP
 	    };
-	    Map.create('map', options, new google.maps.Geocoder, navigator);      
+	    Map.create('map', options, new google.maps.Geocoder, navigator);
       currLocateMarker.addCurrMarker(Map.getMap(),location);
       // Get and push the search bars into the google maps controls
       var searchBars = document.getElementById("searchBars");
       var prices = document.getElementById("prices");
       Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(searchBars);
-      Map.getMap().controls[google.maps.ControlPosition.BOTTOM_CENTER].push(prices);
+      Map.getMap().controls[google.maps.ControlPosition.LEFT_BOTTOM].push(prices);
 	});
 
 
@@ -94,7 +94,22 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    // call lyftService
 	    lyftService.getPrices(startLat,startLng,finLat,finLng)
 		.then((data) => {
-		    console.log(data[0]);
+        for (x=0;x<data.length;x++)
+        {
+          console.log(data[x])
+          if (data[x].ride_type == "lyft_line")
+          {
+            data[x].ride_type="Lyft Line";
+          }
+          if (data[x].ride_type == "lyft_plus")
+          {
+            data[x].ride_type="Lyft Plus"
+          };
+          if (data[x].ride_type== "lyft")
+          {
+            data[x].ride_type="Lyft";
+          }
+        }
         $scope.res = data;
 		})
 	};

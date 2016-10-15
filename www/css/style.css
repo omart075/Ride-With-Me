@@ -22,7 +22,7 @@
 	width: 15px;
 	height: 15px;
 	position: absolute;
-	background-color: #FA9595;
+	background-color: #FFFFFF;
 	z-index:1;
 	right: 15px;
 	top: 0;
@@ -31,7 +31,7 @@
 	padding: 0px;
 	border-radius: 50%;
 	text-align: center;
-	color: white;
+	color: black;
 	font-weight: normal;
 	font-size: 12px;
 	box-shadow: 0 0 2px #E50F0F;
@@ -39,12 +39,19 @@
 }
 .search-bar
 {
-    box-shadow: 0 10px 6px -6px #444;
+    box-shadow: 0 10px 6px -6px #777;
     width:300px;
     margin: 10px;
     top: 10px;
     bottom: 10px;
+    border: none;
+
     background-color: #444444;
+
+
+}
+.search-text{
+  color: #FFF;
 }
 .footer {
    position:fixed;
@@ -64,22 +71,36 @@
     -webkit-transform: translate3d(0,0,0);
   }
 }
-.item-thumbnail-left{
+/*slide prices from bottom center
+/*adds a glass gradient to items in the list*/
+/*the last coordinates for each rbga controls the level of gradient for left, center and right*/
+.list{
    -webkit-animation: slideInSmooth ease-in 1;
   animation: slideInSmooth ease-in 1;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   -webkit-animation-duration: 950ms;
   animation-duration: 950ms;
+  background-color: rgba(69, 69, 69, 0.99);
+  /*box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), inset 0 0 1px rgba(255, 255, 255, 0.6);*/
+  margin-bottom: 0%;
+  margin-top: 0%;
+  width: 355px;
 }
-/*adds a glass gradient to items in the list*/
-/*the last coordinates for each rbga controls the level of gradient for left, center and right*/
-.item-thumbnail-left{
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.9) 25%, rgba(255, 255, 255, 0.9) 75%, rgba(255, 255, 255, 0.1) 100%);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), inset 0 0 1px rgba(255, 255, 255, 0.6);
+.info{
+  color: #FFFFFF;
+  padding-left: 10px;
+  font-size: 130%;
+}
+.prices{
+  color: #FFFFFF;
+  text-align: right;
+  padding-right: 10px;
+  font-size: 130%;
 }
 
-/* adjust size of list with scroll*/
+
+/* adjust size of list with scroll
 .scroll{
-  height: 300px;
-}
+  height: 150px;
+}*/
