@@ -78,7 +78,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 	     // Hide the Map
 	     //Map.hideMap();
-
       var _markers = Markers.getMarkers();
 	    var startLat = _markers[0].getPosition().lat();
 	    var startLng = _markers[0].getPosition().lng();
@@ -114,12 +113,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 		})
 	};
 
-
-  $scope.counter = 0;
-  $scope.isLyft = function(){
-    console.log($scope.counter);
-    return $scope.counter++;
-  };
 
     });
 });
