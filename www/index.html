@@ -46,7 +46,7 @@
 	<div class="search-wrapper">
 	  <form>
 	    <label class="item search-bar item-input">
-	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pick Up Location" googleplace="" autocomplete="off"></input>
+	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pickup Location" googleplace="" autocomplete="off">asdf</input>
 	      <button class="close-icon" type="reset"></button>
 		  </label>
 	  </form>
@@ -62,22 +62,18 @@
 	</div>
 </div>
 <div id="prices">
-  <div class="list card" ng-repeat= "lyfts in res">
-          <!--<img src="img/lyft.jpg">-->
-          <p class="info">{{lyfts.ride_type}}
-            <p class="prices">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</p>
+      <div class="list card" ng-repeat= "lyfts in res">
+        <div class="item item-divider" ng-if="isLyft() == 0">Lyft</div>
+          <p style="padding-top: 10px" class="info">{{lyfts.ride_type}}
+            <span style="float:right; padding-right: 10px">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</span>
           </p>
-          <!--<h2>Duration (min): {{(lyfts.estimated_duration_seconds/60).toFixed(2)}}</h2>-->
-    <!--<ion-scroll>
-      <ion-list ng-repeat= "ubers in res">
-        <ion-item class="item-thumbnail-left item-text-wrap">
-    	    <img src="img/uber.jpg">
-    	    <h2>Type: {{items.localized_display_name}}</h2>
-    	    <h2>Cost: {{items.estimate}}</h2>
-    	    <h2>Duration (min): {{(items.duration/60)}}</h2>
-    	  </ion-item>
-      </ion-list>
-    </ion-scroll>-->
+     </div>
+     <div class="list card" ng-repeat= "lyfts in res">
+       <div class="item item-divider">Uber</div>
+         <p style="padding-top: 10px" class="info">{{lyfts.ride_type}}
+           <span style="float:right; padding-right: 10px">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</span>
+         </p>
+     </div>
   </div>
 </div>
 <div id="map"></div>

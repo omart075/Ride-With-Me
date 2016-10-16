@@ -14,7 +14,7 @@ angular.module('app').factory('mapService', function(){
 
 	// autocomplete Options (leave blank)
 	this.autocompleteOptions;
-
+  this.currentLocation;
 	// grabs the input tags by id
 	this.fromAddress;
 	this.toAddress;
@@ -147,6 +147,7 @@ angular.module('app').factory('mapService', function(){
 			lat: pos.coords.latitude,
 			lng: pos.coords.longitude
 		    };
+        this.currentLocation = pos;
 		    resolve(location);
 		});
 	    });
@@ -158,9 +159,11 @@ angular.module('app').factory('mapService', function(){
 	getFromLocation: function() {
 	    return new Promise((resolve,reject) => {
 		this.geocoder.geocode({'address':this.fromAddress.value},function(results, status) {
-		    if (status === 'OK')
+		    if (status === 'OK'){
+        console.log(results[0]);
 			resolve(results[0].geometry.location);
-		    else reject(status);
+    } else reject(status);
+
 		});
 
 	    });

@@ -20,7 +20,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 	// Create Map Initialize at Current Position
 	Map.getCurrentLocation().then((location) => {
-	    let options = {
+      let options = {
 		center: location,        // Centers at current location
 		zoom: 17,                // Defaults to a zoom level of 17
     disableDefaultUI: true,
@@ -48,9 +48,9 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    Map.showMap();
 
 	    // Grabs the location from HTML input tags
+
 	    var fromLocation = Map.getFromLocation();
 	    var toLocation = Map.getToLocation();
-
 	    Promise.all([fromLocation, toLocation])
 		.then((values) => {
 		    for(var i in values){
@@ -104,7 +104,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
           if (data[x].ride_type == "lyft_plus")
           {
             data[x].ride_type="Lyft Plus"
-          };
+          }
           if (data[x].ride_type== "lyft")
           {
             data[x].ride_type="Lyft";
@@ -113,6 +113,13 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
         $scope.res = data;
 		})
 	};
+
+
+  $scope.counter = 0;
+  $scope.isLyft = function(){
+    console.log($scope.counter);
+    return $scope.counter++;
+  };
 
     });
 });

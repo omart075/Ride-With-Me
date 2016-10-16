@@ -34,7 +34,7 @@
 	color: black;
 	font-weight: normal;
 	font-size: 12px;
-	box-shadow: 0 0 2px #E50F0F;
+	box-shadow: 0 0 0px #E50F0F;
 	cursor: pointer;
 }
 .search-bar
@@ -94,7 +94,7 @@
 }
 .prices{
   color: #FFFFFF;
-  text-align: right;
+  float: right;
   padding-right: 10px;
   font-size: 130%;
 }
