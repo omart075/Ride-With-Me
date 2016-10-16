@@ -99,6 +99,10 @@
   font-size: 130%;
 }
 
+.item{
+  text-align: center;
+}
+
 
 /* adjust size of list with scroll
 .scroll{

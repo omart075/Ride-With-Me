@@ -68,12 +68,12 @@
             <span style="float:right; padding-right: 10px">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</span>
           </p>
      </div>
-     <!--<div class="list card" ng-repeat= "lyfts in res">
-       <div class="item item-divider">Uber</div>
+     <div class="list card" ng-repeat= "lyfts in res">
+       <div class="item item-divider" ng-show="$first">Uber</div>
          <p style="padding-top: 10px" class="info">{{lyfts.ride_type}}
            <span style="float:right; padding-right: 10px">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}</span>
          </p>
-     </div>-->
+     </div>
   </div>
 </div>
 <div id="map"></div>
