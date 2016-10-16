@@ -28,7 +28,6 @@ angular.module('app').factory('markerService', function() {
         map_icon_label: '<span class="map-icon map-icon-circle"></span>'
       });
       this._markers.push(marker);
-      this.count++;
       return marker;
 
 
@@ -85,7 +84,11 @@ angular.module('app').factory('markerService', function() {
 	getMarkerLocation: function() {
 	    for(i=0; i<this._markers.length;i++){
 	    }
-	}
+	},
+
+        getCount: function() {
+            return this.count;
+        }
     };
 
 
