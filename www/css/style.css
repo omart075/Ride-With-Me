@@ -71,9 +71,7 @@
     -webkit-transform: translate3d(0,0,0);
   }
 }
-/*slide prices from bottom center
-/*adds a glass gradient to items in the list*/
-/*the last coordinates for each rbga controls the level of gradient for left, center and right*/
+/*slide prices from bottom center*/
 .list{
    -webkit-animation: slideInSmooth ease-in 1;
   animation: slideInSmooth ease-in 1;
@@ -82,7 +80,7 @@
   -webkit-animation-duration: 550ms;
   animation-duration: 550ms;
   background-color: rgba(69, 69, 69, 0.99);
-  /*box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), inset 0 0 1px rgba(255, 255, 255, 0.6);*/
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), inset 0 0 1px rgba(255, 255, 255, 0.6);
   margin-bottom: 0%;
   margin-top: 0%;
   width: 355px;
