@@ -63,7 +63,7 @@
 }
 
 /*slide the prices in from the bottom center; can adjust direction with translate3d*/
-@-webkit-keyframes slideInSmoothPrices {
+@keyframes slideInSmoothPrices {
   0% {
     -webkit-transform: translate3d(0,750%,0);
   }
@@ -86,7 +86,7 @@
   width: 355px;
 }
 /*slides the search boxes in from the top center*/
-@-webkit-keyframes slideInSmoothSearch {
+@keyframes slideInSmoothSearch {
   0% {
     -webkit-transform: translate3d(0,-350%,0);
   }
@@ -104,7 +104,7 @@
  animation-duration: 950ms;
 }
 /*slides the divider in from the top center*/
-@-webkit-keyframes slideInSmoothDivider {
+@keyframes slideInSmoothDivider {
   0% {
     -webkit-transform: translate3d(0,750%,0);
   }
@@ -136,4 +136,5 @@
 .click.active, .click.activated, .click-complex.active .click-content, .click-complex.activated .click-content {
 border-color: #787d84;
 background-color: #787d84;
+height: 40px;
 }
