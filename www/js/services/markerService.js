@@ -15,7 +15,7 @@ angular.module('app').factory('markerService', function() {
                 name: "currentLocation",
                 position: location,
                 icon: {
-                    path: SQUARE_ROUNDED,          
+                    path: SQUARE_ROUNDED,
                     fillColor: '#000000',
                     fillOpacity: 0,
                     strokeColor: '#FFFFFF',
@@ -54,7 +54,7 @@ angular.module('app').factory('markerService', function() {
 	clearMarkers: function() {
             this.setMapOnAll(null);
 	    this.count = 0;
-            this._markers = [];     
+            this._markers = [];
 	},
 
         // TODO Does not work

@@ -63,9 +63,9 @@
 }
 
 /*slide the prices in from the left; can adjust direction with translate3d*/
-@-webkit-keyframes slideInSmooth {
+@-webkit-keyframes slideInSmoothPrices {
   0% {
-    -webkit-transform: translate3d(0,600%,0);
+    -webkit-transform: translate3d(0,750%,0);
   }
   100% {
     -webkit-transform: translate3d(0,0,0);
@@ -73,8 +73,8 @@
 }
 /*slide prices from bottom center*/
 .list{
-   -webkit-animation: slideInSmooth ease-in 1;
-  animation: slideInSmooth ease-in 1;
+   -webkit-animation: slideInSmoothPrices ease-in 1;
+  animation: slideInSmoothPrices ease-in 1;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   -webkit-animation-duration: 550ms;
@@ -84,6 +84,22 @@
   margin-bottom: 0%;
   margin-top: 0%;
   width: 355px;
+}
+@-webkit-keyframes slideInSmoothSearch {
+  0% {
+    -webkit-transform: translate3d(0,-350%,0);
+  }
+  100% {
+    -webkit-transform: translate3d(0,0,0);
+  }
+}
+.search-wrapper{
+  -webkit-animation: slideInSmoothSearch ease-in 1;
+ animation: slideInSmoothSearch ease-in 1;
+ -webkit-animation-fill-mode: forwards;
+ animation-fill-mode: forwards;
+ -webkit-animation-duration: 950ms;
+ animation-duration: 950ms;
 }
 .info{
   color: #FFFFFF;
@@ -100,9 +116,3 @@
 .item{
   text-align: center;
 }
-
-
-/* adjust size of list with scroll
-.scroll{
-  height: 150px;
-}*/
