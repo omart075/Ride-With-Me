@@ -3,7 +3,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
     // Intialize our Map Service
     var Map = new mapService.Map();
-    var Markers = new markerService.Markers();
+    var Markers = new markerService.Markers(Map);
     var Control = new controlService.Control();
 
 
@@ -38,7 +38,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
         });
 
 
-
 	$scope.search = function() {
 	    // Clears old data if neccessary
 	    $scope.uberData = "";
@@ -46,25 +45,49 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 	    // Grabs the location from HTML input tags
             Map.getFromLocation() 
-                .then((response,err) => {
-                    if(!(response == null)) {
-                        let location = {
-                            lat:response.lat(),
-                            lng:response.lng()
-                        };
+                .then((response) => {
+                    
+                    let location = {
+                        lat:response.lat(),
+                        lng:response.lng()
+                    };
+                    // if map is empty => add marker
+                    if(Markers.getCount() == 0) {
                         Markers.addMarker(Map.getMap(), location);
                         Map.fitBounds(Markers.getMarkers());
                     }
-                    return Map.getToLocation()
+                    // else => check if marker is already on the map
+                    else {
+                        if(Markers.isUnique(location)) {
+                            Markers.addMarker(Map.getMap(), location);
+                            Map.fitBounds(Markers.getMarkers());
+                        }
+                    }
+                    return Map.getToLocation();
+                }).catch((err) => {
+                    // THIS MEANS THAT FROM LOCATION IS BLANK
+                    // WE SHOULD PROBABLY USE THE CURRENT LOCATION
+                    // AND AUTOFILL THE TEXT BOX
+                    return Map.getToLocation();
                 }).then((response2) => {
-                    if(!(response2 == null)) {
-                        let location = {
-                            lat:response2.lat(),
-                            lng:response2.lng()
-                        };
+
+                    let location = {
+                        lat:response2.lat(),
+                        lng:response2.lng()
+                    };
+                    if(Markers.getCount() == 0) {
                         Markers.addMarker(Map.getMap(), location);
                         Map.fitBounds(Markers.getMarkers());
                     }
+                    else {
+                        if(Markers.isUnique(location)) {
+                            Markers.addMarker(Map.getMap(), location);
+                            Map.fitBounds(Markers.getMarkers());
+                        }
+                        else return;
+                    }
+                }).catch((err) => {
+                    // MEANS DESTINATION IS NOT FILLED
                 });
 	};
         

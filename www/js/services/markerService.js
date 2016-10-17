@@ -1,6 +1,7 @@
 angular.module('app').factory('markerService', function() {
 
-    var Markers = function() {
+    var Markers = function(map) {
+        this.map = map;
 	this.count = 0;
 	this._markers = [];
     }
@@ -11,6 +12,7 @@ angular.module('app').factory('markerService', function() {
 
             var marker = new Marker({
                 map: map,
+                name: "currentLocation",
                 position: location,
                 icon: {
                     path: SQUARE_ROUNDED,          
@@ -41,26 +43,25 @@ angular.module('app').factory('markerService', function() {
 	    return marker;
 	},
 
-	// Sets the map on all markers in the array.
-	setMapOnAll: function(map) {
-	    console.log("SetMapOnAll")
-	    for (var i = 0; i < this._markers.length; i++) {
-		this._markers[i].setMap(map);
-	    }
-
-	},
+        setMapOnAll: function(map) {
+            for (var i = 0; i < this._markers.length; i++) {
+                this._markers[i].setMap(map);
+                console.log("marker should be gone");
+            }
+        },
 
 	// Removes the markers from the map, but keeps them in the array.
 	clearMarkers: function() {
+            this.setMapOnAll(null);
 	    this.count = 0;
-            _markers = [];
-	    this.setMapOnAll(null);
+            this._markers = [];     
 	},
 
-	// Shows any markers currently in the array.
-	showMarkers: function() {
-	    setMapOnAll(map);
-	},
+        // TODO Does not work
+	// // Shows any markers currently in the array.
+	// showMarkers: function() {
+	//     setMapOnAll(map);
+	// },
 
 	getMarkers: function()
 	{
@@ -68,12 +69,26 @@ angular.module('app').factory('markerService', function() {
 	},
 
 	getMarkerLocation: function() {
-//	    for(i=0; i<this._markers.length;i++){
-//	    }
+
 	},
 
         getCount: function() {
             return this.count;
+        },
+
+        isUnique: function(location) {
+
+            let lat = location.lat;
+            let lng = location.lng;
+
+            for(m in this._markers) {
+                let otherLat = this._markers[m].position.lat();
+                let otherLng = this._markers[m].position.lng();
+                if(otherLat == lat && otherLng == lng) {
+                    return false;
+                }
+            }
+            return true;
         }
     };
 
