@@ -39,35 +39,26 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 
 	$scope.search = function() {
-	    // Clears old data if neccessary
-	    $scope.uberData = "";
-	    $scope.lyftData = "";
 
-	    // Grabs the location from HTML input tags
+            // Grabs the location from HTML input tags
             Map.getFromLocation() 
                 .then((response) => {
-                    
+
                     let location = {
                         lat:response.lat(),
                         lng:response.lng()
                     };
-                    // if map is empty => add marker
-                    if(Markers.getCount() == 0) {
+
+                    if(Markers.isUnique(location)) 
                         Markers.addMarker(Map.getMap(), location);
-                        Map.fitBounds(Markers.getMarkers());
-                    }
-                    // else => check if marker is already on the map
-                    else {
-                        if(Markers.isUnique(location)) {
-                            Markers.addMarker(Map.getMap(), location);
-                            Map.fitBounds(Markers.getMarkers());
-                        }
-                    }
+                    
+                    else if(!Markers.isUnique(location) && Markers.getCount() == 2) 
+                        Markers.addMarker(Map.getMap(), location);
+                    
+                    Map.fitBounds(Markers.getMarkers());
                     return Map.getToLocation();
                 }).catch((err) => {
-                    // THIS MEANS THAT FROM LOCATION IS BLANK
-                    // WE SHOULD PROBABLY USE THE CURRENT LOCATION
-                    // AND AUTOFILL THE TEXT BOX
+                    // Use current location (from is blank)
                     return Map.getToLocation();
                 }).then((response2) => {
 
@@ -75,17 +66,13 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                         lat:response2.lat(),
                         lng:response2.lng()
                     };
-                    if(Markers.getCount() == 0) {
+                    if(Markers.isUnique(location))
                         Markers.addMarker(Map.getMap(), location);
-                        Map.fitBounds(Markers.getMarkers());
-                    }
-                    else {
-                        if(Markers.isUnique(location)) {
-                            Markers.addMarker(Map.getMap(), location);
-                            Map.fitBounds(Markers.getMarkers());
-                        }
-                        else return;
-                    }
+                    
+                    else if(!Markers.isUnique(location) && Markers.getCount() == 2)
+                        Markers.addMarker(Map.getMap(), location);
+                    
+                    Map.fitBounds(Markers.getMarkers());
                 }).catch((err) => {
                     // MEANS DESTINATION IS NOT FILLED
                 });
