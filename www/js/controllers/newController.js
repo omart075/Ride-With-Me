@@ -69,7 +69,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                     if(Markers.isUnique(location))
                         Markers.addMarker(Map.getMap(), location);
                     
-                    else if(!Markers.isUnique(location) && Markers.getCount() == 2)
+                    else if(!Markers.isUnique(location) && Markers.getCount() > 0)
                         Markers.addMarker(Map.getMap(), location);
                     
                     Map.fitBounds(Markers.getMarkers());
