@@ -40,6 +40,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 	$scope.search = function() {
 
+
             // Grabs the location from HTML input tags
             Map.getFromLocation()
                 .then((response) => {
@@ -74,13 +75,14 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                         Markers.addMarker(Map.getMap(), location);
 
                     Map.fitBounds(Markers.getMarkers());
+                    $scope.res = [];
+                    $scope.$apply();
 
                 }).catch((err) => {
                     // MEANS DESTINATION IS NOT FILLED
                 });
                 //Erase the response array and apply the view
-                $scope.res = [];
-                $scope.$apply();
+
 	};
 
 
@@ -124,6 +126,9 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 
 	};
+  $scope.alert = function(){
+    console.log("alert");
+  };
 
 
     });
