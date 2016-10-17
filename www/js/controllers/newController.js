@@ -15,7 +15,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	*/
 	Map.linkFromAddress('user.address');
 	Map.linkToAddress('user.destination');
-        
+
 	// Create Map Initialize at Current Position
 	Map.getCurrentLocation().then((location) => {
             let options = {
@@ -41,7 +41,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	$scope.search = function() {
 
             // Grabs the location from HTML input tags
-            Map.getFromLocation() 
+            Map.getFromLocation()
                 .then((response) => {
 
                     let location = {
@@ -49,12 +49,12 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                         lng:response.lng()
                     };
 
-                    if(Markers.isUnique(location)) 
+                    if(Markers.isUnique(location))
                         Markers.addMarker(Map.getMap(), location);
-                    
-                    else if(!Markers.isUnique(location) && Markers.getCount() == 2) 
+
+                    else if(!Markers.isUnique(location) && Markers.getCount() == 2)
                         Markers.addMarker(Map.getMap(), location);
-                    
+
                     Map.fitBounds(Markers.getMarkers());
                     return Map.getToLocation();
                 }).catch((err) => {
@@ -68,17 +68,17 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                     };
                     if(Markers.isUnique(location))
                         Markers.addMarker(Map.getMap(), location);
-                    
+
                     else if(!Markers.isUnique(location) && Markers.getCount() > 0)
                         Markers.addMarker(Map.getMap(), location);
-                    
+
                     Map.fitBounds(Markers.getMarkers());
                 }).catch((err) => {
                     // MEANS DESTINATION IS NOT FILLED
                 });
 	};
-        
-        
+
+
 	$scope.getPrice = function() {
 
 	    // Hide the Map
