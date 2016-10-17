@@ -62,7 +62,7 @@
 	display: none;
 }
 
-/*slide the prices in from the left; can adjust direction with translate3d*/
+/*slide the prices in from the bottom center; can adjust direction with translate3d*/
 @-webkit-keyframes slideInSmoothPrices {
   0% {
     -webkit-transform: translate3d(0,750%,0);
@@ -71,7 +71,7 @@
     -webkit-transform: translate3d(0,0,0);
   }
 }
-/*slide prices from bottom center*/
+/*slides prices from bottom center*/
 .list{
    -webkit-animation: slideInSmoothPrices ease-in 1;
   animation: slideInSmoothPrices ease-in 1;
@@ -85,6 +85,7 @@
   margin-top: 0%;
   width: 355px;
 }
+/*slides the search boxes in from the top center*/
 @-webkit-keyframes slideInSmoothSearch {
   0% {
     -webkit-transform: translate3d(0,-350%,0);
@@ -93,6 +94,7 @@
     -webkit-transform: translate3d(0,0,0);
   }
 }
+/*slides the search boxes in from the top center*/
 .search-wrapper{
   -webkit-animation: slideInSmoothSearch ease-in 1;
  animation: slideInSmoothSearch ease-in 1;
