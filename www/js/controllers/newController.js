@@ -4,7 +4,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     // Intialize our Map Service
     var Map = new mapService.Map();
     var Markers = new markerService.Markers();
-//    var currLocateMarker = new markerService.Markers();
     var Control = new controlService.Control();
 
 
@@ -16,7 +15,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	*/
 	Map.linkFromAddress('user.address');
 	Map.linkToAddress('user.destination');
-
+        
 	// Create Map Initialize at Current Position
 	Map.getCurrentLocation().then((location) => {
             let options = {
@@ -35,7 +34,8 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
             var prices = document.getElementById("prices");
             Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(searchBars);
             Map.getMap().controls[google.maps.ControlPosition.LEFT_BOTTOM].push(prices);
-	});
+
+        });
 
 
 
@@ -43,19 +43,17 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    // Clears old data if neccessary
 	    $scope.uberData = "";
 	    $scope.lyftData = "";
-	    // Show the Map
-	    Map.showMap();
 
 	    // Grabs the location from HTML input tags
             Map.getFromLocation() 
                 .then((response,err) => {
                     if(!(response == null)) {
-                        console.log(response);
                         let location = {
                             lat:response.lat(),
                             lng:response.lng()
                         };
                         Markers.addMarker(Map.getMap(), location);
+                        Map.fitBounds(Markers.getMarkers());
                     }
                     return Map.getToLocation()
                 }).then((response2) => {
@@ -65,15 +63,12 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                             lng:response2.lng()
                         };
                         Markers.addMarker(Map.getMap(), location);
+                        Map.fitBounds(Markers.getMarkers());
                     }
-                    return;
-                }).then(() => {
-                    Map.fitBounds(Markers.getMarkers());
                 });
 	};
         
         
-
 	$scope.getPrice = function() {
 
 	    // Hide the Map
@@ -95,7 +90,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 		.then((data) => {
                     for (x=0;x<data.length;x++)
                     {
-                        console.log(data[x])
                         if (data[x].ride_type == "lyft_line")
                         {
                             data[x].ride_type="Lyft Line";

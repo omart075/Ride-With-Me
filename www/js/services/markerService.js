@@ -7,38 +7,29 @@ angular.module('app').factory('markerService', function() {
 
     Markers.prototype = {
 
-    addCurrMarker: function(map, location) {
-      if(this.count == 2)
-      {
-        //this.clearMarkers();
-        this.deleteMarkers();
-        }
+        addCurrMarker: function(map, location) {
 
-      var marker = new Marker({
-        map: map,
-        position: location,
-        icon: {
-          path: SQUARE_ROUNDED,          
-          fillColor: '#000000',
-          fillOpacity: 0,
-          strokeColor: '#FFFFFF',
-          strokeWeight: 0,
-          draggable: true
+            var marker = new Marker({
+                map: map,
+                position: location,
+                icon: {
+                    path: SQUARE_ROUNDED,          
+                    fillColor: '#000000',
+                    fillOpacity: 0,
+                    strokeColor: '#FFFFFF',
+                    strokeWeight: 0,
+                    draggable: false
+                },
+                map_icon_label: '<span class="map-icon map-icon-circle"></span>'
+            });
+            return marker;
         },
-        map_icon_label: '<span class="map-icon map-icon-circle"></span>'
-      });
-      this._markers.push(marker);
-      return marker;
-
-
-    },
 
 	// Adds a marker to the map and push to the array.
-	addMarker: function(map,location) {
+	addMarker: function(map, location) {
 	    if(this.count == 2)
 	    {
-    		//this.clearMarkers();
-    		this.deleteMarkers();
+    		this.clearMarkers();
   	    }
 	    var marker = new google.maps.Marker({
   		position: location,
@@ -46,7 +37,7 @@ angular.module('app').factory('markerService', function() {
   		map: map
   	    });
 	    this._markers.push(marker);
-	    this.count++;
+	    this.count = this.count + 1;
 	    return marker;
 	},
 
@@ -62,18 +53,13 @@ angular.module('app').factory('markerService', function() {
 	// Removes the markers from the map, but keeps them in the array.
 	clearMarkers: function() {
 	    this.count = 0;
+            _markers = [];
 	    this.setMapOnAll(null);
 	},
 
 	// Shows any markers currently in the array.
 	showMarkers: function() {
 	    setMapOnAll(map);
-	},
-	// Deletes all markers in the array by removing references to them.
-	deleteMarkers: function() {
-	    //console.log("deleteMarkers");
-	    this.clearMarkers();
-	    _markers = [];
 	},
 
 	getMarkers: function()
@@ -82,8 +68,8 @@ angular.module('app').factory('markerService', function() {
 	},
 
 	getMarkerLocation: function() {
-	    for(i=0; i<this._markers.length;i++){
-	    }
+//	    for(i=0; i<this._markers.length;i++){
+//	    }
 	},
 
         getCount: function() {
