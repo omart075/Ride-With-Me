@@ -46,7 +46,7 @@
 	<div class="search-wrapper">
 	  <form>
 	    <label class="item search-bar item-input">
-	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pickup Location" googleplace="" autocomplete="off">asdf</input>
+	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pickup Location" googleplace="" autocomplete="off"></input>
 	      <button class="close-icon" type="reset"></button>
 		  </label>
 	  </form>
@@ -62,23 +62,35 @@
 	</div>
 </div>
 <div id="prices">
-      <div class="list card" ng-repeat= "lyfts in res">
-        <div class="item item-divider" ng-show="$first">Lyft</div>
+  <div class="price-list">
+    <ion-list>
+      <ion-item class="ion-item" ng-repeat= "lyfts in res">
+        <div style="line-height: 150%;" class="ion-item" ng-show="$first">Lyft</div>
           <div class="click" ng-click="alert()">
-            <p style="padding-top: 10px" class="info">{{lyfts.ride_type}}
-              <span style="float:right; padding-right: 10px">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
+            <p style="padding-top: 0pxl; color: white;" class="info">{{lyfts.ride_type}}
+              <span style="float:right;">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
           </div>
-     </div>
+      </ion-item>
+      <ion-item class="ion-item" ng-repeat= "lyfts in res">
+        <div style="line-height: 150%;" class="ion-item" ng-show="$first">Uber</div>
+          <div class="click" ng-click="alert()">
+            <p style="padding-top: 0pxl; color: white;" class="info">{{lyfts.ride_type}}
+              <span style="float:right;">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
+            </p>
+          </div>
+      </ion-item>
+    </ion-list>
+  </div>
+     <!--
      <div class="list card" ng-repeat= "lyfts in res">
        <div class="item item-divider" ng-show="$first">Uber</div>
         <div class="click" ng-click="alert()">
          <p style="padding-top: 10px" class="info">{{lyfts.ride_type}}
            <span style="float:right; padding-right: 10px">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right"></i></span>
          </p>
-       </div> 
-     </div>
-  </div>
+       </div>
+     </div>-->
 </div>
 <div id="map"></div>
 <ion-footer-bar class="bar bar-dark">

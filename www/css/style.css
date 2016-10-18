@@ -65,67 +65,58 @@
 /*slide the prices in from the bottom center; can adjust direction with translate3d*/
 @keyframes slideInSmoothPrices {
   0% {
-    -webkit-transform: translate3d(0,750%,0);
+    transform: translate3d(0,750%,0);
   }
   100% {
-    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
   }
 }
 /*slides prices from bottom center*/
 .list{
-   -webkit-animation: slideInSmoothPrices ease-in 1;
   animation: slideInSmoothPrices ease-in 1;
-  -webkit-animation-fill-mode: forwards;
+  animation: slideInSmoothPrices ease-in 1;
   animation-fill-mode: forwards;
-  -webkit-animation-duration: 950ms;
+  animation-fill-mode: forwards;
+  animation-duration: 950ms;
   animation-duration: 950ms;
   background-color: rgba(69, 69, 69, 0.99);
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), inset 0 0 1px rgba(255, 255, 255, 0.6);
   margin-bottom: 0%;
   margin-top: 0%;
-  width: 355px;
+  width: 350px;
 }
 /*slides the search boxes in from the top center*/
 @keyframes slideInSmoothSearch {
   0% {
-    -webkit-transform: translate3d(0,-350%,0);
+    transform: translate3d(0,-350%,0);
   }
   100% {
-    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
   }
 }
 /*slides the search boxes in from the top center*/
 .search-wrapper{
-  -webkit-animation: slideInSmoothSearch ease-in 1;
+  animation: slideInSmoothSearch ease-in 1;
  animation: slideInSmoothSearch ease-in 1;
- -webkit-animation-fill-mode: forwards;
  animation-fill-mode: forwards;
- -webkit-animation-duration: 950ms;
+ animation-fill-mode: forwards;
  animation-duration: 950ms;
-}
-/*slides the divider in from the top center*/
-@keyframes slideInSmoothDivider {
-  0% {
-    -webkit-transform: translate3d(0,750%,0);
-  }
-  100% {
-    -webkit-transform: translate3d(0,0,0);
-  }
-}
-.item-divider{
-  text-align: center;
-  -webkit-animation: slideInSmoothDivider ease-in 1;
- animation: slideInSmoothSearch ease-in 1;
- -webkit-animation-fill-mode: forwards;
- animation-fill-mode: forwards;
- -webkit-animation-duration: 950ms;
  animation-duration: 950ms;
 }
 
+.price-list{
+  padding-left: 12px;
+}
+.ion-item{
+  text-align: center;
+  color: white;
+  background-color: #444444;
+}
 .info{
   color: #FFFFFF;
   padding-left: 10px;
   font-size: 130%;
+  text-align: left;
 }
 .prices{
   color: #FFFFFF;
@@ -134,7 +125,7 @@
   font-size: 130%;
 }
 .click.active, .click.activated, .click-complex.active .click-content, .click-complex.activated .click-content {
-border-color: #787d84;
-background-color: #787d84;
-height: 40px;
+border-color: #595a5b;
+background-color: #595a5b;
+height: 20px;
 }
