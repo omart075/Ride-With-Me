@@ -81,14 +81,21 @@
   text-align: center;
   color: white;
   background-color: #444444;
-}
-.lyftItem.ng-enter{
-  -webkit-animation:slideInLeft 5s;
 
 }
-.special-animation{
-  -webkit-animation:slideInLeft 5s;
+
+.lyftItem.ng-enter
+{
+  -webkit-animation:slideInSmooth 1s;
 }
+.lyftItem.ng-enter-prepare
+{
+  opacity: 0;
+}
+
+
+
+
 
 /*slides the search boxes in from the top center*/
 @keyframes slideInSmoothSearch {

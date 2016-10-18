@@ -87,15 +87,14 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 
 	$scope.getPrice = function() {
-
+      $scope.res=[]
 	    // Hide the Map
 	    //Map.hideMap();
-            var _markers = Markers.getMarkers();
+      var _markers = Markers.getMarkers();
 	    var startLat = _markers[0].getPosition().lat();
 	    var startLng = _markers[0].getPosition().lng();
 	    var finLat = _markers[1].getPosition().lat();
 	    var finLng = _markers[1].getPosition().lng();
-
 	    //   // call uberService
 	    //   uberService.getPrices(startLat,startLng,finLat,finLng)
 	    // .then((res) => {
@@ -104,6 +103,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    // });
 
 	    // call lyftService
+
 	    lyftService.getPrices(startLat,startLng,finLat,finLng)
 		.then((data) => {
                     for (x=0;x<data.length;x++)
@@ -121,10 +121,11 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                             data[x].ride_type="Lyft";
                         }
                     }
+            $scope.res = data;
+            $scope.$apply();
 
-                    $scope.res = data;
-                    $scope.$apply();
 		})
+
 
 
 
@@ -136,4 +137,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 
     });
+
+
 });
