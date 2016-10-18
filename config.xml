@@ -20,6 +20,9 @@
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
+  <feature name="Geolocation">
+    <param name="ios-package" value="CDVLocation"/>
+  </feature>
   <platform name="ios">
     <splash height="1136" src="resources/ios/splash/Default-568h@2x~iphone.png" width="640"/>
     <splash height="1334" src="resources/ios/splash/Default-667h.png" width="750"/>

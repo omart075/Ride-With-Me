@@ -62,8 +62,14 @@
 	display: none;
 }
 
+.list{
+  background-color: rgba(69, 69, 69, 0);
+  margin-bottom: 0%;
+  margin-top: 0%;
+  width: 350px;
+}
 /*slide the prices in from the bottom center; can adjust direction with translate3d*/
-@keyframes slideInSmoothPrices {
+@keyframes slideInSmooth {
   0% {
     transform: translate3d(0,750%,0);
   }
@@ -71,20 +77,19 @@
     transform: translate3d(0,0,0);
   }
 }
-/*slides prices from bottom center*/
-.list{
-  animation: slideInSmoothPrices ease-in 1;
-  animation: slideInSmoothPrices ease-in 1;
-  animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  animation-duration: 950ms;
-  animation-duration: 950ms;
-  background-color: rgba(69, 69, 69, 0.99);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), inset 0 0 1px rgba(255, 255, 255, 0.6);
-  margin-bottom: 0%;
-  margin-top: 0%;
-  width: 350px;
+.lyftItem{
+  text-align: center;
+  color: white;
+  background-color: #444444;
 }
+.lyftItem.ng-enter{
+  -webkit-animation:slideInLeft 5s;
+
+}
+.special-animation{
+  -webkit-animation:slideInLeft 5s;
+}
+
 /*slides the search boxes in from the top center*/
 @keyframes slideInSmoothSearch {
   0% {
@@ -106,11 +111,6 @@
 
 .price-list{
   padding-left: 12px;
-}
-.ion-item{
-  text-align: center;
-  color: white;
-  background-color: #444444;
 }
 .info{
   color: #FFFFFF;

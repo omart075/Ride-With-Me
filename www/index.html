@@ -9,6 +9,7 @@
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/map-icons.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <!-- your app's js -->
@@ -63,20 +64,20 @@
 </div>
 <div id="prices">
   <div class="price-list">
-    <ion-list>
-      <ion-item class="ion-item" ng-repeat= "lyfts in res">
-        <div style="line-height: 150%;" class="ion-item" ng-show="$first">Lyft</div>
+
+      <ion-item ng-repeat= "lyfts in res" class="lyftItem">
           <div class="click" ng-click="alert()">
-            <p style="padding-top: 0pxl; color: white;" class="info">{{lyfts.ride_type}}
+            <p style="color: white;" class="info">{{lyfts.ride_type}}
               <span style="float:right;">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
           </div>
-      </ion-item>
-      <ion-item class="ion-item" ng-repeat= "lyfts in res">
+        </ion-item>
+
+      <ion-item class="ion-item" ng-repeat= "ubers in uberData">
         <div style="line-height: 150%;" class="ion-item" ng-show="$first">Uber</div>
           <div class="click" ng-click="alert()">
-            <p style="padding-top: 0pxl; color: white;" class="info">{{lyfts.ride_type}}
-              <span style="float:right;">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
+            <p style="color: white;" class="info">{{ubers.localized_display_name}}
+              <span style="float:right;">${{(ubers.estimate/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
           </div>
       </ion-item>

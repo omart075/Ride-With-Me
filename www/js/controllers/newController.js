@@ -99,6 +99,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    //   // call uberService
 	    //   uberService.getPrices(startLat,startLng,finLat,finLng)
 	    // .then((res) => {
+      //   $scope.uberData = res;
 	    //     console.log("uber: " + res);
 	    // });
 
@@ -120,13 +121,16 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                             data[x].ride_type="Lyft";
                         }
                     }
+
                     $scope.res = data;
                     $scope.$apply();
 		})
 
 
+
+
 	};
-  $scope.alert = function(){
+    $scope.alert = function(){
     console.log("alert");
   };
 
