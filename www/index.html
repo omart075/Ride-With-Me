@@ -89,11 +89,25 @@
               </div>
             </ion-item>
 
-      <ion-item class="lyftItem" ng-repeat= "ubers in uberData">
-        <div style="line-height: 150%;" class="ion-item" ng-show="$first">Uber</div>
+      <ion-item class="lyftItem">
           <div class="click" ng-click="alert()">
-            <p style="color: white;" class="info">{{ubers.localized_display_name}}
-              <span style="float:right;">${{(ubers.estimate/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
+            <p style="color: white;" class="info">{{uberData[0].display_name}}
+              <span style="float:right;">{{(uberData[0].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
+            </p>
+          </div>
+      </ion-item>
+      <ion-item class="lyftItem">
+
+          <div class="click" ng-click="alert()">
+            <p style="color: white;" class="info">{{uberData[1].display_name}}
+              <span style="float:right;">{{(uberData[1].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
+            </p>
+          </div>
+      </ion-item>
+      <ion-item class="lyftItem">
+          <div class="click" ng-click="alert()">
+            <p style="color: white;" class="info">{{uberData[2].display_name}}
+              <span style="float:right;">{{(uberData[2].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
           </div>
       </ion-item>

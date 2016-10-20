@@ -97,8 +97,9 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	      // call uberService
 	      uberService.getPrices(startLat,startLng,finLat,finLng)
 	    .then((res) => {
-        $scope.uberData = res;
-	        console.log("uber: " + res);
+        $scope.uberData = res.data.prices;
+	        //console.log("uber: " + res.prices[0]);
+          //console.log("uber: " + res.data.prices[0]);
 	    });
 
 	    // call lyftService

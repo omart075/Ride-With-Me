@@ -11,7 +11,7 @@ angular.module('app').factory('uberService', function($http) {
 		+finLat+'&end_longitude='+finLng;
 
 	    // Token
-	    var Token = 'Token Xqf0ZY_v87Xz-T8_ihk22lzReP2qSm0VLtib9QW6'
+	    var Token = 'Token wO39e78Ze5SPZ6DU35beGL4HZ_2XdfuelQW2kiAW'
 
 	    // Options/Headers
 	    var options = {
@@ -24,7 +24,7 @@ angular.module('app').factory('uberService', function($http) {
 	    $http.get(url,options)
 		.then((res) => {
 		    resolve(res);
-        console.log(res);
+        console.log(res.data.prices[0]);
 		});
 	});
     };
