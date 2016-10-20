@@ -64,14 +64,30 @@
 </div>
 <div id="prices">
   <div class="price-list">
-  <ion-list>
-      <ion-item ng-repeat= "lyfts in res" class="lyftItem">
+  <ion-list ng-if="res != null" ng-hide="res == null">
+      <ion-item class="lyftItem" ng-hide="res[0] == null">
           <div class="click" ng-click="alert()">
-            <p style="color: white;" class="info">{{lyfts.ride_type}}
-              <span style="float:right;">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
+            <p style="color: white;" class="info">{{res[0].ride_type}}
+              <span style="float:right;">${{(res[0].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
           </div>
         </ion-item>
+
+        <ion-item class="lyftItem" ng-hide="res[1] == null">
+            <div class="click" ng-click="alert()">
+              <p style="color: white;" class="info">{{res[1].ride_type}}
+                <span style="float:right;">${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
+              </p>
+            </div>
+          </ion-item>
+
+          <ion-item class="lyftItem" ng-hide="res[2] == null">
+              <div class="click" ng-click="alert()">
+                <p style="color: white;" class="info">{{res[2].ride_type}}
+                  <span style="float:right;">${{(res[2].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
+                </p>
+              </div>
+            </ion-item>
 
       <ion-item class="ion-item" ng-repeat= "ubers in uberData">
         <div style="line-height: 150%;" class="ion-item" ng-show="$first">Uber</div>

@@ -84,7 +84,7 @@
 
 }
 
-.lyftItem.ng-enter
+.lyftItem
 {
   -webkit-animation:slideInSmooth 1s;
 }

@@ -75,7 +75,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                         Markers.addMarker(Map.getMap(), location);
 
                     Map.fitBounds(Markers.getMarkers());
-                    $scope.res = [];
+                    $scope.res = null;
                     $scope.$apply();
 
                 }).catch((err) => {
@@ -87,7 +87,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 
 	$scope.getPrice = function() {
-      $scope.res=[]
 	    // Hide the Map
 	    //Map.hideMap();
       var _markers = Markers.getMarkers();
