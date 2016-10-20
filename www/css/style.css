@@ -86,7 +86,7 @@
 
 .lyftItem
 {
-  -webkit-animation:slideInSmooth 1s;
+  -webkit-animation:slideInSmooth 700ms;
 }
 .lyftItem.ng-enter-prepare
 {
@@ -108,12 +108,12 @@
 }
 /*slides the search boxes in from the top center*/
 .search-wrapper{
-  animation: slideInSmoothSearch ease-in 1;
- animation: slideInSmoothSearch ease-in 1;
+  animation: slideInSmoothSearch;
+ animation: slideInSmoothSearch;
  animation-fill-mode: forwards;
  animation-fill-mode: forwards;
- animation-duration: 950ms;
- animation-duration: 950ms;
+ animation-duration: 700ms;
+ animation-duration: 700ms;
 }
 
 .price-list{

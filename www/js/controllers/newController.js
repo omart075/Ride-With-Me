@@ -94,12 +94,12 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	    var startLng = _markers[0].getPosition().lng();
 	    var finLat = _markers[1].getPosition().lat();
 	    var finLng = _markers[1].getPosition().lng();
-	    //   // call uberService
-	    //   uberService.getPrices(startLat,startLng,finLat,finLng)
-	    // .then((res) => {
-      //   $scope.uberData = res;
-	    //     console.log("uber: " + res);
-	    // });
+	      // call uberService
+	      uberService.getPrices(startLat,startLng,finLat,finLng)
+	    .then((res) => {
+        $scope.uberData = res;
+	        console.log("uber: " + res);
+	    });
 
 	    // call lyftService
 
