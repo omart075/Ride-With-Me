@@ -1,4 +1,4 @@
-angular.module('app').controller('newController', function($scope, $http, $ionicLoading, uberService, lyftService, markerService, controlService, mapService) {
+angular.module('app').controller('newController', function($scope, $http, $ionicLoading, $window,uberService, lyftService, markerService, controlService, mapService) {
 
 
     // Intialize our Map Service
@@ -93,13 +93,14 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	$scope.getPrice = function() {
 	    // Hide the Map
 	    //Map.hideMap();
-      var _markers = Markers.getMarkers();
-	    var startLat = _markers[0].getPosition().lat();
-	    var startLng = _markers[0].getPosition().lng();
-	    var finLat = _markers[1].getPosition().lat();
-	    var finLng = _markers[1].getPosition().lng();
+      $scope._markers = Markers.getMarkers();
+	    var startLat = $scope._markers[0].getPosition().lat();
+	    var startLng = $scope._markers[0].getPosition().lng();
+	    var finLat = $scope._markers[1].getPosition().lat();
+	    var finLng = $scope._markers[1].getPosition().lng();
 	      // call uberService
 	      uberService.getPrices(startLat,startLng,finLat,finLng)
+        //$scope.startLat = str
 	    .then((res) => {
         $scope.uberData = res.data.prices;
         $scope.$apply();
@@ -153,7 +154,16 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     //
     // }
     $scope.alert = function(data){
+      var startLat = $scope._markers[0].getPosition().lat();
+      var startLng = $scope._markers[0].getPosition().lng();
+      var finLat = $scope._markers[1].getPosition().lat();
+      var finLng = $scope._markers[1].getPosition().lng();
+      $window.location.href = 'http://www.google.com';
         console.log(data);
+        console.log(startLat);
+        console.log(startLng);
+        console.log(finLat);
+        console.log(finLat);
     };
 
 
