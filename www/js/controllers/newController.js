@@ -181,6 +181,8 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 
     };
+
+
     $scope.disableTap = function(){
         container = document.getElementsByClassName('pac-container');
         // disable ionic data tab
@@ -189,8 +191,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
         angular.element(container).on("click", function(){
             document.getElementById('user.address').blur();
         });
-      };
+};
+
     })
-
-
-});
