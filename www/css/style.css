@@ -64,8 +64,9 @@
 
 .list{
   background-color: rgba(69, 69, 69, 0);
-  margin-bottom: 0%;
-  margin-top: 0%;
+
+  margin-top: -100%;
+  margin-left: -52%;
   width: 350px;
 }
 /*slide the prices in from the bottom center; can adjust direction with translate3d*/

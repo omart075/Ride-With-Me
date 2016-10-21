@@ -33,7 +33,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
             var searchBars = document.getElementById("searchBars");
             var prices = document.getElementById("prices");
             Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(searchBars);
-            Map.getMap().controls[google.maps.ControlPosition.LEFT_BOTTOM].push(prices);
+            Map.getMap().controls[google.maps.ControlPosition.BOTTOM_CENTER].push(prices);
 
         });
 
@@ -98,6 +98,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	      uberService.getPrices(startLat,startLng,finLat,finLng)
 	    .then((res) => {
         $scope.uberData = res.data.prices;
+        $scope.$apply();
 	        //console.log("uber: " + res.prices[0]);
           //console.log("uber: " + res.data.prices[0]);
 	    });
@@ -131,12 +132,21 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 
 	};
-    $scope.alert = function(){
-    console.log("alert");
-  };
+
 
 
     });
+
+
+    $scope.onSwipeDown = function()
+    {
+          console.log("swipedDown");
+          $scope.draggedStyle = {
+            'left': event.gesture.center.pageX + 'px',
+            'top': event.gesture.center.pageY + 'px'
+        };
+
+    }
 
 
 });
