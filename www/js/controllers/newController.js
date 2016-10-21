@@ -165,19 +165,26 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
         else{
           ridetype= "lyft";
         }
+        var lyftDeepLinking = "lyft://ridetype?id="+ridetype+"&pickup[latitude]="+startLat
+          +"&pickup[longitude]="+startLng+"&destination[latitude]="+finLat+
+          "&destination[longitude]="+finLng;
+          console.log(lyftDeepLinking);
+
       }
       else{
         product_id = data.product_id;
-        console.log(product_id);
+        var uberDeepLinking = "uber://?client_id=YOUR_CLIENT_ID&action=setPickup&pickup[latitude]="
+          +startLat+"&pickup[longitude]="+startLng+"&dropoff[latitude]="+finLat
+          +"&dropoff[longitude]="+finLng+"&product_id="
+          + product_id+"&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383";
+          console.log(uberDeepLinking);
+
       }
-      var lyftDeepLinking = "lyft://ridetype?id="+ridetype+"&pickup[latitude]="+startLat
-        +"&pickup[longitude]="+startLng+"&destination[latitude]="+finLat+
-        "&destination[longitude]="+finLng;
 
-      $window.location.href = lyftDeepLinking;
 
-        //console.log(lyftDeepLinking);
-        console.log(data);
+
+
+
 
 
     };
