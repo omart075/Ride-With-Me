@@ -132,10 +132,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 		})
 
-
-
-
-
 	};
 
 
@@ -170,13 +166,17 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
           ridetype= "lyft";
         }
       }
+      else{
+        product_id = data.product_id;
+        console.log(product_id);
+      }
       var lyftDeepLinking = "lyft://ridetype?id="+ridetype+"&pickup[latitude]="+startLat
         +"&pickup[longitude]="+startLng+"&destination[latitude]="+finLat+
         "&destination[longitude]="+finLng;
 
       $window.location.href = lyftDeepLinking;
 
-        console.log(lyftDeepLinking);
+        //console.log(lyftDeepLinking);
         console.log(data);
 
 
