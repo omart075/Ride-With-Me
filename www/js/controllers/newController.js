@@ -170,7 +170,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
           ridetype= "lyft";
         }
       }
-      var lyftDeepLinking = "lyft://" + ridetype + "?id=lyft&pickup[latitude]="+startLat
+      var lyftDeepLinking = "lyft://ridetype?id="+ridetype+"&pickup[latitude]="+startLat
         +"&pickup[longitude]="+startLng+"&destination[latitude]="+finLat+
         "&destination[longitude]="+finLng;
 
