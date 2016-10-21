@@ -169,6 +169,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
           +"&pickup[longitude]="+startLng+"&destination[latitude]="+finLat+
           "&destination[longitude]="+finLng;
           console.log(lyftDeepLinking);
+          window.open(lyftDeepLinking,'_system', 'location=no');
 
       }
       else{
@@ -178,7 +179,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
           +"&dropoff[longitude]="+finLng+"&product_id="
           + product_id+"&link_text=View%20team%20roster&partner_deeplink=partner%3A%2F%2Fteam%2F9383";
           console.log(uberDeepLinking);
-
+          window.open(uberDeepLinking,'_system', 'location=no');
       }
 
 
