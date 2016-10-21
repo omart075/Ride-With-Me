@@ -158,7 +158,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
       var startLng = $scope._markers[0].getPosition().lng();
       var finLat = $scope._markers[1].getPosition().lat();
       var finLng = $scope._markers[1].getPosition().lng();
-      $window.location.href = 'uber://';
+      $window.location.href =  "https://m.uber.com";
         console.log(data);
         console.log(startLat);
         console.log(startLng);
