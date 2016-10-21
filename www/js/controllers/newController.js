@@ -142,6 +142,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     });
 
 
+
     // $scope.onSwipeDown = function()
     // {
     //       console.log("swipedDown");
@@ -151,6 +152,9 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     //     };
     //
     // }
+    $scope.alert = function(data){
+        console.log(data);
+    };
 
 
 });
