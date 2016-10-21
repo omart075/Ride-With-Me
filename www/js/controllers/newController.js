@@ -32,8 +32,11 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
             // Get and push the search bars into the google maps controls
             var searchBars = document.getElementById("searchBars");
             var prices = document.getElementById("prices");
+
             Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(searchBars);
+            navigator.splashscreen.hide();
             Map.getMap().controls[google.maps.ControlPosition.BOTTOM_CENTER].push(prices);
+
 
         });
 
