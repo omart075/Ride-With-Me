@@ -49,7 +49,7 @@
 	<div class="search-wrapper">
 	  <form>
 	    <label class="item search-bar item-input">
-	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pickup Location" googleplace="" autocomplete="off"></input>
+	      <input ng-focus="disableTap()"style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pickup Location" googleplace="" autocomplete="off"></input>
 	      <button class="close-icon" type="reset"></button>
 		  </label>
 	  </form>
