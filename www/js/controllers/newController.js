@@ -35,7 +35,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
             Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(searchBars);
 
-            if(ionic.Platform.platform()!="macintel")
+            if(!ionic.Platform.is('browser'))
             navigator.splashscreen.hide();
 
             Map.getMap().controls[google.maps.ControlPosition.BOTTOM_CENTER].push(prices);
