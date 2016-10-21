@@ -159,18 +159,27 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
       var finLat = $scope._markers[1].getPosition().lat();
       var finLng = $scope._markers[1].getPosition().lng();
       var ridetype = data.ride_type;
+      if(ridetype != null){
+        if(ridetype == "Lyft Plus"){
+          ridetype = "lyft_plus";
+        }
+        else if (ridetype == "Lyft Line") {
+          ridetype = "lyft_line";
+        }
+        else{
+          ridetype= "lyft";
+        }
+      }
       var lyftDeepLinking = "lyft://" + ridetype + "?id=lyft&pickup[latitude]="+startLat
         +"&pickup[longitude]="+startLng+"&destination[latitude]="+finLat+
         "&destination[longitude]="+finLng;
 
       $window.location.href = lyftDeepLinking;
 
-        console.log(data.ride_type);
+        console.log(lyftDeepLinking);
+        console.log(data);
 
-        console.log(startLat);
-        console.log(startLng);
-        console.log(finLat);
-        console.log(finLat);
+
     };
 
 
