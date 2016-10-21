@@ -1,4 +1,4 @@
-angular.module('app').controller('newController', function($scope, $http, $ionicLoading, $location,uberService, lyftService, markerService, controlService, mapService) {
+angular.module('app').controller('newController', function($scope, $http, $ionicLoading, $window,uberService, lyftService, markerService, controlService, mapService) {
 
 
     // Intialize our Map Service
@@ -158,8 +158,14 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
       var startLng = $scope._markers[0].getPosition().lng();
       var finLat = $scope._markers[1].getPosition().lat();
       var finLng = $scope._markers[1].getPosition().lng();
-      $location.href =  "https://m.uber.com";
-        console.log(data);
+      var ridetype = data.ride_type;
+      var lyftDeepLinking = "lyft://" + ridetype + "?id=lyft&pickup[latitude]="+startLat
+        +"&pickup[longitude]="+startLng+"&destination[latitude]="+finLat+
+        "&destination[longitude]="+finLng;
+
+      $window.location.href = lyftDeepLinking;
+
+        console.log(data.ride_type);
 
         console.log(startLat);
         console.log(startLng);
