@@ -34,10 +34,11 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
             var prices = document.getElementById("prices");
 
             Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(searchBars);
+
+            if(ionic.Platform.platform()!="macintel")
             navigator.splashscreen.hide();
+
             Map.getMap().controls[google.maps.ControlPosition.BOTTOM_CENTER].push(prices);
-
-
         });
 
 
@@ -141,15 +142,15 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     });
 
 
-    $scope.onSwipeDown = function()
-    {
-          console.log("swipedDown");
-          $scope.draggedStyle = {
-            'left': event.gesture.center.pageX + 'px',
-            'top': event.gesture.center.pageY + 'px'
-        };
-
-    }
+    // $scope.onSwipeDown = function()
+    // {
+    //       console.log("swipedDown");
+    //       $scope.draggedStyle = {
+    //         'left': event.gesture.center.pageX + 'px',
+    //         'top': event.gesture.center.pageY + 'px'
+    //     };
+    //
+    // }
 
 
 });
