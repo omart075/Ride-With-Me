@@ -72,7 +72,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
                 disableDefaultUI: true,
                 mapTypeControlOptions: { // Changes the Map type control to the bottom
                     position: google.maps.ControlPosition.LEFT_BOTTOM,
-                    mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'lightbluesite']// Defaults the Map type to ROAD MAP
+                    mapTypeIds: google.maps.MapTypeId.ROADMAP// Defaults the Map type to ROAD MAP
                 },
                 styles: mapStyle
 		//mapTypeId: google.maps.MapTypeId.ROADMAP
