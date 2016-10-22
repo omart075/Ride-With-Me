@@ -16,6 +16,7 @@
       <script src="cordova.js"></script>
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQKVCikU8FP1XZ-m3Tytu6KOk9LyB-B6s&libraries=places"></script>
     <script src="https://cdn.klokantech.com/maptilerlayer/v1/index.js"></script>
     <script src="js/services/uberService.js"></script>
@@ -41,24 +42,25 @@
   </style>
   <body ng-app="app">
     <ion-pane>
+      <!--
       <ion-header-bar align-title="center" class="bar-dark">
 	       <h1 class="title">Ride With Me</h1>
-      </ion-header-bar>
+      </ion-header-bar>-->
       <ion-content scroll="false" ng-controller="newController">
 <div id="searchBars">
 	<div class="search-wrapper">
 	  <form>
-	    <label class="item search-bar item-input">
-	      <input ng-focus="disableTap()"style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Enter Pickup Location" googleplace="" autocomplete="off"></input>
+	    <label id="rounded" class="item search-bar item-input">
+	      <input ng-focus="disableTap()"style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Set Pickup" googleplace="" autocomplete="off"></input>
 	      <button class="close-icon" type="reset"></button>
 		  </label>
 	  </form>
 	</div>
 	<div class="search-wrapper">
 	  <form>
-	    <label class="item search-bar item-input">
+	    <label id="rounded" class="item search-bar item-input">
         <!-- to add automatic searching, add ng-change="search()" ng-model-options="{debounce: 2000}" to line below -->
-	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Enter Destination" googleplace="" autocomplete="off"></input>
+	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Set Dropoff" googleplace="" autocomplete="off"></input>
 		    <button class="close-icon" type="reset"></button>
 	    </label>
 	  </form>
@@ -67,7 +69,7 @@
 <div id="prices">
   <div class="price-list">
   <ion-list ng-if="res != null" on-swipe-down="onSwipeDown()" ng-style="draggedStyle" ng-hide="res == null">
-      <ion-item class="lyftItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
+      <ion-item id="roundedItemTop" class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
           <div class="click" ng-click="alert(res[0])">
             <p style="color: white;" class="info">{{res[0].ride_type}}
               <span style="float:right;">${{(res[0].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
@@ -75,7 +77,7 @@
           </div>
         </ion-item>
 
-        <ion-item class="lyftItem" ng-style="draggedStyle" ng-hide="res[1] == null">
+        <ion-item class="carItem" ng-style="draggedStyle" ng-hide="res[1] == null">
             <div class="click" ng-click="alert(res[1])">
               <p style="color: white;" class="info">{{res[1].ride_type}}
                 <span style="float:right;">${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
@@ -83,7 +85,7 @@
             </div>
           </ion-item>
 
-          <ion-item class="lyftItem" ng-style="draggedStyle" ng-hide="res[2] == null">
+          <ion-item class="carItem" ng-style="draggedStyle" ng-hide="res[2] == null">
               <div class="click" ng-click="alert(res[2])">
                 <p style="color: white;" class="info">{{res[2].ride_type}}
                   <span style="float:right;">${{(res[2].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
@@ -91,14 +93,14 @@
               </div>
             </ion-item>
 
-      <ion-item class="lyftItem" ng-style="draggedStyle">
+      <ion-item class="carItem" ng-style="draggedStyle">
           <div class="click" ng-click="alert(uberData[0])">
             <p style="color: white;" class="info">{{uberData[0].display_name}}
               <span style="float:right;">{{(uberData[0].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
           </div>
       </ion-item>
-      <ion-item class="lyftItem" ng-style="draggedStyle">
+      <ion-item class="carItem" ng-style="draggedStyle">
 
           <div class="click" ng-click="alert(uberData[1])">
             <p style="color: white;" class="info">{{uberData[1].display_name}}
@@ -106,7 +108,7 @@
             </p>
           </div>
       </ion-item>
-      <ion-item class="lyftItem" ng-style="draggedStyle">
+      <ion-item id="roundedItemBottom" class="carItem" ng-style="draggedStyle">
           <div class="click" ng-click="alert(uberData[2])">
             <p style="color: white;" class="info">{{uberData[2].display_name}}
               <span style="float:right;">{{(uberData[2].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
@@ -129,7 +131,7 @@
 <ion-footer-bar class="bar bar-dark">
   <div class="button-bar">
     <a ng-click="search()" class="button button-dark">Search</a>
-    <a ng-click="getPrice()" class="button button-dark">Get Prices</a>
+    <a ng-click="getPrice()" class="button button-dark">Prices</a>
   </div>
 </ion-footer>
 

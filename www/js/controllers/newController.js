@@ -15,17 +15,67 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	*/
 	Map.linkFromAddress('user.address');
 	Map.linkToAddress('user.destination');
+  var mapStyle = [
+    {
+        "featureType": "all",
+        "stylers": [
+            {
+                "saturation": 0
+            },
+            {
+                "hue": "#e7ecf0"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "stylers": [
+            {
+                "saturation": -70
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "saturation": -60
+            }
+        ]
+    }
+  ];
 
 	// Create Map Initialize at Current Position
 	Map.getCurrentLocation().then((location) => {
             let options = {
-		center: location,        // Centers at current location
-		zoom: 17,                // Defaults to a zoom level of 17
+		            center: location,        // Centers at current location
+		            zoom: 17,                // Defaults to a zoom level of 17
                 disableDefaultUI: true,
                 mapTypeControlOptions: { // Changes the Map type control to the bottom
-                    position: google.maps.ControlPosition.LEFT_BOTTOM
+                    position: google.maps.ControlPosition.LEFT_BOTTOM,
+                    mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'lightbluesite']// Defaults the Map type to ROAD MAP
                 },
-		mapTypeId: google.maps.MapTypeId.ROADMAP // Defaults the Map type to ROAD MAP
+                styles: mapStyle
+		//mapTypeId: google.maps.MapTypeId.ROADMAP
 	    };
 	    Map.create('map', options, new google.maps.Geocoder, navigator);
             Markers.addCurrMarker(Map.getMap(),location);
