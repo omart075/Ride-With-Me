@@ -32,11 +32,30 @@ angular.module('app').factory('markerService', function() {
 	    if(this.count == 2)
 	    {
     		this.clearMarkers();
-  	    }
+  	  }
+      //sets pin attributes
+      function pinSymbol(color) {
+           return {
+               path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+               fillColor: color,
+               fillOpacity: 1,
+               strokeColor: '#000',
+               strokeWeight: 1,
+               scale: 1
+          };
+       }
+       //chooses color depending on which marker it is
+       if(this.count == 0){
+         var colorStr = "#FFF";
+       }
+       else{
+         var colorStr = "#444";
+       }
 	    var marker = new google.maps.Marker({
   		position: location,
   		draggable: true,
-  		map: map
+  		map: map,
+      icon: pinSymbol(colorStr),
   	    });
 	    this._markers.push(marker);
 	    this.count = this.count + 1;
