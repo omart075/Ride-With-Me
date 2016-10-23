@@ -8,7 +8,7 @@
     height: 93%;
 }
 
-.close-icon {
+.close-icon1, .close-icon2 {
 	border:1px solid transparent;
 	background-color: transparent;
 	display: inline-block;
@@ -16,13 +16,13 @@
   outline: 0;
   cursor: pointer;
 }
-.close-icon:after {
+.close-icon1:after, .close-icon2:after {
 	content: "X";
 	display: block;
 	width: 15px;
 	height: 15px;
 	position: absolute;
-	background-color: #FFFFFF;
+	background-color: none;
 	z-index:1;
 	right: 15px;
 	top: 0;
@@ -31,13 +31,21 @@
 	padding: 0px;
 	border-radius:50%;
 	text-align: center;
-	color: black;
 	font-weight: normal;
 	font-size: 12px;
 	box-shadow: 0 0 0px #FFFFFF;
 	cursor: pointer;
 }
-.search-bar
+.close-icon1:after{
+  color: black;
+}
+.close-icon2:after{
+  color: white;
+}
+.search-box:not(:valid) ~ .close-icon1, .search-box:not(:valid) ~ .close-icon2 {
+	display: none;
+}
+.search-bar1, .search-bar2
 {
     box-shadow: 0 10px 6px -6px #777;
     width:300px;
@@ -45,10 +53,12 @@
     top: 10px;
     bottom: 10px;
     border: none;
-
-    background-color: #444444;
-
-
+}
+.search-bar1{
+  background-color: #FFFFFF;
+}
+.search-bar2{
+  background-color: #444444;
 }
 .search-text{
   color: #FFF;
@@ -57,9 +67,6 @@
    position:fixed;
    bottom:0;
    height:50px;
-}
-.search-box:not(:valid) ~ .close-icon {
-	display: none;
 }
 
 .list{
