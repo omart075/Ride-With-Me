@@ -1236,8 +1236,9 @@
 }
 
 .fadeIn {
-  -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
+  -webkit-animation-name: fadeIn;
+
 }
 
 @-webkit-keyframes fadeInDown {
@@ -1515,12 +1516,13 @@
 }
 
 @keyframes fadeOut {
-  from {
+  0% {
     opacity: 1;
   }
 
-  to {
+  100%{
     opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -3236,8 +3238,8 @@
 
   to {
     visibility: hidden;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
+    -webkit-transform: translate3d(0, 700%, 0);
+    transform: translate3d(0, 700%, 0);
   }
 }
 

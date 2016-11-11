@@ -39,6 +39,7 @@
     #over_map { position: absolute; top: 10px; left: 10px; z-index: 99; }
 
     }
+
   </style>
   <body ng-app="app">
     <ion-pane>
@@ -48,19 +49,19 @@
       </ion-header-bar>-->
       <ion-content scroll="false" ng-controller="newController">
 <div id="searchBars">
-	<div class="search-wrapper">
+	<div class="search-wrapper1">
 	  <form>
 	    <label id="rounded" class="item search-bar1 item-input">
-	      <input ng-focus="disableTap()"style="color: #444444;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Set Pickup" googleplace="" autocomplete="off"></input>
+        <!-- can use enter() or enterMod() in ng-focus -->
+	      <input ng-focus="disableTap(); enterMod('user.address'); clicked('user.address')"style="color: #444444;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Set Pickup" googleplace="" autocomplete="off"></input>
 	      <button class="close-icon1" type="reset"></button>
 		  </label>
 	  </form>
 	</div>
-	<div class="search-wrapper">
+	<div class="search-wrapper2">
 	  <form>
 	    <label id="rounded" class="item search-bar2 item-input">
-        <!-- to add automatic searching, add ng-change="search()" ng-model-options="{debounce: 2000}" to line below -->
-	      <input style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Set Dropoff" googleplace="" autocomplete="off"></input>
+	      <input ng-focus="disableTap(); enterMod('user.destination'); clicked('user.destination')"style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Set Dropoff" googleplace="" autocomplete="off"></input>
 		    <button class="close-icon2" type="reset"></button>
 	    </label>
 	  </form>
@@ -68,9 +69,9 @@
 </div>
 <div id="prices">
   <div class="price-list">
-  <ion-list ng-if="res != null" on-swipe-down="onSwipeDown()" ng-style="draggedStyle" ng-hide="res == null">
+  <ion-list id="carlist" ng-if="res != null" on-swipe-down="onSwipeDown()">
       <ion-item id="roundedItemTop" class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
-          <div class="click" ng-click="alert(res[0])">
+          <div class="click" ng-click="parse(res[0])">
             <p style="color: white;" class="info">{{res[0].ride_type}}
               <span style="float:right;">${{(res[0].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
@@ -78,7 +79,7 @@
         </ion-item>
 
         <ion-item class="carItem" ng-style="draggedStyle" ng-hide="res[1] == null">
-            <div class="click" ng-click="alert(res[1])">
+            <div class="click" ng-click="parse(res[1])">
               <p style="color: white;" class="info">{{res[1].ride_type}}
                 <span style="float:right;">${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
               </p>
@@ -86,30 +87,30 @@
           </ion-item>
 
           <ion-item class="carItem" ng-style="draggedStyle" ng-hide="res[2] == null">
-              <div class="click" ng-click="alert(res[2])">
+              <div class="click" ng-click="parse(res[2])">
                 <p style="color: white;" class="info">{{res[2].ride_type}}
                   <span style="float:right;">${{(res[2].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
                 </p>
               </div>
             </ion-item>
 
-      <ion-item class="carItem" ng-style="draggedStyle">
-          <div class="click" ng-click="alert(uberData[0])">
+      <ion-item class="carItem" ng-style="draggedStyle" ng-hide="uberData[0] == null">
+          <div class="click" ng-click="parse(uberData[0])">
             <p style="color: white;" class="info">{{uberData[0].display_name}}
               <span style="float:right;">{{(uberData[0].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
           </div>
       </ion-item>
-      <ion-item class="carItem" ng-style="draggedStyle">
+      <ion-item class="carItem" ng-style="draggedStyle" ng-hide="uberData[1] == null">
 
-          <div class="click" ng-click="alert(uberData[1])">
+          <div class="click" ng-click="parse(uberData[1])">
             <p style="color: white;" class="info">{{uberData[1].display_name}}
               <span style="float:right;">{{(uberData[1].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
           </div>
       </ion-item>
-      <ion-item id="roundedItemBottom" class="carItem" ng-style="draggedStyle">
-          <div class="click" ng-click="alert(uberData[2])">
+      <ion-item id="roundedItemBottom" class="carItem" ng-style="draggedStyle" ng-hide="uberData[2] == null">
+          <div class="click" ng-click="parse(uberData[2])">
             <p style="color: white;" class="info">{{uberData[2].display_name}}
               <span style="float:right;">{{(uberData[2].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
             </p>
@@ -120,7 +121,7 @@
      <!--
      <div class="list card" ng-repeat= "lyfts in res">
        <div class="item item-divider" ng-show="$first">Uber</div>
-        <div class="click" ng-click="alert()">
+        <div class="click" ng-click="parse()">
          <p style="padding-top: 10px" class="info">{{lyfts.ride_type}}
            <span style="float:right; padding-right: 10px">${{(lyfts.estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right"></i></span>
          </p>
@@ -128,11 +129,19 @@
      </div>-->
 </div>
 <div id="map"></div>
+<div id="search-button">
+  <a ng-click="search()" class="button button-dark">Search</a>
+</div>
+<div id="prices-button">
+  <!-- call blur() to blur background -->
+  <a ng-click="getPrices(); hideButtons()" class="button button-dark">Prices</a>
+</div>
+<!-- <div id="map"></div>
 <ion-footer-bar class="bar bar-dark">
   <div class="button-bar">
     <a ng-click="search()" class="button button-dark">Search</a>
     <a ng-click="getPrice()" class="button button-dark">Prices</a>
-  </div>
+  </div> -->
 </ion-footer>
 
 

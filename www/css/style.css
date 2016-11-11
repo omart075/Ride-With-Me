@@ -5,7 +5,7 @@
 
 #map{
     width: 100%;
-    height: 93%;
+    height: 100%;
 }
 
 .close-icon1, .close-icon2 {
@@ -50,8 +50,9 @@
     box-shadow: 0 10px 6px -6px #777;
     width:300px;
     margin: 10px;
-    top: 10px;
+    top: 15px;
     bottom: 10px;
+    right: 10px;
     border: none;
 }
 .search-bar1{
@@ -63,11 +64,11 @@
 .search-text{
   color: #FFF;
 }
-.footer {
+/*.footer {
    position:fixed;
    bottom:0;
    height:50px;
-}
+}*/
 
 .list{
   background-color: rgba(69, 69, 69, 0);
@@ -89,20 +90,13 @@
   text-align: center;
   color: white;
   background-color: #444444;
-
-}
-.carItem
-{
   -webkit-animation:slideInSmooth 700ms;
 }
+
 .carItem.ng-enter-prepare
 {
   opacity: 0;
 }
-
-
-
-
 
 /*slides the search boxes in from the top center*/
 @keyframes slideInSmoothSearch {
@@ -154,4 +148,24 @@
 border-color: #595a5b;
 background-color: #595a5b;
 height: 20px;
+}
+
+.button-dark{
+  width: 150px;
+	height: 40px;
+  border-radius: 30px;
+}
+
+/*adjust position of buttons*/
+#search-button{
+  padding-left: 5px;
+}
+#prices-button{
+  padding-bottom: 12px;
+  padding-right: 5px;
+}
+
+/*modify places autocomplete*/
+.pac-container{
+  border-radius: 15px;
 }

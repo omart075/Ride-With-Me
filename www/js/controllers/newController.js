@@ -82,6 +82,12 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
             // Get and push the search bars into the google maps controls
             var searchBars = document.getElementById("searchBars");
             var prices = document.getElementById("prices");
+            var pricesButton = document.getElementById("prices-button");
+            var searchButton = document.getElementById("search-button");
+            console.log(pricesButton);
+            Map.getMap().controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(pricesButton);
+            Map.getMap().controls[google.maps.ControlPosition.LEFT_BOTTOM].push(searchButton);
+
 
             Map.getMap().controls[google.maps.ControlPosition.TOP_CENTER].push(searchBars);
 
@@ -89,8 +95,85 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
             navigator.splashscreen.hide();
 
             Map.getMap().controls[google.maps.ControlPosition.BOTTOM_CENTER].push(prices);
-        });
 
+            //should bring buttons back when map is clicked
+            Map.getMap().addListener('click', function() {
+              $scope.isClicked = false;
+              document.getElementById('search-button').style.animation = "fadeIn 700ms";
+              document.getElementById('prices-button').style.animation = "fadeIn 700ms";
+
+              document.getElementsByClassName('carItem')[0].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[1].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[2].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[3].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[4].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[5].style.animation = "slideOutDown 700ms";
+
+              document.getElementsByClassName('carItem')[0].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[0].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[1].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[1].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[2].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[2].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[3].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[3].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[4].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[4].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[5].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[5].style.display = 'none'; }, false);
+
+            });
+            //should bring buttons back when map is dragged
+            Map.getMap().addListener('drag', function() {
+              $scope.isClicked = false;
+              document.getElementById('search-button').style.animation = "fadeIn 700ms";
+              document.getElementById('prices-button').style.animation = "fadeIn 700ms";
+
+              document.getElementsByClassName('carItem')[0].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[1].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[2].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[3].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[4].style.animation = "slideOutDown 700ms";
+              document.getElementsByClassName('carItem')[5].style.animation = "slideOutDown 700ms";
+
+              document.getElementsByClassName('carItem')[0].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[0].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[1].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[1].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[2].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[2].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[3].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[3].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[4].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[4].style.display = 'none'; }, false);
+              document.getElementsByClassName('carItem')[5].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[5].style.display = 'none'; }, false);
+
+            });
+        });
+  //detects if user clicked on an autocomplete option
+  //parameter passed is the id of search box calling the functions
+  $scope.clicked = function(element){
+    var input = document.getElementById(element);
+    var autocomplete = new google.maps.places.Autocomplete(input);
+     google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        console.log("clicked");
+       });
+  };
+  // detects if user pressed enter key and then mimics arrow down and enter to select first
+  // autocomplete option
+  //parameter passed is the id of search box calling the functions
+  $scope.enterMod = function(element){
+    var input = document.getElementById(element);
+    google.maps.event.addDomListener(input,'keydown',function(e){
+       if(e.keyCode===13 && !e.triggered){
+         google.maps.event.trigger(this,'keydown',{keyCode:40})
+         google.maps.event.trigger(this,'keydown',{keyCode:13,triggered:true})
+       }
+  });
+  };
+  // detects if user pressed enter key
+  //parameter passed is the id of search box calling the functions
+  $scope.enter = function(){
+    document.getElementById('user.address').onkeypress = function(e) {
+    if(e.keyCode == 13) {
+        console.log('You pressed enter!');
+    }
+  }
+  };
+  //blurs entire map; have to figure out how to blur certain components
+  //since everything is pushed onto map
+  $scope.blur =  function(){
+    document.getElementById('map').setAttribute("style","-webkit-filter:blur(5px)");
+  };
 
 	$scope.search = function() {
 
@@ -140,7 +223,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	};
 
 
-	$scope.getPrice = function() {
+	$scope.getPrices = function() {
 	    // Hide the Map
 	    //Map.hideMap();
       $scope._markers = Markers.getMarkers();
@@ -157,6 +240,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	        //console.log("uber: " + res.prices[0]);
           //console.log("uber: " + res.data.prices[0]);
 	    });
+
 
 	    // call lyftService
 
@@ -184,10 +268,35 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 	};
 
+  //fades out buttons when prices is clicked
+  $scope.isClicked;
+  $scope.hideButtons = function(){
+    $scope.isClicked = true;
+      //  document.getElementById('search-button').style.visibility = "hidden";
+      //  document.getElementById('prices-button').style.visibility = "hidden";
+    document.getElementById('search-button').style.animation = "fadeOut 700ms";
+    document.getElementById('prices-button').style.animation = "fadeOut 700ms";
+
+
+   };
 
 
     });
 
+    //works with the hide fuction above
+    document.getElementById('search-button').addEventListener('webkitAnimationEnd',function( event ) {
+      if($scope.isClicked){
+         document.getElementById('search-button').style.display = 'none';
+       }
+      else{
+         document.getElementById('search-button').style.display = 'inline';}
+       }, false);
+    document.getElementById('prices-button').addEventListener('webkitAnimationEnd',function( event ) {
+      if($scope.isClicked)
+         document.getElementById('prices-button').style.display = 'none';
+      else
+         document.getElementById('prices-button').style.display = 'none';
+       }, false);
 
 
     // $scope.onSwipeDown = function()
@@ -199,7 +308,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     //     };
     //
     // }
-    $scope.alert = function(data){
+    $scope.parse = function(data){
       var startLat = $scope._markers[0].getPosition().lat();
       var startLng = $scope._markers[0].getPosition().lng();
       var finLat = $scope._markers[1].getPosition().lat();
