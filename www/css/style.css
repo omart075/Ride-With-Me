@@ -83,7 +83,7 @@
     transform: translate3d(0,750%,0);
   }
   100% {
-    transform: translate3d(0,0,0);
+    transform: translate3d(0,-100%,0);
   }
 }
 .carItem{
@@ -109,7 +109,7 @@
 }
 /*slides the search boxes in from the top center*/
 .search-wrapper{
-  animation: slideInSmoothSearch;
+ animation: slideInSmoothSearch;
  animation: slideInSmoothSearch;
  animation-fill-mode: forwards;
  animation-fill-mode: forwards;
@@ -167,5 +167,5 @@ height: 20px;
 
 /*modify places autocomplete*/
 .pac-container{
-  border-radius: 15px;
+  border-radius: 10px;
 }

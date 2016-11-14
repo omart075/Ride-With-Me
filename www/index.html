@@ -53,7 +53,7 @@
 	  <form>
 	    <label id="rounded" class="item search-bar1 item-input">
         <!-- can use enter() or enterMod() in ng-focus -->
-	      <input ng-focus="disableTap(); enterMod('user.address'); clicked('user.address')"style="color: #444444;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Set Pickup" googleplace="" autocomplete="off"></input>
+	      <input ng-focus="disableTap()" style="color: #444444;" type="text" name="focus" required class="search-box" ng-model="user.address" id="user.address" placeholder="Set Pickup" googleplace="" autocomplete="off"></input>
 	      <button class="close-icon1" type="reset"></button>
 		  </label>
 	  </form>
@@ -61,7 +61,7 @@
 	<div class="search-wrapper2">
 	  <form>
 	    <label id="rounded" class="item search-bar2 item-input">
-	      <input ng-focus="disableTap(); enterMod('user.destination'); clicked('user.destination')"style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Set Dropoff" googleplace="" autocomplete="off"></input>
+	      <input ng-focus="disableTap()" style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Set Dropoff" googleplace="" autocomplete="off"></input>
 		    <button class="close-icon2" type="reset"></button>
 	    </label>
 	  </form>
@@ -134,7 +134,7 @@
 </div>
 <div id="prices-button">
   <!-- call blur() to blur background -->
-  <a ng-click="getPrices(); hideButtons()" class="button button-dark">Prices</a>
+  <a ng-click="getPrices()" class="button button-dark">Prices</a>
 </div>
 <!-- <div id="map"></div>
 <ion-footer-bar class="bar bar-dark">

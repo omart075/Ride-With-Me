@@ -98,9 +98,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
             //should bring buttons back when map is clicked
             Map.getMap().addListener('click', function() {
-              $scope.isClicked = false;
-              document.getElementById('search-button').style.animation = "fadeIn 700ms";
-              document.getElementById('prices-button').style.animation = "fadeIn 700ms";
 
               document.getElementsByClassName('carItem')[0].style.animation = "slideOutDown 700ms";
               document.getElementsByClassName('carItem')[1].style.animation = "slideOutDown 700ms";
@@ -119,10 +116,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
             });
             //should bring buttons back when map is dragged
             Map.getMap().addListener('drag', function() {
-              $scope.isClicked = false;
-              document.getElementById('search-button').style.animation = "fadeIn 700ms";
-              document.getElementById('prices-button').style.animation = "fadeIn 700ms";
-
               document.getElementsByClassName('carItem')[0].style.animation = "slideOutDown 700ms";
               document.getElementsByClassName('carItem')[1].style.animation = "slideOutDown 700ms";
               document.getElementsByClassName('carItem')[2].style.animation = "slideOutDown 700ms";
@@ -269,9 +262,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 	};
 
   //fades out buttons when prices is clicked
-  $scope.isClicked;
   $scope.hideButtons = function(){
-    $scope.isClicked = true;
       //  document.getElementById('search-button').style.visibility = "hidden";
       //  document.getElementById('prices-button').style.visibility = "hidden";
     document.getElementById('search-button').style.animation = "fadeOut 700ms";
@@ -282,22 +273,6 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
 
 
     });
-
-    //works with the hide fuction above
-    document.getElementById('search-button').addEventListener('webkitAnimationEnd',function( event ) {
-      if($scope.isClicked){
-         document.getElementById('search-button').style.display = 'none';
-       }
-      else{
-         document.getElementById('search-button').style.display = 'inline';}
-       }, false);
-    document.getElementById('prices-button').addEventListener('webkitAnimationEnd',function( event ) {
-      if($scope.isClicked)
-         document.getElementById('prices-button').style.display = 'none';
-      else
-         document.getElementById('prices-button').style.display = 'none';
-       }, false);
-
 
     // $scope.onSwipeDown = function()
     // {
