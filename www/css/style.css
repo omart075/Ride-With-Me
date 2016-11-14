@@ -72,8 +72,7 @@
 
 .list{
   background-color: rgba(69, 69, 69, 0);
-
-  margin-top: -100%;
+  margin-top: -130%;
   margin-left: -52%;
   width: 350px;
 }
@@ -83,7 +82,7 @@
     transform: translate3d(0,750%,0);
   }
   100% {
-    transform: translate3d(0,-100%,0);
+    transform: translate3d(0,0,0);
   }
 }
 .carItem{
@@ -153,12 +152,13 @@ height: 20px;
 .button-dark{
   width: 150px;
 	height: 40px;
+  box-shadow: 0 10px 6px -6px #777;
   border-radius: 30px;
 }
 
 /*adjust position of buttons*/
 #search-button{
-  padding-left: 5px;
+  padding-left: 5px;  
 }
 #prices-button{
   padding-bottom: 12px;
