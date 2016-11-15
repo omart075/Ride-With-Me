@@ -14,15 +14,7 @@ angular.module('app').factory('markerService', function() {
                 map: map,
                 name: "currentLocation",
                 position: location,
-                icon: {
-                    path: SQUARE_ROUNDED,
-                    fillColor: '#000000',
-                    fillOpacity: 0,
-                    strokeColor: '#FFFFFF',
-                    strokeWeight: 0,
-                    draggable: false
-                },
-                map_icon_label: '<span class="map-icon map-icon-circle"></span>'
+                icon: "http://i.stack.imgur.com/orZ4x.png"
             });
             return marker;
         },
