@@ -73,9 +73,9 @@
 .list{
   background-color: rgba(69, 69, 69, 0);
 
-  margin-top: -100%;
+  margin-top: -150%;
   margin-left: -52%;
-  width: 350px;
+  width: 300px;
 }
 /*slide the prices in from the bottom center; can adjust direction with translate3d*/
 @keyframes slideInSmooth {
@@ -96,6 +96,11 @@
 .carItem.ng-enter-prepare
 {
   opacity: 0;
+}
+.subitem{
+  color: white;
+  border: none;
+  background-color: #444444;
 }
 
 /*slides the search boxes in from the top center*/
@@ -147,7 +152,7 @@
 .click.active, .click.activated, .click-complex.active .click-content, .click-complex.activated .click-content {
 border-color: #595a5b;
 background-color: #595a5b;
-height: 20px;
+display: block;
 }
 
 .button-dark{

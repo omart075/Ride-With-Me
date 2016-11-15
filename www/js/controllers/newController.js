@@ -308,7 +308,9 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     //     };
     //
     // }
-    $scope.parse = function(data){
+
+    //deeplinking
+    $scope.deepLink = function(data){
       var startLat = $scope._markers[0].getPosition().lat();
       var startLng = $scope._markers[0].getPosition().lng();
       var finLat = $scope._markers[1].getPosition().lat();

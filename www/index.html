@@ -49,7 +49,7 @@
       </ion-header-bar>-->
       <ion-content scroll="false" ng-controller="newController">
 <div id="searchBars">
-	<div class="search-wrapper1">
+	<div class="search-wrapper">
 	  <form>
 	    <label id="rounded" class="item search-bar1 item-input">
         <!-- can use enter() or enterMod() in ng-focus -->
@@ -58,7 +58,7 @@
 		  </label>
 	  </form>
 	</div>
-	<div class="search-wrapper2">
+	<div class="search-wrapper">
 	  <form>
 	    <label id="rounded" class="item search-bar2 item-input">
 	      <input ng-focus="disableTap(); enterMod('user.destination'); clicked('user.destination')"style="color: #FFFFFF;" type="text" name="focus" required class="search-box" ng-model="user.destination" id="user.destination" placeholder="Set Dropoff" googleplace="" autocomplete="off"></input>
@@ -71,50 +71,60 @@
   <div class="price-list">
   <ion-list id="carlist" ng-if="res != null" on-swipe-down="onSwipeDown()">
       <ion-item id="roundedItemTop" class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
-          <div class="click" ng-click="parse(res[0])">
-            <p style="color: white;" class="info">{{res[0].ride_type}}
-              <span style="float:right;">${{(res[0].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
-            </p>
+        <ion-item style="float: left;"class="subitem">
+          <div class="click" ng-click="deepLink(res[0])">
+            <ul style="float: left;" class="a">
+              <li style="font-weight: bold;">{{res[0].ride_type}}</li>
+              <li>${{(res[0].estimated_cost_cents_max/100).toFixed(2)}}</li>
+            </ul>
           </div>
         </ion-item>
-
-        <ion-item class="carItem" ng-style="draggedStyle" ng-hide="res[1] == null">
-            <div class="click" ng-click="parse(res[1])">
-              <p style="color: white;" class="info">{{res[1].ride_type}}
-                <span style="float:right;">${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
-              </p>
-            </div>
-          </ion-item>
-
-          <ion-item class="carItem" ng-style="draggedStyle" ng-hide="res[2] == null">
-              <div class="click" ng-click="parse(res[2])">
-                <p style="color: white;" class="info">{{res[2].ride_type}}
-                  <span style="float:right;">${{(res[2].estimated_cost_cents_max/100).toFixed(2)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
-                </p>
-              </div>
-            </ion-item>
-
-      <ion-item class="carItem" ng-style="draggedStyle" ng-hide="uberData[0] == null">
-          <div class="click" ng-click="parse(uberData[0])">
-            <p style="color: white;" class="info">{{uberData[0].display_name}}
-              <span style="float:right;">{{(uberData[0].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
-            </p>
+        <ion-item style="float: right;" class="subitem">
+          <div class="click" ng-click="deepLink(res[0])">
+            <ul style="float: right;" class="a">
+              <li style="font-weight: bold;">{{res[0].ride_type}}</li>
+              <li>${{(res[0].estimated_cost_cents_max/100).toFixed(2)}}</li>
+            </ul>
           </div>
+        </ion-item>
       </ion-item>
-      <ion-item class="carItem" ng-style="draggedStyle" ng-hide="uberData[1] == null">
 
-          <div class="click" ng-click="parse(uberData[1])">
-            <p style="color: white;" class="info">{{uberData[1].display_name}}
-              <span style="float:right;">{{(uberData[1].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
-            </p>
+      <ion-item class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
+        <ion-item style="float: left;"class="subitem">
+          <div class="click" ng-click="deepLink(res[0])">
+            <ul style="float: left;" class="a">
+              <li style="font-weight: bold;">{{res[1].ride_type}}</li>
+              <li>${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}</li>
+            </ul>
           </div>
+        </ion-item>
+        <ion-item style="float: right;" class="subitem">
+          <div class="click" ng-click="deepLink(res[0])">
+            <ul style="float: right;" class="a">
+              <li style="font-weight: bold;">{{res[1].ride_type}}</li>
+              <li>${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}</li>
+            </ul>
+          </div>
+        </ion-item>
       </ion-item>
-      <ion-item id="roundedItemBottom" class="carItem" ng-style="draggedStyle" ng-hide="uberData[2] == null">
-          <div class="click" ng-click="parse(uberData[2])">
-            <p style="color: white;" class="info">{{uberData[2].display_name}}
-              <span style="float:right;">{{(uberData[2].estimate)}}<i style="float:right; padding-left: 10px" class="icon icon-right ion-chevron-right" ng-click=""></i></span>
-            </p>
+
+      <ion-item id="roundedItemBottom" class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
+        <ion-item style="float: left;"class="subitem">
+          <div class="click" ng-click="deepLink(res[0])">
+            <ul style="float: left;" class="a">
+              <li style="font-weight: bold;">{{res[2].ride_type}}</li>
+              <li>${{(res[2].estimated_cost_cents_max/100).toFixed(2)}}</li>
+            </ul>
           </div>
+        </ion-item>
+        <ion-item style="float: right;" class="subitem">
+          <div class="click" ng-click="deepLink(res[0])">
+            <ul style="float: right;" class="a">
+              <li style="font-weight: bold;">{{res[2].ride_type}}</li>
+              <li>${{(res[2].estimated_cost_cents_max/100).toFixed(2)}}</li>
+            </ul>
+          </div>
+        </ion-item>
       </ion-item>
     </ion-list>
   </div>
