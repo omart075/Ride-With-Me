@@ -72,9 +72,9 @@
 
 .list{
   background-color: rgba(69, 69, 69, 0);
-  margin-top: -130%;
+  margin-top: -150%;
   margin-left: -52%;
-  width: 350px;
+  width: 300px;
 }
 /*slide the prices in from the bottom center; can adjust direction with translate3d*/
 @keyframes slideInSmooth {
@@ -91,7 +91,11 @@
   background-color: #444444;
   -webkit-animation:slideInSmooth 700ms;
 }
-
+.subitem{
+  background-color: #444444;
+  color: white;
+  border: none;
+}
 .carItem.ng-enter-prepare
 {
   opacity: 0;
@@ -146,7 +150,7 @@
 .click.active, .click.activated, .click-complex.active .click-content, .click-complex.activated .click-content {
 border-color: #595a5b;
 background-color: #595a5b;
-height: 20px;
+display: block;
 }
 
 .button-dark{
@@ -158,7 +162,7 @@ height: 20px;
 
 /*adjust position of buttons*/
 #search-button{
-  padding-left: 5px;  
+  padding-left: 5px;
 }
 #prices-button{
   padding-bottom: 12px;

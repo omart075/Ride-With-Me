@@ -102,16 +102,10 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
               document.getElementsByClassName('carItem')[0].style.animation = "slideOutDown 700ms";
               document.getElementsByClassName('carItem')[1].style.animation = "slideOutDown 700ms";
               document.getElementsByClassName('carItem')[2].style.animation = "slideOutDown 700ms";
-              document.getElementsByClassName('carItem')[3].style.animation = "slideOutDown 700ms";
-              document.getElementsByClassName('carItem')[4].style.animation = "slideOutDown 700ms";
-              document.getElementsByClassName('carItem')[5].style.animation = "slideOutDown 700ms";
 
               document.getElementsByClassName('carItem')[0].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[0].style.display = 'none'; }, false);
               document.getElementsByClassName('carItem')[1].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[1].style.display = 'none'; }, false);
               document.getElementsByClassName('carItem')[2].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[2].style.display = 'none'; }, false);
-              document.getElementsByClassName('carItem')[3].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[3].style.display = 'none'; }, false);
-              document.getElementsByClassName('carItem')[4].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[4].style.display = 'none'; }, false);
-              document.getElementsByClassName('carItem')[5].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[5].style.display = 'none'; }, false);
 
             });
             //should bring buttons back when map is dragged
@@ -119,16 +113,10 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
               document.getElementsByClassName('carItem')[0].style.animation = "slideOutDown 700ms";
               document.getElementsByClassName('carItem')[1].style.animation = "slideOutDown 700ms";
               document.getElementsByClassName('carItem')[2].style.animation = "slideOutDown 700ms";
-              document.getElementsByClassName('carItem')[3].style.animation = "slideOutDown 700ms";
-              document.getElementsByClassName('carItem')[4].style.animation = "slideOutDown 700ms";
-              document.getElementsByClassName('carItem')[5].style.animation = "slideOutDown 700ms";
 
               document.getElementsByClassName('carItem')[0].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[0].style.display = 'none'; }, false);
               document.getElementsByClassName('carItem')[1].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[1].style.display = 'none'; }, false);
               document.getElementsByClassName('carItem')[2].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[2].style.display = 'none'; }, false);
-              document.getElementsByClassName('carItem')[3].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[3].style.display = 'none'; }, false);
-              document.getElementsByClassName('carItem')[4].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[4].style.display = 'none'; }, false);
-              document.getElementsByClassName('carItem')[5].addEventListener('webkitAnimationEnd',function( event ) {    document.getElementsByClassName('carItem')[5].style.display = 'none'; }, false);
 
             });
         });
@@ -283,7 +271,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
     //     };
     //
     // }
-    $scope.parse = function(data){
+    $scope.deepLink = function(data){
       var startLat = $scope._markers[0].getPosition().lat();
       var startLng = $scope._markers[0].getPosition().lng();
       var finLat = $scope._markers[1].getPosition().lat();
