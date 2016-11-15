@@ -10,23 +10,12 @@ angular.module('app').factory('markerService', function() {
 
         addCurrMarker: function(map, location) {
           //sets pin attributes
-          function pinSymbol(color) {
-               return {
-                   path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
-                   fillColor: color,
-                   fillOpacity: 1,
-                   strokeColor: '#000',
-                   strokeWeight: 1,
-                   scale: 1
-              };
-           }
 
             var marker = new Marker({
-                map: map,
-                name: "currentLocation",
-                animation: google.maps.Animation.BOUNCE,
-                position: location,
-                icon: pinSymbol("#487DD9")
+              map: map,
+              name: "currentLocation",
+              position: location,
+              icon: "http://i.stack.imgur.com/orZ4x.png"
             });
             return marker;
         },

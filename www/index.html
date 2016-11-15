@@ -72,34 +72,34 @@
     <ion-list id="carlist" ng-if="res != null" on-swipe-down="onSwipeDown()">
         <ion-item id="roundedItemTop" class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
           <ion-item style="float: left;"class="subitem">
-            <div class="click" ng-click="deepLink(res[0])">
               <ul style="float: left;" class="a">
-                <li style="font-weight: bold;">{{res[0].ride_type}}</li>
-                <li>${{(res[0].estimated_cost_cents_max/100).toFixed(2)}}</li>
+                <div class="click" ng-click="deepLink(res[1])">
+                <li style="font-weight: bold;">{{res[1].ride_type}}</li>
+                <li>${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}</li>
+                </div>
               </ul>
-            </div>
           </ion-item>
           <ion-item style="float: right;" class="subitem">
-            <div class="click" ng-click="deepLink(res[0])">
               <ul style="float: right;" class="a">
+                <div class="click" ng-click="deepLink(uberData[0])">
                 <li style="font-weight: bold;">{{uberData[0].display_name}}</li>
                 <li>{{(uberData[0].estimate)}}</li>
+                </div>
               </ul>
-            </div>
           </ion-item>
         </ion-item>
 
         <ion-item class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
           <ion-item style="float: left;"class="subitem">
-            <div class="click" ng-click="deepLink(res[0])">
+            <div class="click" ng-click="deepLink(res[2])">
               <ul style="float: left;" class="a">
-                <li style="font-weight: bold;">{{res[1].ride_type}}</li>
-                <li>${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}</li>
+                <li style="font-weight: bold;">{{res[2].ride_type}}</li>
+                <li>${{(res[2].estimated_cost_cents_max/100).toFixed(2)}}</li>
               </ul>
             </div>
           </ion-item>
           <ion-item style="float: right;" class="subitem">
-            <div class="click" ng-click="deepLink(res[0])">
+            <div class="click" ng-click="deepLink(uberData[1])">
               <ul style="float: right;" class="a">
                 <li style="font-weight: bold;">{{uberData[1].display_name}}</li>
                 <li>{{(uberData[1].estimate)}}</li>
@@ -112,13 +112,13 @@
           <ion-item style="float: left;"class="subitem">
             <div class="click" ng-click="deepLink(res[0])">
               <ul style="float: left;" class="a">
-                <li style="font-weight: bold;">{{res[2].ride_type}}</li>
-                <li>${{(res[2].estimated_cost_cents_max/100).toFixed(2)}}</li>
+                <li style="font-weight: bold;">{{res[0].ride_type}}</li>
+                <li>${{(res[0].estimated_cost_cents_max/100).toFixed(2)}}</li>
               </ul>
             </div>
           </ion-item>
           <ion-item style="float: right;" class="subitem">
-            <div class="click" ng-click="deepLink(res[0])">
+            <div class="click" ng-click="deepLink(uberData[2])">
               <ul style="float: right;" class="a">
                 <li style="font-weight: bold;">{{uberData[2].display_name}}</li>
                 <li>{{(uberData[2].estimate)}}</li>
