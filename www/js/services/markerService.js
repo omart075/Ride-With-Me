@@ -9,20 +9,24 @@ angular.module('app').factory('markerService', function() {
     Markers.prototype = {
 
         addCurrMarker: function(map, location) {
+          //sets pin attributes
+          function pinSymbol(color) {
+               return {
+                   path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+                   fillColor: color,
+                   fillOpacity: 1,
+                   strokeColor: '#000',
+                   strokeWeight: 1,
+                   scale: 1
+              };
+           }
 
             var marker = new Marker({
                 map: map,
                 name: "currentLocation",
+                animation: google.maps.Animation.BOUNCE,
                 position: location,
-                icon: {
-                    path: SQUARE_ROUNDED,
-                    fillColor: '#000000',
-                    fillOpacity: 0,
-                    strokeColor: '#FFFFFF',
-                    strokeWeight: 0,
-                    draggable: false
-                },
-                map_icon_label: '<span class="map-icon map-icon-circle"></span>'
+                icon: pinSymbol("#487DD9")
             });
             return marker;
         },
@@ -52,10 +56,11 @@ angular.module('app').factory('markerService', function() {
          var colorStr = "#444";
        }
 	    var marker = new google.maps.Marker({
+      animation: google.maps.Animation.DROP,
   		position: location,
   		draggable: true,
   		map: map,
-      icon: pinSymbol(colorStr),
+      icon: pinSymbol(colorStr)
   	    });
 	    this._markers.push(marker);
 	    this.count = this.count + 1;
