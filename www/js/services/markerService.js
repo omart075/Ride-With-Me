@@ -11,11 +11,9 @@ angular.module('app').factory('markerService', function() {
         addCurrMarker: function(map, location) {
           //sets pin attributes
             var markerIcon ={
-              url: "../../img/pleasework.gif",
+              url: "pleasework.gif",
               size: new google.maps.Size(100,100),
-              scaledSize: new google.maps.Size(25, 25),
-              anchor: new google.maps.Point(0,0),
-              origin: new google.maps.Point(0,0)
+              scaledSize: new google.maps.Size(25, 25)
           };
 
             var marker = new Marker({
@@ -23,7 +21,7 @@ angular.module('app').factory('markerService', function() {
               name: "currentLocation",
               position: location,
               icon: markerIcon,
-              optimized: false,
+              optimized: false
             });
             return marker;
         },
