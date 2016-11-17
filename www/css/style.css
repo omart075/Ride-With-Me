@@ -171,20 +171,26 @@ height: 40px;
 
 /*modify places autocomplete*/
 .pac-container{
+  animation: zoomIn 0.5s;
   border-radius: 10px;
   left: 10px !important;
   width: 355px !important;
-  top: relative !important;
+  margin-top: 15px !important;
 }
+
 /*centers each suggestion*/
 .pac-item{
   height: 45px !important;
   padding-top: 8px !important;
+
 }
+
+
 /*gets rid of black text from match text*/
 .pac-matched{
   text-decoration: none !important;
-  font-weight: normal !important;
+  font-weight: normal !important
+
 }
 /*locates icon on sprite sheet*/
 .pac-icon-marker{
