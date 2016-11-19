@@ -13,7 +13,9 @@ angular.module('app').factory('markerService', function() {
             var markerIcon ={
               url: "pleasework.gif",
               size: new google.maps.Size(100,100),
-              scaledSize: new google.maps.Size(25, 25)
+              scaledSize: new google.maps.Size(25, 25),
+              anchor: new google.maps.Point(12,12),
+              origin: new google.maps.Point(0,0)
           };
 
             var marker = new Marker({
