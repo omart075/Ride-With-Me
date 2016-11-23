@@ -125,9 +125,7 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
   $scope.clicked = function(element){
     var input = document.getElementById(element);
     var autocomplete = new google.maps.places.Autocomplete(input);
-     google.maps.event.addListener(autocomplete, 'place_changed', function () {
-        console.log("clicked");
-       });
+
   };
   // detects if user pressed enter key and then mimics arrow down and enter to select first
   // autocomplete option
@@ -138,8 +136,11 @@ angular.module('app').controller('newController', function($scope, $http, $ionic
        if(e.keyCode===13 && !e.triggered){
          google.maps.event.trigger(this,'keydown',{keyCode:40})
          google.maps.event.trigger(this,'keydown',{keyCode:13,triggered:true})
+         google.maps.event.trigger(this,'keydown',{keyCode:9})
+
        }
   });
+
   };
   // detects if user pressed enter key
   //parameter passed is the id of search box calling the functions
