@@ -75,7 +75,7 @@
           <div style="float: left;" class="table">
             <ul>
               <li>
-                <div class="top">
+                <div id="roundedItemTopLeft" class="top">
                   <h3>{{res[1].ride_type}}</h3>
                   <div ng-click="deepLink(res[1])" class="circle">${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}</div>
                 </div>
@@ -94,7 +94,7 @@
           <div style="float: right;" class="table">
             <ul>
               <li>
-                <div class="top">
+                <div id="roundedItemTopRight" class="top">
                   <h3>{{uberData[0].display_name}}</h3>
                   <div ng-click="deepLink(uberData[0])" class="circle">{{(uberData[0].estimate)}}</div>
                 </div>
