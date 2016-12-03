@@ -8,44 +8,28 @@
     height: 100%;
 }
 
-.close-icon1, .close-icon2 {
-	border:1px solid transparent;
-	background-color: transparent;
-	display: inline-block;
-	vertical-align: middle;
-  outline: 0;
-  cursor: pointer;
+/****************************** Search Boxes *********************************/
+
+/*slides the search boxes in from the top center*/
+@keyframes slideInSmoothSearch {
+  0% {
+    transform: translate3d(0,-350%,0);
+  }
+  100% {
+    transform: translate3d(0,0,0);
+  }
 }
-.close-icon1:after, .close-icon2:after {
-	content: "X";
-	display: block;
-	width: 15px;
-	height: 15px;
-	position: absolute;
-	background-color: none;
-	z-index:1;
-	right: 15px;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-	padding: 0px;
-	border-radius:50%;
-	text-align: center;
-	font-weight: normal;
-	font-size: 12px;
-	box-shadow: 0 0 0px #FFFFFF;
-	cursor: pointer;
-  animation: zoomIn 0.5s;
+/*slides the search boxes in from the top center*/
+.search-wrapper{
+ animation: slideInSmoothSearch;
+ animation: slideInSmoothSearch;
+ animation-fill-mode: forwards;
+ animation-fill-mode: forwards;
+ animation-duration: 700ms;
+ animation-duration: 700ms;
+ width: 300px;
 }
-.close-icon1:after{
-  color: black;
-}
-.close-icon2:after{
-  color: white;
-}
-.search-box:not(:valid) ~ .close-icon1, .search-box:not(:valid) ~ .close-icon2 {
-	display: none;
-}
+
 .search-bar1, .search-bar2
 {
     box-shadow: 0 10px 6px -6px #777;
@@ -70,104 +54,6 @@
    bottom:0;
    height:50px;
 }*/
-
-.list{
-  background-color: rgba(69, 69, 69, 0);
-  margin-top: -150%;
-  margin-left: -52%;
-  width: 300px;
-}
-/*slide the prices in from the bottom center; can adjust direction with translate3d*/
-@keyframes slideInSmooth {
-  0% {
-    transform: translate3d(0,750%,0);
-  }
-  100% {
-    transform: translate3d(0,0,0);
-  }
-}
-.carItem{
-  text-align: center;
-  color: white;
-  background-color: #444444;
-  -webkit-animation:slideInSmooth 700ms;
-}
-.subitem{
-  background-color: #444444;
-  color: white;
-  border: none;
-}
-.carItem.ng-enter-prepare
-{
-  opacity: 0;
-}
-
-/*slides the search boxes in from the top center*/
-@keyframes slideInSmoothSearch {
-  0% {
-    transform: translate3d(0,-350%,0);
-  }
-  100% {
-    transform: translate3d(0,0,0);
-  }
-}
-/*slides the search boxes in from the top center*/
-.search-wrapper{
- animation: slideInSmoothSearch;
- animation: slideInSmoothSearch;
- animation-fill-mode: forwards;
- animation-fill-mode: forwards;
- animation-duration: 700ms;
- animation-duration: 700ms;
- width: 300px;
-}
-#rounded{
-  border-radius:30px;
-}
-#roundedItemTop{
-  border-top-left-radius:8px;
-  border-top-right-radius:8px;
-}
-#roundedItemBottom{
-  border-bottom-left-radius:8px;
-  border-bottom-right-radius:8px;
-}
-
-.price-list{
-  padding-left: 12px;
-}
-.info{
-  color: #FFFFFF;
-  padding-left: 10px;
-  font-size: 130%;
-  text-align: left;
-}
-.prices{
-  color: #FFFFFF;
-  float: right;
-  padding-right: 10px;
-  font-size: 130%;
-}
-.click.active, .click.activated, .click-complex.active .click-content, .click-complex.activated .click-content {
-
-height: 40px;
-}
-
-.button-dark{
-  width: 150px;
-	height: 40px;
-  box-shadow: 0 10px 6px -6px #777;
-  border-radius: 30px;
-}
-
-/*adjust position of buttons*/
-#search-button{
-  padding-left: 5px;
-}
-#prices-button{
-  padding-bottom: 12px;
-  padding-right: 5px;
-}
 
 /*modify places autocomplete*/
 .pac-container{
@@ -206,3 +92,190 @@ height: 40px;
   vertical-align: 50% !important;
   left: 1px !important;
 }*/
+
+/*****************************************************************************/
+
+/******************************* Clear Search ********************************/
+.close-icon1, .close-icon2 {
+	border:1px solid transparent;
+	background-color: transparent;
+	display: inline-block;
+	vertical-align: middle;
+  outline: 0;
+  cursor: pointer;
+}
+.close-icon1:after, .close-icon2:after {
+	content: "X";
+	display: block;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	background-color: none;
+	z-index:1;
+	right: 15px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	padding: 0px;
+	border-radius:50%;
+	text-align: center;
+	font-weight: normal;
+	font-size: 12px;
+	box-shadow: 0 0 0px #FFFFFF;
+	cursor: pointer;
+  animation: zoomIn 0.5s;
+}
+.close-icon1:after{
+  color: black;
+}
+.close-icon2:after{
+  color: white;
+}
+.search-box:not(:valid) ~ .close-icon1, .search-box:not(:valid) ~ .close-icon2 {
+	display: none;
+}
+
+/*****************************************************************************/
+
+/********************************* Buttons ***********************************/
+.click.active, .click.activated, .click-complex.active .click-content, .click-complex.activated .click-content {
+height: 40px;
+}
+
+.button-dark{
+  width: 150px;
+	height: 40px;
+  box-shadow: 0 10px 6px -6px #777;
+  border-radius: 30px;
+}
+
+/*adjust position of buttons*/
+#search-button{
+  padding-left: 5px;
+}
+#prices-button{
+  padding-bottom: 12px;
+  padding-right: 5px;
+}
+
+/*****************************************************************************/
+
+/********************************** Prices ***********************************/
+.list{
+  background-color: rgba(69, 69, 69, 0);
+  margin-top: -150%;
+  margin-left: -52%;
+  width: 300px;
+}
+/*slide the prices in from the bottom center; can adjust direction with translate3d*/
+@keyframes slideInSmooth {
+  0% {
+    transform: translate3d(0,750%,0);
+  }
+  100% {
+    transform: translate3d(0,0,0);
+  }
+}
+.carItem{
+  text-align: center;
+  color: white;
+  background-color: transparent;
+  border: none;
+  -webkit-animation:slideInSmooth 700ms;
+}
+.subitem{
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+.carItem.ng-enter-prepare
+{
+  opacity: 0;
+}
+
+#rounded{
+  border-radius:30px;
+}
+#roundedItemTop{
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+}
+#roundedItemBottom{
+  border-bottom-left-radius:8px;
+  border-bottom-right-radius:8px;
+}
+
+.price-list{
+  padding-left: 12px;
+}
+.info{
+  color: #FFFFFF;
+  padding-left: 10px;
+  font-size: 130%;
+  text-align: left;
+}
+.prices{
+  color: #FFFFFF;
+  float: right;
+  padding-right: 10px;
+  font-size: 130%;
+}
+
+/*****************************************************************************/
+
+.top {  
+  background-color:#5d5d5d;
+  height:50px;
+  h1 {
+    padding-top:20px;
+  }
+}
+.bottom {
+margin-top:50px;
+  p {
+     font-size:13px;
+     padding:5px;
+    span {
+     font-weight:bold;
+    }
+  }
+}
+.ride {
+  margin-top:50px;
+    .button {
+   border: 1px solid #989A8F;
+   padding: 10px 40px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   color: #989A8F;
+   font-size: 10px;
+   text-decoration: none;
+   vertical-align: middle;
+    font-size:10px;
+   }
+}
+.table {
+  background-color:#ffffff;
+  height:80px;
+  width:50%;
+  margin-top: -15px;
+}
+ul li {
+  float:left;
+  width:100%;
+  text-align:center;
+  background-color: #ffffff;
+}
+.circle {
+  width:60px;
+  height:60px;
+  border-radius:60px;
+  font-size:15px;
+  color:#fff;
+  line-height:60px;
+  text-align:center;
+  background:#444444;
+  margin-left:38px;
+  margin-top:5px;
+}

@@ -72,26 +72,106 @@
   <div class="price-list">
     <ion-list id="carlist" ng-if="res != null" on-swipe-down="onSwipeDown()">
         <ion-item id="roundedItemTop" class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
-          <ion-item style="float: left;"class="subitem">
+          <div style="float: left;" class="table">
+            <ul>
+              <li>
+                <div class="top">
+                  <h3>{{res[1].ride_type}}</h3>
+                  <div ng-click="deepLink(res[1])" class="circle">${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}</div>
+                </div>
+                <div class="bottom">
+                  <!-- <p><span>5</span> users</p>
+                  <p><span>10</span> projects</p>
+                  <p><span>10GB</span> amount of space</p>
+                  <p><span>5</span> e-mail accounts</p> -->
+                  <!-- <div class="ride">
+                    <a href='' ng-click="deepLink(res[1])" class='button'>Ride</a>
+                  </div> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div style="float: right;" class="table">
+            <ul>
+              <li>
+                <div class="top">
+                  <h3>{{uberData[0].display_name}}</h3>
+                  <div ng-click="deepLink(uberData[0])" class="circle">{{(uberData[0].estimate)}}</div>
+                </div>
+                <div class="bottom">
+                  <!-- <p><span>5</span> users</p>
+                  <p><span>10</span> projects</p>
+                  <p><span>10GB</span> amount of space</p>
+                  <p><span>5</span> e-mail accounts</p> -->
+                  <!-- <div class="ride">
+                    <a href='' ng-click="deepLink(uberData[0])" class='button'>Ride</a>
+                  </div> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- <ion-item style="float: left;"class="subitem"> -->
+          <!-- </ion-item> -->
+          <!-- <ion-item style="float: left;"class="subitem">
               <ul style="float: left;" class="a">
                 <div class="click" ng-click="deepLink(res[1])">
                 <li style="font-weight: bold;">{{res[1].ride_type}}</li>
                 <li>${{(res[1].estimated_cost_cents_max/100).toFixed(2)}}</li>
                 </div>
               </ul>
-          </ion-item>
-          <ion-item style="float: right;" class="subitem">
+          </ion-item> -->
+          <!-- <ion-item style="float: right;"class="subitem"> -->
+          <!-- </ion-item> -->
+          <!-- <ion-item style="float: right;" class="subitem">
               <ul style="float: right;" class="a">
                 <div class="click" ng-click="deepLink(uberData[0])">
                 <li style="font-weight: bold;">{{uberData[0].display_name}}</li>
                 <li>{{(uberData[0].estimate)}}</li>
                 </div>
               </ul>
-          </ion-item>
+          </ion-item> -->
         </ion-item>
 
         <ion-item class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
-          <ion-item style="float: left;"class="subitem">
+          <div style="float: left;" class="table">
+            <ul>
+              <li>
+                <div class="top">
+                  <h3>{{res[2].ride_type}}</h3>
+                  <div ng-click="deepLink(res[2])" class="circle">${{(res[2].estimated_cost_cents_max/100).toFixed(2)}}</div>
+                </div>
+                <div class="bottom">
+                  <!-- <p><span>5</span> users</p>
+                  <p><span>10</span> projects</p>
+                  <p><span>10GB</span> amount of space</p>
+                  <p><span>5</span> e-mail accounts</p> -->
+                  <!-- <div class="ride">
+                    <a href='' ng-click="deepLink(res[2])" class='button'>Ride</a>
+                  </div> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div style="float: right;" class="table">
+            <ul>
+              <li>
+                <div class="top">
+                  <h3>{{uberData[1].display_name}}</h3>
+                  <div ng-click="deepLink(uberData[1])" class="circle">{{(uberData[1].estimate)}}</div>
+                </div>
+                <div class="bottom">
+                  <!-- <p><span>5</span> users</p>
+                  <p><span>10</span> projects</p>
+                  <p><span>10GB</span> amount of space</p>
+                  <p><span>5</span> e-mail accounts</p> -->
+                  <!-- <div class="ride">
+                    <a href='' ng-click="deepLink(uberData[1])" class='button'>Ride</a>
+                  </div> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- <ion-item style="float: left;"class="subitem">
             <div class="click" ng-click="deepLink(res[2])">
               <ul style="float: left;" class="a">
                 <li style="font-weight: bold;">{{res[2].ride_type}}</li>
@@ -106,11 +186,49 @@
                 <li>{{(uberData[1].estimate)}}</li>
               </ul>
             </div>
-          </ion-item>
+          </ion-item> -->
         </ion-item>
 
         <ion-item id="roundedItemBottom" class="carItem"  ng-style="draggedStyle" ng-hide="res[0] == null">
-          <ion-item style="float: left;"class="subitem">
+          <div style="float: left;" class="table">
+            <ul>
+              <li>
+                <div class="top">
+                  <h3>{{res[0].ride_type}}</h3>
+                  <div ng-click="deepLink(res[0])" class="circle">${{(res[0].estimated_cost_cents_max/100).toFixed(2)}}</div>
+                </div>
+                <div class="bottom">
+                  <!-- <p><span>5</span> users</p>
+                  <p><span>10</span> projects</p>
+                  <p><span>10GB</span> amount of space</p>
+                  <p><span>5</span> e-mail accounts</p> -->
+                  <!-- <div class="ride">
+                    <a href='' ng-click="deepLink(res[0])" class='button'>Ride</a>
+                  </div> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div style="float: right;" class="table">
+            <ul>
+              <li>
+                <div class="top">
+                  <h3>{{uberData[2].display_name}}</h3>
+                  <div ng-click="deepLink(uberData[2])" class="circle">{{(uberData[2].estimate)}}</div>
+                </div>
+                <div class="bottom">
+                  <!-- <p><span>5</span> users</p>
+                  <p><span>10</span> projects</p>
+                  <p><span>10GB</span> amount of space</p>
+                  <p><span>5</span> e-mail accounts</p> -->
+                  <!-- <div class="ride">
+                    <a href='' ng-click="deepLink(uberData[2])" class='button'>Ride</a>
+                  </div> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- <ion-item style="float: left;"class="subitem">
             <div class="click" ng-click="deepLink(res[0])">
               <ul style="float: left;" class="a">
                 <li style="font-weight: bold;">{{res[0].ride_type}}</li>
@@ -126,7 +244,7 @@
               </ul>
             </div>
           </ion-item>
-        </ion-item>
+        </ion-item> -->
       </ion-list>
   </div>
      <!--
